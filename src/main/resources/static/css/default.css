@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+  color: Silver;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+}
+
+/* Style the header */
+header {
+  background-color: DarkSlateGray;
+  text-align: center;
+  color: white;
+  display: flex;
+  padding-left: 20px;
+  border: 1px solid silver;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 20%;
+  height: 800px; /* only for demonstration, should be removed */
+  background: DarkSlateGray;
+  padding: 20px;
+  border: 1px solid silver;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 80%;
+  background-color: DarkSlateGray;
+  height: 800px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: DarkSlateGray;
+  display: flex;
+  text-align: center;
+  color: white;
+  padding-left: 20px;
+  border: 1px solid silver;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
