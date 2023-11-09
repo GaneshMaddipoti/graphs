@@ -74,9 +74,10 @@ function javaContainer() {
 function javaInto() {
     //var diagram = javaContainer();
     var data = diagram.model.findNodeDataForKey("Java Introduction");
+
     if (data) {
         diagram.model.startTransaction("modified property");
-        diagram.model.set(data, "expand", true);
+        diagram.model.set(data, "expand", ((data.expand)? false: true));
         diagram.model.commitTransaction("modified property");
     }
 }

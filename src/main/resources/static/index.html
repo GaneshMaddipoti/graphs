@@ -17,18 +17,18 @@
 </header>
 
 <section>
-    <nav>
+    <nav style="position: relative; z-index: 20;">
         <ul id="myUL">
             <li><a href="#" onclick="aboutMe()">About Me</a></li>
-            <li><span class="caret">Soft Skills</span>
+            <li><span class="caret"></span>Soft Skills
                 <ul class="nested">
                     <li>English</li>
                     <li>Communication</li>
                 </ul>
             </li>
-            <li><span class="caret">Technical Skills</span>
+            <li><span class="caret"></span>Technical Skills
                 <ul class="nested">
-                    <li><span class="caret"><a href="#" onclick="javaContainer()">Java</a></span>
+                    <li><span class="caret"></span><a href="#" onclick="javaContainer()">Java</a>
                         <ul class="nested">
                             <li><a href="#" onclick="javaInto()">Introduction</a></li>
                             <li><a href="#">OOP Concepts</a></li>
@@ -48,7 +48,7 @@
     </nav>
 
     <article>
-        <div id="myDiagramDiv" style="width:100%;height: 750px; background-color: DarkSlateGray;margin:0 auto;border: 1px solid Silver"></div>
+        <div id="myDiagramDiv" style="left: -200px; width:115%;height: 750px; background-color: DarkSlateGray;margin:0 auto;border: 0px solid Silver"></div>
         <div id="toolTipDIV" class="tooltip"></div>
         <script src="js/custom3.js"></script>
         <script src="js/aboutMe.js"></script>
