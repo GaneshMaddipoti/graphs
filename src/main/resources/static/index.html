@@ -19,14 +19,15 @@
 <section>
     <nav>
         <ul>
+            <li><a href="#" onclick="aboutMe()">About Me</a></li>
             <li>Soft Skills</li>
             <li><a href="#">English</a></li>
             <li><a href="#">Communication</a></li>
             <br/>
             <li>Technical Skills</li>
             <li>
-                <ul><a href="#">Java</a>
-                    <li><a href="#">Introduction</a></li>
+                <ul><a href="#" onclick="javaContainer()">Java</a>
+                    <li><a href="#" onclick="javaInto()">Introduction</a></li>
                     <li><a href="#">OOP Concepts</a></li>
                     <li><a href="#">Syntax</a></li>
                     <li><a href="#">Exception Handling</a></li>
@@ -45,7 +46,9 @@
     <article>
         <div id="myDiagramDiv" style="width:100%;height: 750px; background-color: DarkSlateGray;margin:0 auto;border: 1px solid Silver"></div>
         <div id="toolTipDIV" class="tooltip"></div>
-        <script src="js/custom2.js"></script>
+        <script src="js/custom3.js"></script>
+        <script src="js/aboutMe.js"></script>
+        <script src="js/java.js"></script>
     </article>
 </section>
 
@@ -53,8 +56,6 @@
     <p>@Copyrights reserved to Jtechy.com</p>
 </footer>
 <script>
-        let nodeDataArray = [];
-        let linkDataArray = [];
         diagram.model = new go.GraphLinksModel(nodeDataArray,linkDataArray);
         diagram.commandHandler.zoomToFit();
 </script>
