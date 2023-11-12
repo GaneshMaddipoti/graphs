@@ -1,98 +1,95 @@
-let linuxOverviewHTML = `
-OS is b/w applications and H/W, manage storage, memory, GUI, CLI, networking, security, users, and utilities <br/>
-Linux originated from Unix which is leading in 1970-90. <br/>
-GNU mission is to use free/open source tools for Unix. <br/>
-1992, Linus Torvalds added kernel to GNU and completes Linux OS. <br/> 
-Linux distribution includes kernel, GNU tools, additional software, and a package manager. <br/> 
-Support is required for software maintenance. So distributions do that <br/>
-Distributions:  <br/>
-Debian : Ubuntu, Mint, Kali <br/> 
-RedHat : CentOS, Fedora  <br/>
-SUSE   : OpenSUSE  <br/>
-Arch Linux : LinuxHES, Monjaro <br/>
+let linuxOverviewHTML = `OS is b/w applications and H/W, manage storage, memory, GUI, CLI, networking, security, users, and utilities
+Linux originated from Unix which is leading in 1970-90. 
+GNU mission is to use free/open source tools for Unix. 
+1992, Linus Torvalds added kernel to GNU and completes Linux OS.  
+Linux distribution includes kernel, GNU tools, additional software, and a package manager.  
+Support is required for software maintenance. So distributions do that 
+Distributions:  
+Debian : Ubuntu, Mint, Kali  
+RedHat : CentOS, Fedora  
+SUSE   : OpenSUSE  
+Arch Linux : LinuxHES, Monjaro 
 `;
 
-let shellHTML = `
-Shell is interpreter to execute commands. <br/>
-Commands contains command [options] [arguments] <br/>
-Ex : ls -a /etc <br/>
+let shellHTML = `Shell is interpreter to execute commands.
+Commands contains command [options] [arguments] 
+Ex : ls -a /etc 
 `;
 
-let binHTML = `
-<b>Essential user command binaries </b><br/>
-bash/sh - command language interpreter that executes commands from standard input/file. <br/>
-date - print or set the system date and time <br/>
-echo - display a line of text <br/>
-uname - print system information <br/>
-mount/umount - mount/unmount a filesystem <br/>
-hostname - show or set the system's host name <br/>
-ping - send ICMP ECHO_REQUEST to network hosts <br/>
-su - run a command with substitute user and group ID(Default - root) <br/>
-ssh - Connect to remote servers securely<br/>
-history - display previously executed commands<br/>
-info - read Info documents<br/>
-who - show who is logged on<br/>
-<br/>
-<b>File System Commands</b> <br/>
-chmod - change file mode bits <br/>
-chown - change file owner and group <br/>
-touch - change file timestamps <br/>
-cat - concatenate files and print on the standard output <br/>
-grep, egrep, fgrep - print lines matching a pattern <br/>
-find - search for files in a directory hierarchy <br/>
-pwd - print name of current/working directory <br/>
-ls/dir - list directory contents <br/>
-mkdir - make directories <br/>
-dir - list directory contents <br/>
-ln - make links between files <br/>
-nano - File editor <br/>
-vim - is a text editor that is upwards compatible to Vi <br/>
-cp - copy files and directories <br/>
-mv - move (rename) files <br/>
-rm - remove files or directories <br/>
-more/less - is a filter for paging through text one screenful at a time <br/>
-gzip, gunzip, zcat - compress or expand files <br/>
-tar - an archiving utility <br/>
-<br/>
-<b>Prcoessor Commands</b> <br/>
-ps - report a snapshot of the current processes <br/>
-top - display Linux processes <br/>
-openvt - start a program on a new virtual terminal (VT). <br/>
-kill - terminate a process <br/>`;
+let binHTML = `<b>Essential user command binaries </b>
+bash/sh - command language interpreter that executes commands from standard input/file. 
+date - print or set the system date and time 
+echo - display a line of text 
+uname - print system information 
+mount/umount - mount/unmount a filesystem 
+hostname - show or set the system's host name 
+ping - send ICMP ECHO_REQUEST to network hosts 
+su - run a command with substitute user and group ID(Default - root) 
+ssh - Connect to remote servers securely
+history - display previously executed commands
+info - read Info documents
+who - show who is logged on
+
+<b>File System Commands</b> 
+chmod - change file mode bits 
+chown - change file owner and group 
+touch - change file timestamps 
+cat - concatenate files and print on the standard output 
+grep, egrep, fgrep - print lines matching a pattern 
+find - search for files in a directory hierarchy 
+pwd - print name of current/working directory 
+ls/dir - list directory contents 
+mkdir - make directories 
+dir - list directory contents 
+ln - make links between files 
+nano - File editor 
+vim - is a text editor that is upwards compatible to Vi 
+cp - copy files and directories 
+mv - move (rename) files 
+rm - remove files or directories 
+more/less - is a filter for paging through text one screenful at a time 
+gzip, gunzip, zcat - compress or expand files 
+tar - an archiving utility 
+
+<b>Prcoessor Commands</b> 
+ps - report a snapshot of the current processes 
+top - display Linux processes 
+openvt - start a program on a new virtual terminal (VT). 
+kill - terminate a process `;
 
 let etcHTML = `
-<b>Configuration files for the system</b> <br/>
-crontab is the program used to install a crontab table file, remove or list the existing tables used to serve the cron(8) daemon<br/>
-cups - a standards-based, open source printing system <br/>
-fstab - static information about the filesystems <br/>
-host.conf - resolver configuration file <br/>
-hosts - static table lookup for hostnames <br/>
-init/systemmd - it acts as init system that brings up and maintains userspace services <br/>
-issue - prelogin message and identification file <br/>
-machine-id - Local machine ID configuration file <br/>
-mtab - file contains the currently mounted filesystems <br/>
-mtools - utilities to access DOS disks in Unix. <br/>
-passwd - is used to update user's authentication token(s). <br/>
-profile - contains Linux system wide environment and other startup scripts. <br/>
-rpc - RPC program number data base <br/>
-securetty - file which lists terminals from which root can log in <br/>
-services - Internet network services list <br/>
-shells - pathnames of valid login shells <br/>
-tzset, tzname, timezone, daylight - initialize time conversion information <br/>
+<b>Configuration files for the system</b> 
+crontab is the program used to install a crontab table file, remove or list the existing tables used to serve the cron(8) daemon
+cups - a standards-based, open source printing system 
+fstab - static information about the filesystems 
+host.conf - resolver configuration file 
+hosts - static table lookup for hostnames 
+init/systemmd - it acts as init system that brings up and maintains userspace services 
+issue - prelogin message and identification file 
+machine-id - Local machine ID configuration file 
+mtab - file contains the currently mounted filesystems 
+mtools - utilities to access DOS disks in Unix. 
+passwd - is used to update user's authentication token(s). 
+profile - contains Linux system wide environment and other startup scripts. 
+rpc - RPC program number data base 
+securetty - file which lists terminals from which root can log in 
+services - Internet network services list 
+shells - pathnames of valid login shells 
+tzset, tzname, timezone, daylight - initialize time conversion information 
 `;
 
 
 let linuxNodeDataArray = [
 
-    {key: "Linux", color: "LightSteelBlue", isGroup: true, category: "tree", img: "assets/img/linux.png"},
-    {key: "Abstract", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", value: "Overview",group: "Linux",
+    {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, category: "tree", img: "assets/img/linux.png"},
+    {key: "Abstract", desc: "Abstract", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", value: "Overview",group: "Linux",
         toolTipHTML: linuxOverviewHTML},
 
-    {key: "Log In", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Linux"},
-    {key: "GUI", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
-    {key: "CLI", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
-    {key: "SSH", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
-    {key: "PuTTY", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
+    {key: "Log In", desc: "Log In", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Linux"},
+    {key: "GUI", desc: "GUI", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
+    {key: "CLI", desc: "CLI", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
+    {key: "SSH", desc: "SSH", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
+    {key: "PuTTY", desc: "PuTTY", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
 
     {key: "User Space", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Linux"},
     {key: "Shell", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space", toolTipHTML: shellHTML},
@@ -114,9 +111,9 @@ let linuxNodeDataArray = [
 
 
     {key: "Virtual File System", color: "LightSteelBlue", isGroup: true, expand: false, group: "Kernel Space", category: "grid",
-        toolTipHTML: "File system is a software that dictates how to store and read data from disks. <br/>"},
+        toolTipHTML: "File system is a software that dictates how to store and read data from disks. "},
     {key: "/root", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Root user directories</b> <br/>"
+        toolTipHTML: "<b>Root user directories</b> "
     },
     {key: "/bin", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
         toolTipHTML: binHTML
@@ -125,28 +122,28 @@ let linuxNodeDataArray = [
         toolTipHTML: etcHTML
     },
     {key: "/sbin", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Essential System binaries</b> <br/>"
+        toolTipHTML: "<b>Essential System binaries</b> "
     },
     {key: "/user", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>User Application data/binaries</b> <br/>"
+        toolTipHTML: "<b>User Application data/binaries</b> "
     },
     {key: "/var", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Variable Data Files</b> <br/>"
+        toolTipHTML: "<b>Variable Data Files</b> "
     },
     {key: "/dev", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Device Files</b> <br/>"
+        toolTipHTML: "<b>Device Files</b> "
     },
     {key: "/home", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>User home directories</b> <br/>"
+        toolTipHTML: "<b>User home directories</b> "
     },
     {key: "/lib", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>System Libraries</b> <br/>"
+        toolTipHTML: "<b>System Libraries</b> "
     },
     {key: "/opt", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Optional Software Applications</b> <br/>"
+        toolTipHTML: "<b>Optional Software Applications</b> "
     },
     {key: "/proc", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Process and Kernel information files</b> <br/>"
+        toolTipHTML: "<b>Process and Kernel information files</b> "
     },
 
 
@@ -172,3 +169,9 @@ let linuxLinkDataArray = [
     {name:"mToCPU", from:"Memory", to: "CPU", category: "simplelink" },
 
 ];
+
+function linuxContainer() {
+    let glModel = new go.GraphLinksModel(linuxNodeDataArray,linuxLinkDataArray);
+    diagram.model = glModel;
+    return diagram;
+}
