@@ -14,19 +14,19 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 0, width: 75, textAlign: "center", font: '500 14px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, width: 75, textAlign: "center", font: '16px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
 function textStyleLong() {
     return [
-        { margin: 0, textAlign: "center", font: '500 14px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
 function itemStyle() {
     return [
-        { textAlign: "center", font: '12px Roboto, sans-serif'}
+        { textAlign: "center", font: '16px Roboto, sans-serif'}
     ];
 }
 
