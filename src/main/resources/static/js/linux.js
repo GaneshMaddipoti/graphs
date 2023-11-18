@@ -81,7 +81,7 @@ tzset, tzname, timezone, daylight - initialize time conversion information
 
 let linuxNodeDataArray = [
 
-    {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, category: "tree", img: "assets/img/linux.png"},
+    {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, group: "OS Layer", category: "tree", img: "assets/img/linux.png", expand: false},
     {key: "Abstract", desc: "Abstract", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", value: "Overview",group: "Linux",
         toolTipHTML: linuxOverviewHTML},
 

@@ -24,52 +24,30 @@ Java was conceived by james gosling and his team at sun micro systems in 1991.
 This language was initially called “OAK” , but was renamed to “JAVA” in 1995.
 Java derives much of the syntax from ‘C’ and ‘C++’.
 `;
-function javaContainer() {
-    nodeDataArray = [];
-    let javaContainer = {key: "Java", desc: "Java", color: "LightSteelBlue", isGroup: true, category: "tree", img: "assets/img/java/java.png"};
+let javaNodeDataArray = [
+    {key: "Java", desc: "Java", color: "LightSteelBlue", isGroup: true, group: "Languages", category: "tree", img: "assets/img/java/java.png", expand: false},
 
-    let javaIntroduction = {key: "Java Introduction", desc: "Introduction", isGroup: true, category: "treeBL", group: "Java", expand: false};
+    {key: "Java Introduction", desc: "Introduction", isGroup: true, category: "treeBL", group: "Java", expand: false},
 
-    let languageEvolution = {key: "Language Evolution", desc: "Language Evolution", category: "simpleBL", group: "Java Introduction", toolTipHTML: languageEvolutionHTML};
-    let cBeforeJava = {key: "CBeforeJava", desc: "Birth of modern programming C", category: "simpleBL", group: "Java Introduction", toolTipHTML: cBeforeJavaHTML};
-    let cppBeforeJava = {key: "CPPBeforeJava", desc: "The need for c++", category: "simpleBL", group: "Java Introduction", toolTipHTML: cppBeforeJavaHTML};
-    let creationOfJava = {key: "Java Creation", desc: "The creation of java", category: "simpleBL", group: "Java Introduction", toolTipHTML: creationOfJavaHTML};
+    {key: "Language Evolution", desc: "Language Evolution", category: "simpleBL", group: "Java Introduction", toolTipHTML: languageEvolutionHTML},
+    {key: "CBeforeJava", desc: "Birth of modern programming C", category: "simpleBL", group: "Java Introduction", toolTipHTML: cBeforeJavaHTML},
+    {key: "CPPBeforeJava", desc: "The need for c++", category: "simpleBL", group: "Java Introduction", toolTipHTML: cppBeforeJavaHTML},
+    {key: "Java Creation", desc: "The creation of java", category: "simpleBL", group: "Java Introduction", toolTipHTML: creationOfJavaHTML},
 
-    let javaBuzzwords = {key: "Java Buzzwords", desc: "Java Buzzwords", color: "WhiteSmoke", isGroup: true, category: "treeBL", group: "Java Introduction", expand: false};
+    {key: "Java Buzzwords", desc: "Java Buzzwords", color: "WhiteSmoke", isGroup: true, category: "treeBL", group: "Java Introduction", expand: false},
 
-    let javaSimple = {key: "Java Simple", desc: "Simple", category: "simpleBL", group: "Java Buzzwords"};
-    let javaOO = {key: "Java Object Oriented", desc: "Object Oriented", category: "simpleBL", group: "Java Buzzwords"};
-    let javaRobust = {key: "Java Robust", desc: "Robust", category: "simpleBL", group: "Java Buzzwords"};
-    let javaMultiThreaded = {key: "Java Multi Threaded", desc: "Multi Threaded", category: "simpleBL", group: "Java Buzzwords"};
-    let javaPortable = {key: "Java Portable", desc: "Portable", category: "simpleBL", group: "Java Buzzwords"};
-    let javaArchNeutral = {key: "Java Architecture Neutral", desc: "Architecture Neutral", category: "simpleBL", group: "Java Buzzwords"};
-    let javaInterpreted = {key: "Java Interpreted", desc: "Interpreted", category: "simpleBL", group: "Java Buzzwords"};
-    let javaDistributed = {key: "Java Distributed", desc: "Distributed", category: "simpleBL", group: "Java Buzzwords"};
-    let javaSecured = {key: "Java Secured", desc: "Secured", category: "simpleBL", group: "Java Buzzwords"};
-    let javaDynamic = {key: "Java Dynamic", desc: "Dynamic", category: "simpleBL", group: "Java Buzzwords"};
+    {key: "Java Simple", desc: "Simple", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Object Oriented", desc: "Object Oriented", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Robust", desc: "Robust", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Multi Threaded", desc: "Multi Threaded", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Portable", desc: "Portable", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Architecture Neutral", desc: "Architecture Neutral", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Interpreted", desc: "Interpreted", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Distributed", desc: "Distributed", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Secured", desc: "Secured", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Dynamic", desc: "Dynamic", category: "simpleBL", group: "Java Buzzwords"},
 
-    nodeDataArray = nodeDataArray.concat(javaContainer);
-    nodeDataArray = nodeDataArray.concat(javaIntroduction);
-    nodeDataArray = nodeDataArray.concat(languageEvolution);
-    nodeDataArray = nodeDataArray.concat(cBeforeJava);
-    nodeDataArray = nodeDataArray.concat(cppBeforeJava);
-    nodeDataArray = nodeDataArray.concat(creationOfJava);
-    nodeDataArray = nodeDataArray.concat(javaBuzzwords);
-    nodeDataArray = nodeDataArray.concat(javaSimple);
-    nodeDataArray = nodeDataArray.concat(javaOO);
-    nodeDataArray = nodeDataArray.concat(javaRobust);
-    nodeDataArray = nodeDataArray.concat(javaMultiThreaded);
-    nodeDataArray = nodeDataArray.concat(javaPortable);
-    nodeDataArray = nodeDataArray.concat(javaArchNeutral);
-    nodeDataArray = nodeDataArray.concat(javaInterpreted);
-    nodeDataArray = nodeDataArray.concat(javaDistributed);
-    nodeDataArray = nodeDataArray.concat(javaSecured);
-    nodeDataArray = nodeDataArray.concat(javaDynamic);
-
-    let glModel = new go.GraphLinksModel(nodeDataArray,linkDataArray);
-    diagram.model = glModel;
-    return diagram;
-}
+];
 
 function javaInto() {
     //var diagram = javaContainer();

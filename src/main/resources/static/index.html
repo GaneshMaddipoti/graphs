@@ -53,10 +53,6 @@
     <article>
         <div id="myDiagramDiv" style="left: -200px; width:115%;height: 750px; background-color: DarkSlateGray;margin:0 auto;border: 0px solid Silver"></div>
         <div id="toolTipDIV" class="tooltip"></div>
-        <script src="js/custom3.js"></script>
-        <script src="js/aboutMe.js"></script>
-        <script src="js/java.js"></script>
-        <script src="js/linux.js"></script>
     </article>
 </section>
 
@@ -64,17 +60,43 @@
     <p>@Copyrights reserved to Jtechy.com</p>
 </footer>
 <script>
-        diagram.model = new go.GraphLinksModel(nodeDataArray,linkDataArray);
-        diagram.commandHandler.zoomToFit();
-        var toggler = document.getElementsByClassName("caret");
-        var i;
+let nodeDataArray = [];
+let linkDataArray = [];
+</script>
+<script src="js/custom3.js"></script>
+<script src="js/aboutMe.js"></script>
+<script src="js/softSkills.js"></script>
+<script src="js/java.js"></script>
+<script src="js/linux.js"></script>
+<script>
+    let jtechyContainer = {key: "Jtechy", desc: "Jtechy", color: "LightSteelBlue", isGroup: true, category: "tree", expand: true};
+    nodeDataArray = nodeDataArray.concat(jtechyContainer);
+    nodeDataArray = nodeDataArray.concat(aboutMeNodeDataArray);
+    nodeDataArray = nodeDataArray.concat(softSkillsNodeDataArray);
+    let techSkillsContainer = {key: "Tech Skills", desc:"Tech Skills", color: "WhiteSmoke", isGroup: true, group:"Jtechy", category: "tree", expand: true};
+    nodeDataArray = nodeDataArray.concat(techSkillsContainer);
+    let languagesContainer = {key: "Languages", desc:"Languages", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "grid", expand: true};
+    nodeDataArray = nodeDataArray.concat(languagesContainer);
+    nodeDataArray = nodeDataArray.concat(javaNodeDataArray);
 
-        for (i = 0; i < toggler.length; i++) {
-          toggler[i].addEventListener("click", function() {
-            this.parentElement.querySelector(".nested").classList.toggle("active");
-            this.classList.toggle("caret-down");
-          });
-        }
+    let pythonContainer = {key: "Python", desc:"Python", color: "WhiteSmoke", isGroup: true, group:"Languages", category: "tree", expand: false, img: "assets/img/python.png",};
+    nodeDataArray = nodeDataArray.concat(pythonContainer);
+
+    let osLayerContainer = {key: "OS Layer", desc:"OS Layer", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "tree", expand: true};
+    nodeDataArray = nodeDataArray.concat(osLayerContainer);
+    nodeDataArray = nodeDataArray.concat(linuxNodeDataArray);
+    linkDataArray = linkDataArray.concat(linuxLinkDataArray);
+    diagram.model = new go.GraphLinksModel(nodeDataArray,linkDataArray);
+    diagram.commandHandler.zoomToFit();
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+      toggler[i].addEventListener("click", function() {
+        this.parentElement.querySelector(".nested").classList.toggle("active");
+        this.classList.toggle("caret-down");
+      });
+    }
 </script>
 </body>
 </html>

@@ -1,6 +1,3 @@
-let nodeDataArray = [];
-let linkDataArray = [];
-
 function showDetails(e, obj) {
     const node = obj.part;
     if(node) {
@@ -14,7 +11,7 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 0, width: 75, textAlign: "center", font: '16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
@@ -255,7 +252,7 @@ diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", {layout: $(go.TreeLay
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", {layout: $(go.GridLayout, {
-            wrappingColumn: 3, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(1,1)
+            wrappingColumn: 3, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(5,5)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
         { parameter1: 0, strokeWidth: 1, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),

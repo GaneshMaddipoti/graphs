@@ -1,13 +1,11 @@
 
 let softSkillsNodeDataArray = [
 
-    {key: "Soft Skills", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/gen/user.svg"},
-    {key: "Start", group:"Soft Skills", category: "picTemplate",},
-
-    {key: "Listen", group:"Soft Skills", category: "picTemplate",},
-    {key: "Communicate", group:"Soft Skills", category: "picTemplate",},
-    {key: "Present", group:"Soft Skills", category: "picTemplate",},
-    {key: "Negotiate", group:"Soft Skills", category: "picTemplate",},
+    {key: "Soft Skills", desc:"Soft Skills", color: "WhiteSmoke", isGroup: true, group:"Jtechy", category: "tree", expand: false},
+    {key: "Listen", desc: "Listen", group:"Soft Skills", category: "simpleBL",},
+    {key: "Communicate", desc: "Communicate", group:"Soft Skills", category: "simpleBL",},
+    {key: "Present", desc: "Present", group:"Soft Skills", category: "simpleBL",},
+    {key: "Negotiate", desc: "Negotiate", group:"Soft Skills", category: "simpleBL",},
 
 
 
