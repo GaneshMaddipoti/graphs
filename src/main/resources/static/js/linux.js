@@ -16,7 +16,7 @@ Commands contains command [options] [arguments]
 Ex : ls -a /etc 
 `;
 
-let binHTML = `<b>Essential user command binaries </b>
+let binHTML = `Essential user command binaries
 bash/sh - command language interpreter that executes commands from standard input/file. 
 date - print or set the system date and time 
 echo - display a line of text 
@@ -30,7 +30,7 @@ history - display previously executed commands
 info - read Info documents
 who - show who is logged on
 
-<b>File System Commands</b> 
+File System Commands 
 chmod - change file mode bits 
 chown - change file owner and group 
 touch - change file timestamps 
@@ -51,14 +51,13 @@ more/less - is a filter for paging through text one screenful at a time
 gzip, gunzip, zcat - compress or expand files 
 tar - an archiving utility 
 
-<b>Prcoessor Commands</b> 
+Prcoessor Commands 
 ps - report a snapshot of the current processes 
 top - display Linux processes 
 openvt - start a program on a new virtual terminal (VT). 
 kill - terminate a process `;
 
-let etcHTML = `
-<b>Configuration files for the system</b> 
+let etcHTML = `Configuration files for the system
 crontab is the program used to install a crontab table file, remove or list the existing tables used to serve the cron(8) daemon
 cups - a standards-based, open source printing system 
 fstab - static information about the filesystems 
@@ -81,82 +80,82 @@ tzset, tzname, timezone, daylight - initialize time conversion information
 
 let linuxNodeDataArray = [
 
-    {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, group: "OS Layer", category: "tree", img: "assets/img/linux.png", expand: false},
+    {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, group: "OS Layer", category: "tree90", img: "assets/img/linux.png", expand: false},
     {key: "Abstract", desc: "Abstract", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", value: "Overview",group: "Linux",
         toolTipHTML: linuxOverviewHTML},
 
-    {key: "Log In", desc: "Log In", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Linux"},
+    {key: "Log In", desc: "Log In", color: "LightSteelBlue", isGroup: true, expand: true, category: "grid10", group: "Linux"},
     {key: "GUI", desc: "GUI", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
     {key: "CLI", desc: "CLI", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
     {key: "SSH", desc: "SSH", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
     {key: "PuTTY", desc: "PuTTY", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
 
-    {key: "User Space", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Linux"},
-    {key: "Shell", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space", toolTipHTML: shellHTML},
-    {key: "Applications", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space",
+    {key: "User Space", desc: "User Space", color: "LightSteelBlue", isGroup: true, expand: true, category: "grid10", group: "Linux"},
+    {key: "Shell", desc: "Shell", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space", toolTipHTML: shellHTML},
+    {key: "Applications", desc: "Applications",color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space",
         items: [{text: "Browser", color: "LightBlue"},
             {text: "IDE", color: "LightBlue"},
             {text: "Explorer", color: "LightBlue"}]},
-    {key: "System Software", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
-    {key: "User Processes", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
-    {key: "System Utilities", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
-    {key: "Compilers/Interpreters", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
+    {key: "System Software", desc: "System Software", height: 45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
+    {key: "User Processes", desc: "User Processes", height: 45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
+    {key: "System Utilities", desc: "System Utilities", height: 45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
+    {key: "Compilers/Interpreters", desc: "Compilers/Interpreters", height: 45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "User Space"},
 
 
-    {key: "Kernel Space", color: "LightSteelBlue", isGroup: true, expand: true, category: "grid", group: "Linux"},
-    {key: "System Call Interface", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
-    {key: "Storage Management", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
-    {key: "Memory Management", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
-    {key: "Process Management", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
+    {key: "Kernel Space", desc: "Kernel Space",color: "LightSteelBlue", isGroup: true, expand: true, category: "grid10", group: "Linux"},
+    {key: "System Call Interface", desc: "System Call Interface", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
+    {key: "Storage Management", desc: "Storage Management", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
+    {key: "Memory Management", desc: "Memory Management",  height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
+    {key: "Process Management", desc: "Process Management", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
 
 
-    {key: "Virtual File System", color: "LightSteelBlue", isGroup: true, expand: false, group: "Kernel Space", category: "grid",
+    {key: "Virtual File System", desc: "Virtual File System", height:45, color: "LightSteelBlue", isGroup: true, expand: false, group: "Kernel Space", category: "grid",
         toolTipHTML: "File system is a software that dictates how to store and read data from disks. "},
-    {key: "/root", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Root user directories</b> "
+    {key: "/root", desc: "/root", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "Root user directories "
     },
-    {key: "/bin", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+    {key: "/bin", desc: "/bin", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
         toolTipHTML: binHTML
     },
-    {key: "/etc", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+    {key: "/etc", desc: "/etc", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
         toolTipHTML: etcHTML
     },
-    {key: "/sbin", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Essential System binaries</b> "
+    {key: "/sbin", desc: "/sbin", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "Essential System binaries "
     },
-    {key: "/user", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>User Application data/binaries</b> "
+    {key: "/user", desc: "/user", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "User Application data/binaries "
     },
-    {key: "/var", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Variable Data Files</b> "
+    {key: "/var", desc: "/var", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "Variable Data Files "
     },
-    {key: "/dev", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Device Files</b> "
+    {key: "/dev", desc: "/dev", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "Device Files "
     },
-    {key: "/home", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>User home directories</b> "
+    {key: "/home", desc: "/home", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "User home directories "
     },
-    {key: "/lib", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>System Libraries</b> "
+    {key: "/lib", desc: "/lib", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "System Libraries "
     },
-    {key: "/opt", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Optional Software Applications</b> "
+    {key: "/opt", desc: "/opt", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "Optional Software Applications "
     },
-    {key: "/proc", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "<b>Process and Kernel information files</b> "
+    {key: "/proc", desc: "/proc", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: "Process and Kernel information files "
     },
 
 
-    {key: "Network Drivers", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
-    {key: "IO Drivers", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
+    {key: "Network Drivers", desc: "Network Drivers", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
+    {key: "IO Drivers", desc: "IO Drivers", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space"},
 
-    {key: "Hardware", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Linux"},
-    {key: "Motherboard", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Hardware"},
-    {key: "CPU", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Motherboard"},
-    {key: "Memory", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Motherboard"},
-    {key: "Storage", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
-    {key: "Ethernet", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
-    {key: "IO", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
+    {key: "Hardware", desc: "Hardware", color: "LightSteelBlue", isGroup: true, expand: true, category: "grid10", group: "Tech Skills"},
+    {key: "Motherboard", desc: "Motherboard", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Hardware"},
+    {key: "CPU", desc: "CPU", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Motherboard"},
+    {key: "Memory", desc: "Memory", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Motherboard"},
+    {key: "Storage", desc: "Storage", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
+    {key: "Ethernet", desc: "Ethernet", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
+    {key: "IO", desc: "IO", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
 ];
 
 let linuxLinkDataArray = [

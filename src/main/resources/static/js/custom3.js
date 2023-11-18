@@ -96,10 +96,10 @@ const picTemplate =
         { click: (e, obj) => showDetails(e, obj) }
     );
 
-const simpletemplate =
+const simpleTemplate =
     $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
-        $(go.Shape, new go.Binding("desiredSize", "size"),
-            new go.Binding("figure", "shape"), { strokeWidth: 1, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
+        $(go.Shape, {height: 30}, new go.Binding("height", "height"),
+            new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
         $(go.TextBlock, textStyle(), new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }
     );
@@ -111,7 +111,7 @@ const simpleBorderLessTemplate =
         { click: (e, obj) => showDetails(e, obj) }
     );
 
-const simpleWithTooltiptemplate =
+const simpleWithTooltipTemplate =
     $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, new go.Binding("desiredSize", "size"),
             new go.Binding("figure", "shape"), { strokeWidth: 1, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
@@ -121,7 +121,7 @@ const simpleWithTooltiptemplate =
     );
 
 // the "detailed" template shows all of the information in a Table Panel
-const detailtemplate =
+const detailTemplate =
     $(go.Node, "Auto", { fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, new go.Binding("desiredSize", "size"),
             new go.Binding("figure", "shape"), { strokeWidth: 1, stroke: "#555" }, new go.Binding("fill", "color")),
@@ -137,14 +137,14 @@ const detailtemplate =
         { click: (e, obj) => showDetails(e, obj) }
     );
 
-const templmap = new go.Map();
-templmap.add("simple", simpletemplate);
-templmap.add("simpleBL", simpleBorderLessTemplate);
-templmap.add("simpleTooltip", simpleWithTooltiptemplate)
-templmap.add("detailed", detailtemplate);
-templmap.add("picTemplate", picTemplate);
-templmap.add("", diagram.nodeTemplate);
-diagram.nodeTemplateMap = templmap;
+const templateMap = new go.Map();
+templateMap.add("simple", simpleTemplate);
+templateMap.add("simpleBL", simpleBorderLessTemplate);
+templateMap.add("simpleTooltip", simpleWithTooltipTemplate)
+templateMap.add("detailed", detailTemplate);
+templateMap.add("picTemplate", picTemplate);
+templateMap.add("", diagram.nodeTemplate);
+diagram.nodeTemplateMap = templateMap;
 
 //Links
 const simplelinktemplate =
@@ -202,18 +202,18 @@ diagram.linkTemplateMap = linktemplmap;
 diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 0, strokeWidth: 1, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+        { parameter1: 0, strokeWidth: 0.2, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Right },
-            $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
+            { defaultAlignment: go.Spot.Right },{margin: 10},
+            $(go.Picture,{ maxSize: new go.Size(20, 20) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
              { click: (e, obj) => showDetails(e, obj) }
         ),
         $(go.Placeholder,     // represents area for all member parts
-            { padding: new go.Margin(10, 10), background: "Transparent" }),
+            { padding: 10, background: "Transparent" }),
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 
@@ -238,11 +238,11 @@ diagram.groupTemplateMap.add("treeBL", $(go.Group, "Auto", {layout: $(go.TreeLay
 diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", {layout: $(go.TreeLayout,
             { angle: 90, nodeSpacing: 30, layerSpacing: 30 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 0, strokeWidth: 1, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+        { parameter1: 0, strokeWidth: .2, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Right },
+            { defaultAlignment: go.Spot.Right },{margin: 10},
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
@@ -254,12 +254,12 @@ diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", {layout: $(go.TreeLay
 diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", {layout: $(go.GridLayout, {
             wrappingColumn: 3, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(5,5)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
-    $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 0, strokeWidth: 1, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+    $(go.Shape, "RoundedRectangle",
+        { parameter1: 0, strokeWidth: .2, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Left },
+            { defaultAlignment: go.Spot.Left }, {margin: 10},
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
@@ -270,12 +270,12 @@ diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", {layout: $(go.GridLayou
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 diagram.groupTemplateMap.add("grid10", $(go.Group, "Auto", {layout: $(go.GridLayout, {
-            wrappingColumn: 10, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(5,5)
+            wrappingColumn: 10, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(20,0)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 0, strokeWidth: 1, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+        { parameter1: 0, strokeWidth: .2, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
-        { defaultAlignment: go.Spot.Left },
+        { defaultAlignment: go.Spot.Left }, {margin: 10},
         $(go.Panel, "Horizontal",  // the header
             { defaultAlignment: go.Spot.Left },
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
@@ -284,7 +284,7 @@ diagram.groupTemplateMap.add("grid10", $(go.Group, "Auto", {layout: $(go.GridLay
             { click: (e, obj) => showDetails(e, obj) }
         ),
         $(go.Placeholder,     // represents area for all member parts
-            { padding: new go.Margin(10, 10), background: "Transparent" })
+            { padding: 10, background: "Transparent" })
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 diagram.groupTemplateMap.add("grid-congested", $(go.Group, "Auto", {layout: $(go.GridLayout, {
