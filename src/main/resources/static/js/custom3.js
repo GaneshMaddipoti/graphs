@@ -17,7 +17,7 @@ function textStyle() {
 
 function textStyleLong() {
     return [
-        { margin: 0, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, width: 140, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
@@ -98,9 +98,9 @@ const picTemplate =
 
 const simpleTemplate =
     $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
-        $(go.Shape, {height: 30}, new go.Binding("height", "height"),
+        $(go.Shape, {height: 30}, new go.Binding("height", "height"), new go.Binding("width", "width"),
             new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
-        $(go.TextBlock, textStyle(), new go.Binding("text", "desc")),
+        $(go.TextBlock, textStyleLong(), new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }
     );
 const simpleBorderLessTemplate =
@@ -246,6 +246,7 @@ diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", {layout: $(go.TreeLay
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
+            { click: (e, obj) => showDetails(e, obj) }
         ),
         $(go.Placeholder,     // represents area for all member parts
             { padding: new go.Margin(10, 10), background: "Transparent" })
