@@ -70,6 +70,7 @@ let linkDataArray = [];
 <script src="js/java.js"></script>
 <script src="js/linux.js"></script>
 <script src="js/big-data.js"></script>
+<script src="js/kafka.js"></script>
 <script>
     let jtechyContainer = {key: "Jtechy", desc: "Jtechy", color: "LightSteelBlue", isGroup: true, category: "tree", expand: true};
     nodeDataArray = nodeDataArray.concat(jtechyContainer);
@@ -78,6 +79,8 @@ let linkDataArray = [];
 
     let techSkillsContainer = {key: "Tech Skills", desc:"Tech Skills", color: "WhiteSmoke", isGroup: true, group:"Jtechy", category: "tree90", expand: true};
     nodeDataArray = nodeDataArray.concat(techSkillsContainer);
+    nodeDataArray = nodeDataArray.concat(kafkaNodeDataArray);
+    linkDataArray = linkDataArray.concat(kafkaLinkDataArray);
     let applicationsContainer = {key: "Orchestration", desc:"Orchestration", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "grid", expand: true, img: "assets/img/kubernetes.png"};
     nodeDataArray = nodeDataArray.concat(applicationsContainer);
 
@@ -109,6 +112,7 @@ let linkDataArray = [];
 
     let languagesContainer = {key: "Languages", desc:"Languages", color: "WhiteSmoke", isGroup: true, group:"Backend", category: "grid", expand: true};
 
+    nodeDataArray = nodeDataArray.concat(kafkaNodeDataArray);
     nodeDataArray = nodeDataArray.concat(backendAppContainer);
     nodeDataArray = nodeDataArray.concat(backendContainer);
     nodeDataArray = nodeDataArray.concat(frameworksContainer);
@@ -161,6 +165,16 @@ let linkDataArray = [];
     nodeDataArray = nodeDataArray.concat(storageContainer);
     nodeDataArray = nodeDataArray.concat(database);
     nodeDataArray = nodeDataArray.concat(hdfs);
+
+<!--    Kafka -->
+    let uiToKafka = {name: "uiToKafka", from: "UI", to: "Messaging System", category: "simplelink"};
+    let msToBackend = {name: "msToBackend", from: "Messaging System", to: "Backend", category: "simplelink"};
+    let backendToKafka = {name: "uiToKafka", from: "Backend", to: "Messaging System", category: "simplelink"};
+    let kafkaToData = {name: "Messaging System", from: "Messaging System", to: "Data", category: "simplelink"};
+<!--    linkDataArray = linkDataArray.concat(uiToKafka);-->
+<!--    linkDataArray = linkDataArray.concat(msToBackend);-->
+<!--    linkDataArray = linkDataArray.concat(backendToKafka);-->
+<!--    linkDataArray = linkDataArray.concat(kafkaToData);-->
 
 <!-- OS -->
     let osLayerContainer = {key: "OS Layer", desc:"OS Layer", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "tree", expand: true};

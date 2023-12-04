@@ -15,9 +15,15 @@ function textStyle() {
     ];
 }
 
+function textStyle150() {
+    return [
+        { margin: 0, width: 150, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+    ];
+}
+
 function textStyleLong() {
     return [
-        { margin: 0, width: 140, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
@@ -100,7 +106,7 @@ const simpleTemplate =
     $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, {height: 30}, new go.Binding("height", "height"), new go.Binding("width", "width"),
             new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
-        $(go.TextBlock, textStyleLong(), new go.Binding("text", "desc")),
+        $(go.TextBlock, textStyle150(), new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }
     );
 const simpleBorderLessTemplate =
