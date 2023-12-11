@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jtechy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <script src="js/go.js"></script>
+    <script src="js/ZoomSlider.js"></script>
+    <script src="js/OrthogonalLinkReshapingTool.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/custom2.css">
+    <link rel="stylesheet" type="text/css" href="css/custom1.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+<body>
+    <div id="myDiagramDiv"
+        style="width:96%;height: 100px; background-color: DarkSlateGray;margin:0 auto;border: 0px solid Silver"></div>
+    <div id="toolTipDIV" class="tooltip"></div>
+    <script src="js/custom3.js"></script>
+    <script>
+        let nodeDataArray = [];
+        let linkDataArray = [];
+        diagram.model = new go.GraphLinksModel(nodeDataArray,linkDataArray);
+        zoomSlider = new ZoomSlider(diagram);
+        diagram.commandHandler.zoomToFit();
+    </script>
+</body>
+</html>

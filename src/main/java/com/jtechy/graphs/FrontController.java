@@ -14,4 +14,10 @@ public class FrontController {
         return "index";
     }
 
+    @GetMapping("/default")
+    public String getDefault(Model model) {
+
+        return "default";
+    }
+
 }
