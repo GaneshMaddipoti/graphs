@@ -77,6 +77,8 @@ shells - pathnames of valid login shells
 tzset, tzname, timezone, daylight - initialize time conversion information 
 `;
 
+let osLayerContainer = {key: "OS Layer", desc:"OS Layer", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "tree", expand: true};
+
 
 let linuxNodeDataArray = [
 
@@ -168,6 +170,10 @@ let linuxLinkDataArray = [
     {name:"mToCPU", from:"Memory", to: "CPU", category: "simplelink" },
 
 ];
+
+nodeDataArray = nodeDataArray.concat(osLayerContainer);
+    nodeDataArray = nodeDataArray.concat(linuxNodeDataArray);
+    linkDataArray = linkDataArray.concat(linuxLinkDataArray);
 
 function linuxContainer() {
     let glModel = new go.GraphLinksModel(linuxNodeDataArray,linuxLinkDataArray);

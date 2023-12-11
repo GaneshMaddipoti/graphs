@@ -1,0 +1,2 @@
+let applicationsContainer = {key: "Orchestration", desc:"Orchestration", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "grid", expand: true, img: "assets/img/kubernetes.png"};
+nodeDataArray = nodeDataArray.concat(applicationsContainer);

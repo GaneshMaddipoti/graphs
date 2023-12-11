@@ -67,131 +67,19 @@ let linkDataArray = [];
 <script src="js/custom3.js"></script>
 <script src="js/aboutMe.js"></script>
 <script src="js/softSkills.js"></script>
-<script src="js/java.js"></script>
-<script src="js/linux.js"></script>
-<script src="js/big-data.js"></script>
 <script src="js/kafka.js"></script>
+<script src="js/base.js"></script>
+<script src="js/applications.js"></script>
+<script src="js/java.js"></script>
+<script src="js/big-data.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/backend.js"></script>
+<script src="js/data.js"></script>
+<script src="js/linux.js"></script>
 <script>
-    let jtechyContainer = {key: "Jtechy", desc: "Jtechy", color: "LightSteelBlue", isGroup: true, category: "tree", expand: true};
-    nodeDataArray = nodeDataArray.concat(jtechyContainer);
-    nodeDataArray = nodeDataArray.concat(aboutMeNodeDataArray);
-    nodeDataArray = nodeDataArray.concat(softSkillsNodeDataArray);
-
-    let techSkillsContainer = {key: "Tech Skills", desc:"Tech Skills", color: "WhiteSmoke", isGroup: true, group:"Jtechy", category: "tree90", expand: true};
-    nodeDataArray = nodeDataArray.concat(techSkillsContainer);
-    nodeDataArray = nodeDataArray.concat(kafkaNodeDataArray);
-    linkDataArray = linkDataArray.concat(kafkaLinkDataArray);
-    let applicationsContainer = {key: "Orchestration", desc:"Orchestration", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "grid", expand: true, img: "assets/img/kubernetes.png"};
-    nodeDataArray = nodeDataArray.concat(applicationsContainer);
-
-<!--    Programming -->
-    let uiContainer = {key: "UI", desc:"UI Container", color: "WhiteSmoke", isGroup: true, group:"Orchestration", category: "tree90", expand: true, img: "assets/img/docker.png",};
-    let uiAppContainer = {key: "UIApp", desc:"Application", color: "WhiteSmoke", isGroup: true, group:"UI", category: "grid", expand: true};
-    let uiFrameworksContainer = {key: "UIFrameworks", desc:"Frameworks", color: "WhiteSmoke", isGroup: true, group:"UI", category: "grid", expand: true};
-    let uiLanguagesContainer = {key: "UILanguages", desc:"Languages", color: "WhiteSmoke", isGroup: true, group:"UI", category: "grid", expand: true};
-    let angularContainer = {key: "Angular", desc:"Angular", color: "WhiteSmoke", isGroup: true, group:"UIFrameworks", category: "tree", expand: false,};
-    let reactContainer = {key: "React", desc:"React", color: "WhiteSmoke", isGroup: true, group:"UIFrameworks", category: "tree", expand: false,};
-    let htmlContainer = {key: "HTML", desc:"HTML", color: "WhiteSmoke", isGroup: true, group:"UILanguages", category: "tree", expand: false,};
-    let jsContainer = {key: "Javascript", desc:"Javascript", color: "WhiteSmoke", isGroup: true, group:"UILanguages", category: "tree", expand: false,};
-
-    nodeDataArray = nodeDataArray.concat(uiAppContainer);
-    nodeDataArray = nodeDataArray.concat(uiContainer);
-    nodeDataArray = nodeDataArray.concat(uiFrameworksContainer);
-    nodeDataArray = nodeDataArray.concat(angularContainer);
-    nodeDataArray = nodeDataArray.concat(reactContainer);
-    nodeDataArray = nodeDataArray.concat(uiLanguagesContainer);
-    nodeDataArray = nodeDataArray.concat(htmlContainer);
-    nodeDataArray = nodeDataArray.concat(jsContainer);
-
-
-    let backendContainer = {key: "Backend", desc:"Backend Container", color: "WhiteSmoke", isGroup: true, group:"Orchestration", category: "tree90", expand: true, img: "assets/img/docker.png",};
-    let backendAppContainer = {key: "BackendApp", desc:"Application", color: "WhiteSmoke", isGroup: true, group:"Backend", category: "grid", expand: true};
-
-    let frameworksContainer = {key: "Frameworks", desc:"Frameworks", color: "WhiteSmoke", isGroup: true, group:"Backend", category: "grid", expand: true};
-    let springContainer = {key: "Spring", desc:"Spring", color: "WhiteSmoke", isGroup: true, group:"Frameworks", category: "tree", expand: false,};
-
-    let languagesContainer = {key: "Languages", desc:"Languages", color: "WhiteSmoke", isGroup: true, group:"Backend", category: "grid", expand: true};
-
-    nodeDataArray = nodeDataArray.concat(kafkaNodeDataArray);
-    nodeDataArray = nodeDataArray.concat(backendAppContainer);
-    nodeDataArray = nodeDataArray.concat(backendContainer);
-    nodeDataArray = nodeDataArray.concat(frameworksContainer);
-    nodeDataArray = nodeDataArray.concat(springContainer);
-    nodeDataArray = nodeDataArray.concat(languagesContainer);
-    nodeDataArray = nodeDataArray.concat(javaNodeDataArray);
-    let pythonContainer = {key: "Python", desc:"Python", color: "WhiteSmoke", isGroup: true, group:"Languages", category: "tree", expand: false, img: "assets/img/python.png",};
-    nodeDataArray = nodeDataArray.concat(pythonContainer);
-
-<!--    Data-->
-    let dataContainer = {key: "Data", desc:"Data Container", color: "WhiteSmoke", isGroup: true, group:"Orchestration", category: "tree90", expand: true, img: "assets/img/docker.png",};
-    nodeDataArray = nodeDataArray.concat(dataContainer);
-    let dataAppContainer = {key: "DataApp", desc:"Application", color: "WhiteSmoke", isGroup: true, group:"Data", category: "grid", expand: true};
-    let dbFrameworksContainer = {key: "DBFrameworks", desc:"Frameworks", color: "WhiteSmoke", isGroup: true, group:"Data", category: "grid", expand: true};
-    let hadoopContainer = {key: "Hadoop", desc:"Hadoop", color: "WhiteSmoke", isGroup: true, group:"DBFrameworks", category: "grid", expand: false, toolTipHTML: hadoopHTML};
-    let mapReduceContainer = {key: "MapReduce", desc:"MapReduce", color: "WhiteSmoke", isGroup: true, group:"Hadoop", category: "tree90", expand: false, toolTipHTML: mapReduceHTML};
-    let mrCode = {key: "MRCode", desc: "Code", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", value: "Overview",group: "MapReduce",
-        toolTipHTML: mrCodeHTML};
-    let mrWorkflow = {key: "MRWorkflow", desc: "Workflow", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", value: "Overview",group: "MapReduce",
-        toolTipHTML: workflowHTML};
-    let mrExecution = {key: "MRExecution", desc: "Execution", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", value: "Overview",group: "MapReduce",
-        toolTipHTML: mrExecutionHTML};
-    let resourceManager = {key: "ResourceManager", desc: "Resource Manager /Name Node", height: 50, width: 200, color: "WhiteSmoke", category: "simple",
-        shape: "RoundedRectangle", group: "MapReduce", toolTipHTML: resourceManagerHTML};
-    let nodeManager1 = {key: "NodeManager1", desc: "Node Manager /Data Node", height: 50, width: 200, color: "WhiteSmoke", category: "simple",
-        shape: "RoundedRectangle", group: "MapReduce", toolTipHTML: nodeManagerHTML};
-    let nodeManager2 = {key: "NodeManager2", desc: "Node Manager /Data Node", height: 50, width: 200, color: "WhiteSmoke", category: "simple",
-        shape: "RoundedRectangle", group: "MapReduce", toolTipHTML: nodeManagerHTML};
-
-    let sparkContainer = {key: "Spark", desc:"Spark", color: "WhiteSmoke", isGroup: true, group:"Hadoop", category: "tree", expand: false,};
-
-    let storageContainer = {key: "DataStorage", desc:"Storage", color: "WhiteSmoke", isGroup: true, group:"Data", category: "grid", expand: true};
-
-    let database = {key: "Database", desc: "Database", color: "LightSteelBlue", isGroup: true, group: "DataStorage", category: "tree", expand: false};
-    let hdfs = {key: "HDFS", desc: "HDFS", color: "LightSteelBlue", isGroup: true, group: "DataStorage", category: "tree", expand: false};
-
-    nodeDataArray = nodeDataArray.concat(dataAppContainer);
-    nodeDataArray = nodeDataArray.concat(dbFrameworksContainer);
-    nodeDataArray = nodeDataArray.concat(hadoopContainer);
-
-    nodeDataArray = nodeDataArray.concat(mapReduceContainer);
-    nodeDataArray = nodeDataArray.concat(mrWorkflow);
-    nodeDataArray = nodeDataArray.concat(mrCode);
-    nodeDataArray = nodeDataArray.concat(mrExecution);
-    nodeDataArray = nodeDataArray.concat(resourceManager);
-    nodeDataArray = nodeDataArray.concat(nodeManager1);
-    nodeDataArray = nodeDataArray.concat(nodeManager2);
-
-    nodeDataArray = nodeDataArray.concat(sparkContainer);
-    nodeDataArray = nodeDataArray.concat(storageContainer);
-    nodeDataArray = nodeDataArray.concat(database);
-    nodeDataArray = nodeDataArray.concat(hdfs);
-
-<!--    Kafka -->
-    let uiToKafka = {name: "uiToKafka", from: "UI", to: "Messaging System", category: "simplelink"};
-    let msToBackend = {name: "msToBackend", from: "Messaging System", to: "Backend", category: "simplelink"};
-    let backendToKafka = {name: "uiToKafka", from: "Backend", to: "Messaging System", category: "simplelink"};
-    let kafkaToData = {name: "Messaging System", from: "Messaging System", to: "Data", category: "simplelink"};
-<!--    linkDataArray = linkDataArray.concat(uiToKafka);-->
-<!--    linkDataArray = linkDataArray.concat(msToBackend);-->
-<!--    linkDataArray = linkDataArray.concat(backendToKafka);-->
-<!--    linkDataArray = linkDataArray.concat(kafkaToData);-->
-
-<!-- OS -->
-    let osLayerContainer = {key: "OS Layer", desc:"OS Layer", color: "WhiteSmoke", isGroup: true, group:"Tech Skills", category: "tree", expand: true};
-    nodeDataArray = nodeDataArray.concat(osLayerContainer);
-    nodeDataArray = nodeDataArray.concat(linuxNodeDataArray);
-    linkDataArray = linkDataArray.concat(linuxLinkDataArray);
-
-    let rmToNM1 = {name: "rmToNM1", from: "ResourceManager", to: "NodeManager1", category: "simplelink"};
-    let rmToNM2 = {name: "rmToNM2", from: "ResourceManager", to: "NodeManager2", category: "simplelink"};
-    linkDataArray = linkDataArray.concat(rmToNM1);
-    linkDataArray = linkDataArray.concat(rmToNM2);
-
     diagram.model = new go.GraphLinksModel(nodeDataArray,linkDataArray);
     zoomSlider = new ZoomSlider(diagram);
     diagram.commandHandler.zoomToFit();
-
-
 
     //For left menu
     var toggler = document.getElementsByClassName("caret");
