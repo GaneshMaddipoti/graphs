@@ -24,29 +24,63 @@ Java was conceived by james gosling and his team at sun micro systems in 1991.
 This language was initially called “OAK” , but was renamed to “JAVA” in 1995.
 Java derives much of the syntax from ‘C’ and ‘C++’.
 `;
+
+let javaFeaturesHTML = `1) Simple
+2) <span title="">Object Oriented</span>
+3) Robust
+4) Multithreaded
+5) Portable
+6) Architecture Neutral
+7) Interpreted
+8) Distributed
+9) Secured
+10) Dynamic
+`;
 let javaNodeDataArray = [
-    {key: "Java", desc: "Java", color: "LightSteelBlue", isGroup: true, group: "Languages", category: "tree", img: "assets/img/java/java.png", expand: false},
+    {key: "Java", desc: "Java", color: "LightSteelBlue", isGroup: true, group: "Languages", category: "grid", img: "assets/img/java/java.png", expand: false},
 
-    {key: "Java Introduction", desc: "Introduction", isGroup: true, category: "treeBL", group: "Java", expand: false},
+    {key: "Java Introduction", desc: "Introduction", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Java", toolTipHTML: creationOfJavaHTML},
+    {key: "Java Features", desc: "Features", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Java", toolTipHTML: javaFeaturesHTML},
+    {key: "Java OOPS", desc: "OOPS", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Java"},
 
-    {key: "Language Evolution", desc: "Language Evolution", category: "simpleBL", group: "Java Introduction", toolTipHTML: languageEvolutionHTML},
-    {key: "CBeforeJava", desc: "Birth of modern programming C", category: "simpleBL", group: "Java Introduction", toolTipHTML: cBeforeJavaHTML},
-    {key: "CPPBeforeJava", desc: "The need for c++", category: "simpleBL", group: "Java Introduction", toolTipHTML: cppBeforeJavaHTML},
-    {key: "Java Creation", desc: "The creation of java", category: "simpleBL", group: "Java Introduction", toolTipHTML: creationOfJavaHTML},
+    {key: "Java Execution", desc: "Execution", color: "LightSteelBlue", isGroup: true, expand: false, category: "tree90", group: "Java"},
+    {key: "Java Source Code", desc: "Source Code", color: "LightSteelBlue", isGroup: true, expand: false, category: "tree90", group: "Java Execution"},
+    {key: "Java Compiler", desc: "Compiler (javac)", color: "LightSteelBlue", category: "simple", group: "Java Execution"},
+    {key: "Java Byte Code", desc: "Byte Code", color: "LightSteelBlue", category: "simple", group: "Java Execution"},
+    {key: "Java RE", desc: "JRE", color: "LightSteelBlue", isGroup: true, expand: false, category: "grid", group: "Java Execution"},
 
-    {key: "Java Buzzwords", desc: "Java Buzzwords", color: "WhiteSmoke", isGroup: true, category: "treeBL", group: "Java Introduction", expand: false},
+    {key: "Java API", desc: "API", color: "LightSteelBlue", isGroup: true, expand: false, category: "grid", group: "Java RE"},
+    {key: "Java VM", desc: "JVM", color: "LightSteelBlue", isGroup: true, expand: false, category: "tree90", group: "Java RE"},
 
-    {key: "Java Simple", desc: "Simple", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Object Oriented", desc: "Object Oriented", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Robust", desc: "Robust", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Multi Threaded", desc: "Multi Threaded", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Portable", desc: "Portable", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Architecture Neutral", desc: "Architecture Neutral", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Interpreted", desc: "Interpreted", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Distributed", desc: "Distributed", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Secured", desc: "Secured", category: "simpleBL", group: "Java Buzzwords"},
-    {key: "Java Dynamic", desc: "Dynamic", category: "simpleBL", group: "Java Buzzwords"},
+    {key: "Java Class Loader", desc: "Class Loader", color: "LightSteelBlue", isGroup: true, expand: false, category: "tree", group: "Java VM"},
+    {key: "Java Loading", desc: "Loading", color: "LightSteelBlue", isGroup: true, expand: false, category: "tree90", group: "Java Class Loader"},
+    {key: "Java Bootstrap Loader", desc: "Bootstrap Loader", color: "LightSteelBlue", category: "simple", group: "Java Loading"},
+    {key: "Java Extension Loader", desc: "Extension Loader", color: "LightSteelBlue", category: "simple", group: "Java Loading"},
+    {key: "Java Application Loader", desc: "Application Loader", color: "LightSteelBlue", category: "simple", group: "Java Loading"},
 
+    {key: "Java Linking", desc: "Linking", color: "LightSteelBlue", isGroup: true, expand: false, category: "tree90", group: "Java Class Loader"},
+    {key: "Java Verify", desc: "Verify", color: "LightSteelBlue", category: "simple",  group: "Java Linking"},
+    {key: "Java Prepare", desc: "Prepare", color: "LightSteelBlue", category: "simple",  group: "Java Linking"},
+    {key: "Java Resolve", desc: "Resolve", color: "LightSteelBlue", category: "simple",  group: "Java Linking"},
+
+    {key: "Java Initialization", desc: "Initialization", color: "LightSteelBlue", category: "simple", group: "Java Class Loader"},
+
+    {key: "Java Runtime Area", desc: "Runtime Area", color: "LightSteelBlue", isGroup: true, expand: false, category: "tree", group: "Java VM"},
+
+
+];
+
+let javaLinkDataArray = [
+    {key: "scToCompiler", from: "Java Source Code", to: "Java Compiler", category: "simplelink"},
+    {key: "compilerToBC", from: "Java Compiler", to: "Java Byte Code", category: "simplelink"},
+    {key: "bcTojre", from: "Java Byte Code", to: "Java RE", category: "simplelink"},
+    {key: "jlTolinking", from: "Java Loading", to: "Java Linking", category: "simplelink"},
+    {key: "linkingToInit", from: "Java Linking", to: "Java Initialization", category: "simplelink"},
+    {key: "bootstrapToextension", from: "Java Bootstrap Loader", to: "Java Extension Loader", category: "simplelink"},
+    {key: "extensionToApplication", from: "Java Extension Loader", to: "Java Application Loader", category: "simplelink"},
+    {key: "verifyToPrepare", from: "Java Verify", to: "Java Prepare", category: "simplelink"},
+    {key: "prepareToResolve", from: "Java Prepare", to: "Java Resolve", category: "simplelink"},
+    {key: "classLoaderToRuntimeArea", from: "Java Class Loader", to: "Java Runtime Area", category: "simplelink"},
 ];
 
 function javaInto() {
