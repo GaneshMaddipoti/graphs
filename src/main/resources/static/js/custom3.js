@@ -70,7 +70,7 @@ function showToolTip(obj, diagram, tool) {
     if(toolTipDIV && obj.data.toolTipHTML) {
         toolTipDIV.style.left = (pt.x) + "px";
         toolTipDIV.style.top = (pt.y) + "px";
-        toolTipDIV.innerHTML = obj.data.toolTipHTML.replaceAll("\n", "<br/>");
+        toolTipDIV.innerHTML = obj.data.toolTipHTML;
         toolTipDIV.style.display = "block";
     } else {
         hideToolTip();

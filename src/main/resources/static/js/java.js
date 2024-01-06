@@ -14,9 +14,9 @@ let cppBeforeJavaHTML = `With ‘c’ programming language, once a project reach
  C++ extends ‘C’ by adding object oriented features.
 `;
 
-let creationOfJavaHTML = `<span class="accordion">Section 1</span><div class="panel"><span>test1</span></div>
-<span class="accordion" onclick="expandPanel(this)">Section 2</span><div class="panel"><span>test2</span></div>
-<span class="accordion">Section 3</span><div class="panel"><span>test3</span></div>`;
+// let creationOfJavaHTML = `<span class="accordion">Section 1</span><div class="panel"><span>test1</span></div>
+// <span class="accordion" onclick="expandPanel(this)">Section 2</span><div class="panel"><span>test2</span></div>
+// <span class="accordion">Section 3</span><div class="panel"><span>test3</span></div>`;
 
 
 // let creationOfJavaHTML = `Prior to java, languages are platform dependent, that means
@@ -36,35 +36,133 @@ let creationOfJavaHTML = `<span class="accordion">Section 1</span><div class="pa
 // <span class="accordion">Section 3</span><div class="panel"><span>test3</span></div>`;
 
 
-let creationOfJavaHTML = `Prior to java, languages are platform dependent, that means
-Programs, that run on windows may not run on other platforms(linux,mac,solaris, etc..)
-In an attempt to find such a solution, Gosling and other colleagues began work on a portable,
-platform-independent language that could be used to produce code that would run on variety of cpu’s.
-At the same time, java was being implemented , www (or) Internet has taken a shape. 
-The web or internet too demanded portable programs.’
-Java achieves platform independency through,  generating an intermediate code
-All the devices which are having interpreter(JVM) can run the same byte code.
-Java was conceived by james gosling and his team at sun micro systems in 1991.
-This language was initially called “OAK” , but was renamed to “JAVA” in 1995.
+let creationOfJavaHTML = `Prior to java, languages are platform dependent, that means                               <br/>
+Programs, that run on windows may not run on other platforms(linux,mac,solaris, etc..)                                  <br/>
+In an attempt to find such a solution, Gosling and other colleagues began work on a portable,                           <br/>    
+platform-independent language that could be used to produce code that would run on variety of cpu’s.                    <br/>
+At the same time, java was being implemented , www (or) Internet has taken a shape.                                     <br/>        
+The web or internet too demanded portable programs.’                                                                    <br/>
+Java achieves platform independency through,  generating an intermediate code                                           <br/>
+All the devices which are having interpreter(JVM) can run the same byte code.                                           <br/>
+Java was conceived by james gosling and his team at sun micro systems in 1991.                                          <br/>
+This language was initially called “OAK” , but was renamed to “JAVA” in 1995.                                           <br/>
 Java derives much of the syntax from ‘C’ and ‘C++’.
 `;
 
-let javaFeaturesHTML = `1) Simple
-2) Object Oriented
-3) Robust
-4) Multithreaded
-5) Portable
-6) Architecture Neutral
-7) Interpreted
-8) Distributed
-9) Secured
-10) Dynamic
-`;
+let javaFeaturesHTML = `
+<div class="accordion" onclick="expandPanel(this)">1) Simple</div>
+<div class="panel">
+    Beyond its similarities with c/c++, java was designed to be easy to learn and use.                                  <br/>
+    It inherits the c/c++ syntax, left out confusing concepts or implemented in a cleaner, more approachable manner.    <br/>                                                               
+    It's not having surprising features and have small number of clearly defined ways to accomplish a given task.       <br/>
+</div>
+<div class="accordion" onclick="expandPanel(this)">2) Object Oriented</div>
+<div class="panel">
+    Java was not designed to be source code compatible with any other language.                                         <br/>
+    So , the java team designed the language a clean , usable , programmatic approach to objects.                       <br/>    
+    The outcome is “Everything is an object” paradigm.                                                                  <br/>
+</div>
+<div class="accordion" onclick="expandPanel(this)">3) Robust</div>
+<div class="panel">
+    The multi-platform of web demands robust programs because program must execute reliably in a variety of systems.    <br/>
+    Java tries to find errors at compile time and run time also.                                                        <br/>
+    Two of the main reasons for program failure are                                                                     <br/>
+    1) Memory management. 2) Exceptions at run time.                                                                    <br/>
+    Java eliminates problem by garbage collection.                                                                      <br/>
+    Java helps to eliminate exceptions by providing object-oriented exception handling.                                 
+</div>
+<div class="accordion" onclick="expandPanel(this)">4) Multithreaded</div>
+<div class="panel">
+    Java is designed to meet the real world requirement of creating interactive, networked programs.                    <br/> 
+    java supports multi-threading, which allows you to write programs that do many things simultaneously.               
+</div>
+<div class="accordion" onclick="expandPanel(this)">5) Portable</div>
+<div class="panel">
+    By using byte code mechanism, 
+    java gives you write programs that can be downloaded to all the various types of platforms and can be executed.     <br/>
+</div>
+<div class="accordion" onclick="expandPanel(this)">6) Architecture Neutral</div>
+<div class="panel">
+    Java designers made several hard decisions in the language creation and JVM creation,                               <br/>
+    in order to create and execute programs, those can executed instead of os updates,processor updates, and changes in core system resources.
+    “write once, run anywhere, any time, forever”. 
+</div>
+<div class="accordion" onclick="expandPanel(this)">7) Interpreted</div>
+<div class="panel">
+    Java programs are created to be interpreted through this only java achieves platform independency.                  <br/>
+    Java eliminates the performance concerns of interpretation by introducing(JIT) just in time compiler.               <br/>
+    When(JIT) is part of JVM, it compiles the byte code into executable code, piece-by-piece on demand basis.
+</div>
+<div class="accordion" onclick="expandPanel(this)">8) Distributed</div>
+<div class="panel">
+    Java designed for the distributed environment of the internet,                                                      <br/>
+    because it handles tcp/ip protocols. By using(RMI) we can do client-server programming also.        
+</div>
+<div class="accordion" onclick="expandPanel(this)">9) Secured</div>
+<div class="panel">
+    When you use a java compatible web browser, you can safely download java applets without fear of viral infections.  <br/>
+    Java achieves this protection by confining a java program to the (JVM) and not allowing any applet to access other parts of the computer.
+</div>
+<div class="accordion" onclick="expandPanel(this)">10) Dynamic</div>
+<div class="panel">
+    Java programs carry with them substantial amount of run-time information that is used to verify and resolve access to objects at run-time. 
+</div>`;
 
-let oopsHTML = `1) Abstraction
-2) Encapsulation
-3) Inheritance
-4) Polymorphism`;
+let oopsHTML = `
+<div class="accordion" onclick="expandPanel(this)">1) Abstraction</div>
+<div class="panel">
+    Abstraction means giving the user essential and salient features which represents unique behavior of that entity and ignoring non essential things. <br/>
+    The powerful way to manage abstraction is through the use of hierarchical classification.
+</div>
+<div class="accordion" onclick="expandPanel(this)">2) Encapsulation</div>
+<div class="panel">
+    Encapsulation is a mechanism which puts attributes and behavior together,                                           <br/>
+    and hides the information and implementation to the real world by providing interface.                              <br/>
+    Through encapsulation, we will get maintainability, flexibility, and extensibility,                                 <br/>
+    ability to make changes in your implementation code without breaking the code of the others.                        <br/>
+    We will hide data by using private access modifiers and gives to others public accessor methods.                    <br/>
+</div>
+<div class="accordion" onclick="expandPanel(this)">3) Inheritance</div>
+<div class="panel">
+    It is the process by which one object acquires properties of other object.                                          <br/>
+    The most common reasons to use inheritance are                                                                      <br/>
+    1). To promote code reuse                                                                                           <br/>
+        methods with generic functionality, put them in super class                                                     <br/>
+        and extend that super class in subclasses without re implementing those generic methods.                      <br/>
+    2). To use polymorphism                                                                                             <br/>
+        you can declare super class type, and you can pass any subclass types to that.                                 <br/>
+        It is used when objects satisfy [is-a] relationship.                                                            
+</div>
+<div class="accordion" onclick="expandPanel(this)">4) Polymorphism</div>
+<div class="panel">
+    It is a feature that allows one interface to be used for a general class of actions.                                <br/>
+    1). Compile time polymorphism:                                                                                      <br/>
+    In this linking between the object reference and the method it invokes will happen at compile time                  <br/>
+    Ex: overloading.                                                                                                    <br/>
+    2). Run time polymorphism:                                                                                          <br/>
+    In this linking between the object reference and the method it invokes will happen at run time.                     <br/>
+    Ex:overriding 
+</div>
+
+<div class="accordion" onclick="expandPanel(this)">Composition</div>
+<div class="panel">
+    It is a feature that defines one object to be attributed of another object                                          <br/>
+    It is used when objects satisfy has –a relationship.                                                                <br/>
+    Ex:man has a heart.                                                                                                 <br/>
+    The object only exists, or only makes sense inside other, as part of the other.                                     <br/>
+    You can’t create a heart and pass that to person.                                                                   <br/>
+</div>
+<div class="accordion" onclick="expandPanel(this)">Aggregation</div>
+<div class="panel">
+    It is also like composition, but the object exists outside the other also,                                          <br/>
+    and we can create and pass it as an argument to the constructor.                                                    <br/>
+    Ex: car has an engine.
+</div>
+<div class="accordion" onclick="expandPanel(this)">Association</div>
+<div class="panel">
+    Any relation between two objects. Ex: composition, aggregation, etc..
+</div>
+`;
 
 let syntaxHTML = `
 <pre>
