@@ -22,7 +22,7 @@ header {
 nav {
   float: left;
   width: 20%;
-  height: 800px; /* only for demonstration, should be removed */
+  height: 970px; /* only for demonstration, should be removed */
   background: DarkSlateGray;
   padding: 20px;
   border: 1px solid silver;

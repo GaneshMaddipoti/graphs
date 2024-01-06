@@ -13,17 +13,23 @@ let cppBeforeJavaHTML = `With ‘c’ programming language, once a project reach
  stroustrup initially called the language ‘c-with classes’, in 1983 the name changed to ‘C++’.
  C++ extends ‘C’ by adding object oriented features.
 `;
-let creationOfJavaHTML = `Prior to java, languages are platform dependent, that means
-Programs, that run on windows may not run on other platforms(linux,mac,solaris, etc..)
-In an attempt to find such a solution, Gosling and other colleagues began work on a portable,
-platform-independent language that could be used to produce code that would run on variety of cpu’s.
-At the same time, java was being implemented , www (or) Internet has taken a shape. The web or internet too demanded portable programs.’
-Java achieves platform independency through,  generating an intermediate code
-All the devices which are having interpreter(JVM) can run the same byte code.
-Java was conceived by james gosling and his team at sun micro systems in 1991.
-This language was initially called “OAK” , but was renamed to “JAVA” in 1995.
-Java derives much of the syntax from ‘C’ and ‘C++’.
-`;
+
+let creationOfJavaHTML = `<span class="accordion">Section 1</span><div class="panel"><span>test1</span></div>
+<span class="accordion" onclick="expandPanel(this)">Section 2</span><div class="panel"><span>test2</span></div>
+<span class="accordion">Section 3</span><div class="panel"><span>test3</span></div>`;
+
+
+// let creationOfJavaHTML = `Prior to java, languages are platform dependent, that means
+// Programs, that run on windows may not run on other platforms(linux,mac,solaris, etc..)
+// In an attempt to find such a solution, Gosling and other colleagues began work on a portable,
+// platform-independent language that could be used to produce code that would run on variety of cpu’s.
+// At the same time, java was being implemented , www (or) Internet has taken a shape. The web or internet too demanded portable programs.’
+// Java achieves platform independency through,  generating an intermediate code
+// All the devices which are having interpreter(JVM) can run the same byte code.
+// Java was conceived by james gosling and his team at sun micro systems in 1991.
+// This language was initially called “OAK” , but was renamed to “JAVA” in 1995.
+// Java derives much of the syntax from ‘C’ and ‘C++’.
+// `;
 
 // let creationOfJavaHTML = `<span class="accordion">Section 1</span><div class="panel"><span>test1</span></div>
 // <span class="accordion" onclick="expandPanel(this)">Section 2</span><div class="panel"><span>test2</span></div>
@@ -44,7 +50,7 @@ Java derives much of the syntax from ‘C’ and ‘C++’.
 `;
 
 let javaFeaturesHTML = `1) Simple
-2) <span title="">Object Oriented</span>
+2) Object Oriented
 3) Robust
 4) Multithreaded
 5) Portable

@@ -68,8 +68,8 @@ function showToolTip(obj, diagram, tool) {
     var pt = diagram.lastInput.viewPoint;
     let toolTipDIV = document.getElementById("toolTipDIV");
     if(toolTipDIV && obj.data.toolTipHTML) {
-        toolTipDIV.style.left = (pt.x + 250) + "px";
-        toolTipDIV.style.top = (pt.y + 100) + "px";
+        toolTipDIV.style.left = (pt.x) + "px";
+        toolTipDIV.style.top = (pt.y) + "px";
         toolTipDIV.innerHTML = obj.data.toolTipHTML.replaceAll("\n", "<br/>");
         toolTipDIV.style.display = "block";
     } else {
@@ -367,4 +367,29 @@ function updateAnimation(arg) {
 }
 function czoomTofFit() {
     diagram.commandHandler.zoomToFit();
+}
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}
+
+function expandPanel(element) {
+    element.classList.toggle("active");
+    var panel = element.nextElementSibling;
+    if (panel.style.display === "block") {
+        panel.style.display = "none";
+    } else {
+        panel.style.display = "block";
+    }
 }
