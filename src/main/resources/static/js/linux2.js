@@ -19,6 +19,81 @@ Boot process : <br/>
 6) Kernel starts systemd in user space, and systemd starts all required initial programs.
 `;
 
+let systemdHTML =
+`Systemd is the init process with PID 1 responsible for initializing system <br/>
+1) Mounting devices  <br/>
+2) Configuring the environment <br/>
+3) Starts all enabled services <br/>
+4) Cleans up terminated processes (orphans, zombies) <br/>
+<br/>
+systemd consists of <br/>
+1) systemctl <br/>
+2) journalctl <br/>
+3) Init <br/>
+4) Process management <br/>
+5) Network management (networkd) <br/>
+6) Login management (logind) <br/>
+7) Logs (journlad) <br/>
+etc... <br/>
+<br/>
+Init process reads /etc/inittab to run rc.sysinit script with runlevel argument <br/>
+rc.sysinit runs each script under /etc/rc.d/rc with prefixed run order <br/>
+We can change the runLevel after boot also using <br/>
+sudo runlevel N 5 <br/>
+sudo telinit 5 <br/>
+`;
+
+let unitsHTML =
+`Units <br/>
+Any entity managed by sysmted, is called a unit. <br/>
+It can be <br/>
+1) Service <br/>
+2) Socket <br/>
+3) Device <br/>
+4) Mountpoint or Automount point <br/>
+5) Swap file <br/>
+6) Partition <br/>
+7) Startup target <br/>
+8) Watched filesystem paths <br/>
+9) Group of externally created processes <br/> 
+
+Systemd labels services as units <br/>
+Units can be run with depend upon or conflict with other units <br/>
+Units are only started after the depends on unit has been started <br/>
+Each unit is configured via test file instead of a shell script <br/>
+<br/>
+/lib/systemd/system - standard systemd unit files (distro maintainers) <br/>
+/user/lib/systemd/system - locally installed unit files (via apt-get) <br/>
+/run/systemd/system - transient unit files <br/>
+/etc/systemd/system - custom unit files <br/>
+
+`;
+
+let runLevelsHTML =
+`Systemd defines following targets <br/>
+rescue.target - run level 1 (Single user mode) <br/>
+              - run level 2 (multiple user, no NFS, text login) <br/>
+multi-user.target - run level 3 (multiple user, NFS, Networking, text login) <br/>
+graphical.target - run level 5 (Multiple users, NFS, Networking, GUI) <br/>
+poweroff.target - run level 0 <br/>
+reboot.target - run level 6 <br/>    
+`;
+
+let systemctlHTML =
+`systemctl(mostly) how we talk to systemd <br/>
+With systemctl, we normally pass subcommands <br/>
+systemctl [sub-command] --flags/options <br/>
+Commands <br/>
+systemctl list-units --type=service <br/>
+systemctl status/enable/disable/start/stop/restart/reload/kill ngnix <br/>
+
+`;
+
+let journalctlHTML =
+    `systemctl(mostly) how we talk to systemd <br/>
+
+`;
+
 let shellHTML = `Shell is interpreter to execute commands. <br/>
 Commands contains command [options] [arguments]  <br/>
 Ex : ls -a /etc 
@@ -68,6 +143,7 @@ let storageHTML =
 We call them block devices, because we read/write the data in chunks/blocks. (1024 bytes) <br/>
 Block devices can be mounted anywhere in the VFS <br/>
 Dividing the storage space for different purposes(boot/root/swap) is called Partitioning <br/>
+A block device has an entry in /dev, for each device and partition on that device <br/>
 There are 2 partition types present today <br/>
 MBR (master boot record) <br/>
 1) It can hold 4 primary partitions <br/>
@@ -86,8 +162,14 @@ XFS - high performance file system, using metadata journaling <br/>
 BTRFS - modern feature rich copy on write file system(cloning, snapshots, volumes, etc...) <br/>
 ZFS - <br/>
 Files <br/>
-
+In Linux everything is a file <br/>
+/etc/fstab - is used to define block device name, mount point, file syste type and mounting options <br/>
 lsblk - to list all physical blocks present in the system <br/>
+RAID - you can group block devices together to form robust storage structures <br/>
+LVM - logical volume manager <br/>
+Manages block devices by defining logical structures from physical devices. <br/>
+Use LVM to create file systems which span multiple disks <br/>
+LVM allows to create, expand, snapshot, etc... <br/>
 
 `;
 
@@ -231,6 +313,7 @@ let linuxNodeDataArray = [
 
     {key: "Kernel Space", desc: "Kernel Space",color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Linux"},
     {key: "System Call Interface", desc: "System Call Interface", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space", toolTipHTML: systemCallsHTML},
+
     {key: "Kernel", desc: "Kernel",color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Kernel Space", toolTipHTML: kernelHTML},
     {key: "Memory Management", desc: "Memory Manager (MM)",  height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: memoryHTML},
     {key: "Process Management", desc: "Process Scheduler (SCHED)", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: processHTML},
@@ -285,6 +368,13 @@ let linuxNodeDataArray = [
     {key: "IO Management", desc: "IO Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: ioMgmtHTML},
     {key: "Device Drivers", desc: "Device Drivers", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: deviceDriversHTML},
 
+    {key: "Systemd", desc: "systemd", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle",
+        isGroup: true, expand: false, group: "Kernel Space", toolTipHTML: systemdHTML},
+    {key: "Units", desc: "Units", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: unitsHTML},
+    {key: "runLevels", desc: "runLevels", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: runLevelsHTML},
+    {key: "systemctl", desc: "systemctl", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: systemctlHTML},
+    {key: "journalctl", desc: "journalctl", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: journalctlHTML},
+
 
     {key: "Hardware", desc: "Hardware", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Tech Skills"},
     {key: "Motherboard", desc: "Motherboard", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Hardware"},
@@ -304,6 +394,8 @@ let linuxLinkDataArray = [
     {name:"sToM", from:"Storage", to: "Memory", category: "simplelink" },
     {name:"mToCPU", from:"Memory", to: "CPU", category: "simplelink" },
     {name:"sciToKernel", from:"System Call Interface", to: "Kernel", category: "simplelink" },
+    // {name:"sciToSystemd", from:"System Call Interface", to: "Systemd", category: "simplelink" },
+
     {name:"vfsToSM", from:"Virtual File System", to: "Storage Management", category: "simplelink" },
 
     {name:"vfsToMM", from:"Virtual File System", to: "Memory Management", category: "simplelink" },
