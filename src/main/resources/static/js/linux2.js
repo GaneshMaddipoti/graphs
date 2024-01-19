@@ -385,19 +385,19 @@ let usersHTML =
 User accounts are intended for people <br/>
 This allows to have personnel files, directories with proper permissions. <br/>
 Operations : <br/>
-$sudo useradd user1 -   adds user to the system(ganesh), with home directory (/home/ganesh) <br/>
+<b>$sudo useradd user1</b> -   adds user to the system(ganesh), with home directory (/home/ganesh) <br/>
             and default shell(/bin/bash) to run after login. <br/>
             and all the files from (/etc/skel) directory copied to (/home/ganesh) <br/>
 And other defaults related to account creation are stored in /etc/login.defs <br/>
-$sudo passwd user1 -    used to change password for user <br/>
-$sudo usermod --login modifiedName user1 - to change the username, usermod used to modify user account. <br/>
-$sudo userdel user1 - used to delete user and group from system <br/>
+<b>$sudo passwd user1</b> -    used to change password for user <br/>
+<b>$sudo usermod --login modifiedName user1 </b>- to change the username, usermod used to modify user account. <br/>
+<b>$sudo userdel user1</b> - used to delete user and group from system <br/>
                       but home directory will still be present <br/>
-$sudo userdel -r user1 - to delete user, group, home directory, and mail spool from system <br/>    
+<b>$sudo userdel -r user1</b> - to delete user, group, home directory, and mail spool from system <br/>    
 All info of user, group, userId, groupId, home directory, default shell, stored at /etc/passwd <br/>
-$cat /etc/passwd
-$id - this will show all info of the users who logged in now <br/>  
-$sudo chage --lastday 0 user1 - to set the password expiration date (change age), -1 to un-expire <br/>                         
+<b>$cat /etc/passwd </b> - this will show all users present in local</br>
+<b>$id</b> - this will show all info of the users who logged in now <br/>  
+<b>$sudo chage --lastday 0 user1</b> - to set the password expiration date (change age), -1 to un-expire <br/>                         
 `;
 
 let systemsHTML =
