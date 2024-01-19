@@ -17,6 +17,7 @@ Boot process : <br/>
 4) Bootloader loads the kernel selected, into RAM <br/>
 5) Kernel, will start init process (systemd) <br/>
 6) Kernel starts systemd in user space, and systemd starts all required initial programs.
+$cat /etc/os-release     - (to get os release version) <br/>
 `;
 
 let systemdHTML =
@@ -191,7 +192,9 @@ strace - command to trace the system calls. <br/>
 `;
 
 let vfsHTML =
-`File System Commands <br/>
+`Virtual File System is an abstraction layer <br/>
+Main functionality is to route the system calls implementer fs <br/>
+File System Commands <br/>
 chmod - change file mode bits  <br/>
 chown - change file owner and group <br/>
 touch - change file timestamps <br/>
@@ -244,7 +247,14 @@ fg - to get the job foreground
 jobs - to display all jobs running
 sleep - to make the job sleep for some time
  `;
-
+let ipcHTML =
+`PIPE <br/>
+FIFO <br/>
+Message Queues <br/>
+Shared Memory <br/>
+Semaphores <br/>
+Signals<br/>
+`;
 let memoryHTML =
 `Every executing process uses memory. <br/>
 Memory in linux is divided into 2, OS and Application. <br/>
@@ -289,6 +299,167 @@ Device controller uses buffer for small amount of data, DMA(direct memory access
 
 `;
 
+let procfsHTML =
+`Process Info by procfs at /proc <br/>
+procfs is just something to store the immediate info regarding the processes running in the system <br/>
+procfs is a filesystem, used not only to view kernel data structures <br/>
+but it also allows some of them to be changed on the fly <br/>
+sysctl used to change the parameters of procfs <br/>
+procinfo will give nice summary of system state <br/>`;
+
+
+let devfsHTML =
+`Device Info by udev at /dev <br/>
+udev replaces devfs (which was used to create device nodes in /dev by using kernel for naming) <br/>
+udev gives more control to admins, by allowing the use of udev rules <br/>
+udev runs in user space, and can change device names using udev rules(/etc/udev/rules.d) <br/>
+udev is responsible for the dynamic device management needed for hot plugging devices <br/>
+we can find device information in your /dev file system.
+When a device is added or removed from the system, the kernel sends an event to <br/>
+systemd-udevd.service daemon, which unmount from /dev file system.
+With udev we can assign meaningful names to devices <br/>
+udemadm monitor - monitor events those are related to udev <br/>
+<br/>
+lsusb, usb-devices commands to manage usb devices <br/>
+<br/>
+lspci - to show pci information <br/>
+lscpu - to show information about cpu <br/>
+`;
+
+let sysfsHTML =
+`System Info by sysfs at /sys <br/>
+sysfs is in memory file system, that the kernel uses to provide information about the system <br/>
+to userspace applications like udev <br/>
+It was created, as procfs was not structured, and was becoming cluttered <br/>
+sysfs is always mounted to /sys, but we dont find a mount point in /etc/fstab <br/>`;
+
+let modulesHTML =
+`Module <br/>
+A pice of software that can be loaded/unloaded using configuration from kernel without restart <br/>
+It extends the functionality of the kernel <br/>
+
+lsmod - to show all the modules in the system <br/>
+modinfo usb-storage|less - to show usb-storage module information <br/>
+sudo modprobe -rv usb-storage - to remove a module <br/>
+`;
+
+let packageManagerHTML =
+`Package - is list of files that a group of applications/libraries to be distributed by package management system <br/>`;
+
+let debianHTML =
+`Debian  - apt-get high level package manager - dpkg low level package manager - .tar / .deb <br/>
+            -DEBIAN        <br/>
+            ---control     <br/>
+            -user/bin      <br/>
+            ---appFile   <br/>
+$dpckg-deb --build appName   (for packaging) <br/>     
+$dpckg -i appName          (for install) <br/>
+$apt info appName         (to get the status) <br/>
+$/usr/bin/appFile         (to execute) <br/>
+$which appName            (to locate in local VFS) <br/>
+$sudo apt remove appName  (to remove) <br/>`;
+
+let rpmHTML =
+`Fedora/Redhat  - yum high level package manager - rpm low level package manager - rpm <br/>
+$sudo dnf install -y rpmdevtools rpmlint                      <br/>
+$rmpdev-setuptree             (to create package structure) <br/>
+$tar --create --file appName.tar.gz appName    (to create tar) <br/>
+$mv appName.tar.gz rpmbuild/SOURCES                               <br/>
+$rpmdev-newspec specFile          (to create new spec file) <br/>
+$vi specFile                      (to edit the spec file) <br/>
+$cp specFile rpmbuild/SPECS         <br/>
+$rpmlint rpmbuild/SPECS          (to verify the package is proper <br/>
+$rpmbuild -bs rpmbuild/SPECS       (to build) <br/>
+$sudo dnf install appName.tar.gz   (to install) <br/>
+$dnf info appName                 (to view the info) <br/>
+$dnf search appName              (to view the info ) <br/>
+$which appName                   (to locate) <br/>
+$./usr/bin/appFile               (to execute) <br/>`;
+
+let securityHTML =
+`Linux provides system security using users, groups. <br/>
+`;
+
+let usersHTML =
+`Every user who logs into linux system needs a user account. <br/>
+User accounts are intended for people <br/>
+This allows to have personnel files, directories with proper permissions. <br/>
+Operations : <br/>
+$sudo useradd user1 -   adds user to the system(ganesh), with home directory (/home/ganesh) <br/>
+            and default shell(/bin/bash) to run after login. <br/>
+            and all the files from (/etc/skel) directory copied to (/home/ganesh) <br/>
+And other defaults related to account creation are stored in /etc/login.defs <br/>
+$sudo passwd user1 -    used to change password for user <br/>
+$sudo usermod --login modifiedName user1 - to change the username, usermod used to modify user account. <br/>
+$sudo userdel user1 - used to delete user and group from system <br/>
+                      but home directory will still be present <br/>
+$sudo userdel -r user1 - to delete user, group, home directory, and mail spool from system <br/>    
+All info of user, group, userId, groupId, home directory, default shell, stored at /etc/passwd <br/>
+$cat /etc/passwd
+$id - this will show all info of the users who logged in now <br/>  
+$sudo chage --lastday 0 user1 - to set the password expiration date (change age), -1 to un-expire <br/>                         
+`;
+
+let systemsHTML =
+`$sudo useradd --system sysacc1  - We can create system accounts <br/>
+ System accounts are intended for programs <br/>
+ No home directory will be created as it's not needed <br/>
+ Daemons normally use system accounts <br/>
+`;
+
+let groupsHTML =
+`Each user belongs to one or more groups <br/>
+It allows to assign permissions to group of users/systems. <br/>
+In linux - sudo/wheel group has special root permission temporarily. <br/>
+            sudo - used to make changes to the important parts of the linux <br/>
+         - docker group to maintain docker containers <br/>
+Every user will have primary group or login group, as it's the default group when login <br/>
+If a user runs a program, that program runs under that user and group permissions, it will have same permissions like user <br/>    
+$sudo groupadd developrs - to add group to system <br/>
+$sudo gpasswd --add user1 developers - to add user to a group <br/>
+$sudo gasswd --delete user1 developers - to delete user from a group <br/>
+$sudo groupmod --new-name programmers developers - to modify a group <br/>     
+$sudo groupdel programmers - to delete a group <br/>
+`;
+
+let environmentsHTML =
+`$env - to show the current user/system environment or profile <br/>
+These values/variables used by programs/applications while running <br/>
+$vi /home/ganesh/.bashrc - to edit the environment files of a user <br/>
+$vi /etc/environment - to edit environment variables for all users. <br/>
+If you want to run something everytime a users login use /etc/profile.d, add your scripts to run at login <br/>
+`;
+
+let resourceLimitsHTML =
+`$vi /etc/security/limits.conf - to set the resource limits to default/user/group <br/>
+@Domain - specify * - default, user1, group1 <br/>
+@type - specify soft (min), hard (max), - (soft,hard) <br/>
+@item - nproc, fsize, maxlogins, cpu <br/>
+@value <br/>
+$ulimit - used to view and set the resource limits for a user <br/>
+We can only lower the limie using ulimit <br/>
+`;
+
+let privilegesHTML =
+`To give more specific privileges to sudoers we can edit  /etc/sudoers <br/>
+$visudo = But we will edit /etc/sudoers file suing visudo, to eliminate errors. <br/>
+user/group host=(run_as_user) commnadlist <br/>
+$sudo --login - to login as root, if the user has sudo access <br/>
+$su --login - to login as root, if the user has no sudo access, but know root password <br/>
+`;
+
+let pamHTML =
+`Pluggable authentication modules <br/>
+/etc/pam.d - directory contains the configuration files for pam <br/>
+$pam pam.conf - for configuration details <br/>
+@account/@auth/@password/@session <br/>
+@required/@sufficient  <br/>
+$cat /etc/nsswitch.conf - contains the methods to use for authentication <br/>
+$cat /etc/nslcd.conf - contains the configuration of LDAP server <br/>
+$getent passwd/group - to get all entries that system can look up for authentication of users/groups <br/>
+
+`;
+
 let linuxNodeDataArray = [
 
     {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, category: "tree", img: "assets/img/linux.png", expand: true, toolTipHTML: linuxOverviewHTML},
@@ -315,16 +486,15 @@ let linuxNodeDataArray = [
     {key: "System Call Interface", desc: "System Call Interface", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel Space", toolTipHTML: systemCallsHTML},
 
     {key: "Kernel", desc: "Kernel",color: "LightSteelBlue", isGroup: true, expand: true, category: "tree", group: "Kernel Space", toolTipHTML: kernelHTML},
-    {key: "Memory Management", desc: "Memory Manager (MM)",  height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: memoryHTML},
-    {key: "Process Management", desc: "Process Scheduler (SCHED)", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: processHTML},
-    {key: "IPC", desc: "IPC (ipcs)", height: 45,color: "WhiteSmoke", isGroup: true, category: "tree", shape: "RoundedRectangle", group: "Kernel", expand: false},
 
-    {key: "Pipe", desc: "Pipe |", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "IPC" },
-    {key: "FIFO", desc: "FIFO >", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "IPC" },
-    {key: "Message Queues", desc: "Message Queues", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "IPC" },
-    {key: "Shared Memory", desc: "Shared Memory", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "IPC" },
-    {key: "Semaphores", desc: "Semaphores", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "IPC" },
-    {key: "Signals", desc: "Signals", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "IPC" },
+    {key: "tempfs", desc: "tempfs", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel"},
+    {key: "Memory Management", desc: "Memory Manager (MM)",  height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: memoryHTML},
+
+    {key: "procfs", desc: "procfs", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: processHTML},
+    {key: "Process Management", desc: "Process Scheduler (SCHED)", height: 45,color: "WhiteSmoke", category: "tree90", shape: "RoundedRectangle",
+        isGroup: true, expand: true, group: "Kernel"},
+    {key: "IPC", desc: "IPC (ipcs)", height: 45,color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Process Management",
+         toolTipHTML: ipcHTML},
 
     {key: "Virtual File System", desc: "Virtual File System(VFS)", height:45, color: "LightSteelBlue", isGroup: true, expand: false, group: "Kernel", category: "grid",
         toolTipHTML: vfsHTML},
@@ -347,7 +517,7 @@ let linuxNodeDataArray = [
         toolTipHTML: "Variable Data Files "
     },
     {key: "/dev", desc: "/dev", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "Device Files "
+        toolTipHTML: devfsHTML
     },
     {key: "/home", desc: "/home", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
         toolTipHTML: "User home directories "
@@ -359,22 +529,44 @@ let linuxNodeDataArray = [
         toolTipHTML: "Optional Software Applications "
     },
     {key: "/proc", desc: "/proc", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
-        toolTipHTML: "Process and Kernel information files "
+        toolTipHTML: procfsHTML
+    },
+    {key: "/sys", desc: "/sys", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Virtual File System",
+        toolTipHTML: sysfsHTML
     },
 
-    {key: "Storage Management", desc: "Storage Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: storageHTML},
+    {key: "Storage FS", desc: "Storage FS", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: storageHTML},
+    {key: "Storage Management", desc: "Storage Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel"},
 
-    {key: "Network Management", desc: "Network Interface (NET)", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: networkHTML},
+    {key: "NFS", desc: "NFS", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: networkHTML},
+    {key: "Network Management", desc: "Network Interface (NET)", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel"},
+
     {key: "IO Management", desc: "IO Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: ioMgmtHTML},
     {key: "Device Drivers", desc: "Device Drivers", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: deviceDriversHTML},
 
+    {key: "Services", desc: "Services", height: 45,color: "WhiteSmoke", category: "grid10", shape: "RoundedRectangle",
+        isGroup: true, expand: true, group: "Kernel Space"},
+
+    {key: "Security", desc: "Security", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle",
+        isGroup: true, expand: false, group: "Services", toolTipHTML: securityHTML},
+    {key: "Users", desc: "Users", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Security", toolTipHTML: usersHTML},
+    {key: "Groups", desc: "Groups", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Security", toolTipHTML: groupsHTML},
+    {key: "Systems", desc: "Systems", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Security", toolTipHTML: systemsHTML},
+    {key: "Environment", desc: "Environment", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Security", toolTipHTML: environmentsHTML},
+    {key: "Resource Limits", desc: "Resource Limits", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Security", toolTipHTML: resourceLimitsHTML},
+    {key: "Privileges", desc: "Privileges", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Security", toolTipHTML: privilegesHTML},
+    {key: "PAM", desc: "PAM", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Security", toolTipHTML: pamHTML},
+
+
     {key: "Systemd", desc: "systemd", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle",
-        isGroup: true, expand: false, group: "Kernel Space", toolTipHTML: systemdHTML},
+        isGroup: true, expand: false, group: "Services", toolTipHTML: systemdHTML},
     {key: "Units", desc: "Units", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: unitsHTML},
     {key: "runLevels", desc: "runLevels", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: runLevelsHTML},
     {key: "systemctl", desc: "systemctl", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: systemctlHTML},
     {key: "journalctl", desc: "journalctl", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Systemd", toolTipHTML: journalctlHTML},
 
+    {key: "Modules", desc: "Modules", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle",
+        isGroup: true, expand: false, group: "Services", toolTipHTML: modulesHTML},
 
     {key: "Hardware", desc: "Hardware", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Tech Skills"},
     {key: "Motherboard", desc: "Motherboard", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Hardware"},
@@ -383,6 +575,13 @@ let linuxNodeDataArray = [
     {key: "Storage", desc: "Storage", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware", toolTipHTML: storageHTML},
     {key: "Ethernet", desc: "Ethernet", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
     {key: "IO", desc: "IO", color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Hardware"},
+
+    {key: "Package Managers", desc: "Package Managers", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle",
+        isGroup: true, expand: false, group: "Services", toolTipHTML: packageManagerHTML},
+    {key: "Debian", desc: "dpkg/apt-get ", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Package Managers", toolTipHTML: debianHTML},
+    {key: "rpm", desc: "rpm/yum", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Package Managers", toolTipHTML: rpmHTML},
+
+
 ];
 
 let linuxLinkDataArray = [
@@ -396,12 +595,17 @@ let linuxLinkDataArray = [
     {name:"sciToKernel", from:"System Call Interface", to: "Kernel", category: "simplelink" },
     // {name:"sciToSystemd", from:"System Call Interface", to: "Systemd", category: "simplelink" },
 
-    {name:"vfsToSM", from:"Virtual File System", to: "Storage Management", category: "simplelink" },
+    {name:"vfsToSfs", from:"Virtual File System", to: "Storage FS", category: "simplelink" },
+    {name:"SfsToSM", from:"Storage FS", to: "Storage Management", category: "simplelink" },
 
-    {name:"vfsToMM", from:"Virtual File System", to: "Memory Management", category: "simplelink" },
-    {name:"vfsToSched", from:"Virtual File System", to: "Process Management", category: "simplelink" },
-    {name:"vfsToNM", from:"Virtual File System", to: "Network Management", category: "simplelink" },
-    {name:"pmToIpc", from:"Process Management", to: "IPC", category: "simplelink" },
+    {name:"vfsTotfs", from:"Virtual File System", to: "tempfs", category: "simplelink" },
+    {name:"tfsToMM", from:"tempfs", to: "Memory Management", category: "simplelink" },
+    {name:"vfsTopfs", from:"Virtual File System", to: "procfs", category: "simplelink" },
+    {name:"pfsToPM", from:"procfs", to: "Process Management", category: "simplelink" },
+
+    {name:"vfsToNfs", from:"Virtual File System", to: "NFS", category: "simplelink" },
+    {name:"nfsToNM", from:"NFS", to: "Network Management", category: "simplelink" },
+
     {name:"vfsToIOM", from:"Virtual File System", to: "IO Management", category: "simplelink" },
     {name:"iomToDD", from:"IO Management", to: "Device Drivers", category: "simplelink" },
 
