@@ -164,7 +164,6 @@ BTRFS - modern feature rich copy on write file system(cloning, snapshots, volume
 ZFS - <br/>
 Files <br/>
 In Linux everything is a file <br/>
-/etc/fstab - is used to define block device name, mount point, file syste type and mounting options <br/>
 lsblk - to list all physical blocks present in the system <br/>
 RAID - you can group block devices together to form robust storage structures <br/>
 LVM - logical volume manager <br/>
@@ -278,11 +277,37 @@ let networkHTML =
 User ports span between 1024-49151 <br/>
 Dynamic ports - 49151-65535 <br/>
 /etc/services - contains port numbers commonly defined in linux. <br/>
-ip - display and sets network configuration <br/>
-ping - uses icmp protocol to check connectivity <br/>
-host - converts domain name to ip-address <br/>
-dig - shows domain name information <br/>
+<b>$ss -ltnup</b> - display currently listening ports/sockets <br/>
+
+Temporary changes <br/>
+<b>$ip -c address </b>- to display the ip addresses of all NI <br/>
+<b>$sudo ip link set dev eth1 up </b>- to enable/disable a NI <br/>
+<b>$sudo ip address add 192.169.85.125/20 dev eth1</b> - to add ip address to a NI <br/>
+<b>$sudo ip address delete 192.169.85.125/20 dev eth1</b> - to delete ip address from NI <br/>
+Permanent change <br/>
+<b>$netplan get</b> - to get the current netplan settings <br/>
+<b>$vi /etc/netplan/99-mysettings.yaml</b> - to set the settings permanently for network <br/>
+<b>$sudo netplan try/apply </b> - to apply the changes to NI <br/>
+<b>$ping www.google.com </b> - uses icmp protocol to check connectivity <br/>
+<b>$vi /etc/hosts </b> - converts domain name to ip-address <br/>
+<b>$dig</b> - shows domain name information <br/>
 whois - shows domain name metadata <br/>
+`;
+
+let nwInterfaceHTML =
+`Bond - Combining two or more NIC into once, for reliability and bandwidth <br/>
+        Bonding is implemented in 6 different modes <br/>         
+Bridge - Connecting two NICs, so that they can communicate each other <br/>
+Using /usr/share/doc/netplan/examples, /etc/netplan/ we can create bridges and bonds <br/>
+Packet Filtering Firewall <br/>
+<b>$sudo ufw enable/disable/delete/allow 22/deny </b> we can try firewall <br/>
+<b>$sudo ufw allow in on eth1 from 192.168.1.29 to 192.169.1.81 port 80 proto tcp </b> <br/>
+Port redirect and NAT <br/>
+We can enable IP forwarding using /etc/sysctl.conf or /etc/sysctl.d/99-sysctl.conf <br/>
+Prefer /etc/sysctl.d/99-sysctl.conf as /etc/sysctl.conf will be modified due to software package updates. <br/>
+After uncommenting <b>net.ipv4.ip_forward=1</b> we need to reload all these sysctl config files using <br/>
+<b>$sudo sysctl --system</b><br/>
+All networking work done by kernel using Netfilter framework. <br/>
 
 `;
 
@@ -309,7 +334,8 @@ procinfo will give nice summary of system state <br/>`;
 
 
 let devfsHTML =
-`Device Info by udev at /dev <br/>
+`All the devices that are connected to system, are automatically creates file under /dev.
+Device Info by udev at /dev <br/>
 udev replaces devfs (which was used to create device nodes in /dev by using kernel for naming) <br/>
 udev gives more control to admins, by allowing the use of udev rules <br/>
 udev runs in user space, and can change device names using udev rules(/etc/udev/rules.d) <br/>
@@ -460,6 +486,34 @@ $getent passwd/group - to get all entries that system can look up for authentica
 
 `;
 
+let storageMgmtHTML =
+`<b>$sudo lsblk</b> - lists all blocks devices attached to system <br/>
+<b>$sudo fdisk --list </b> - format disk (a command line disk manipulation utility) <br/>
+<b>$sudo cfdisk </b> - to format/create partitions using cursor based Interface <br/>
+<b>$sudo mkswap /dev/xvda2 </b> - to format it as swap <br/>
+<b>$sudo swapon /dev/xvda2 </b> - to enable swap <br/>
+<b>$swapon --show </b> - will show swap partions <br/>
+<b>$sudo swapoff /dev/xvda2 </b> - to swap off <br/>
+We can create swap space using raw file instead of partitions <br/>
+File Systems <br/>
+<b>$sudo mkfs.xfs /dev/xvda3 </b> - to format the disk using xfs file system <br/>
+<b>$sudo tune2fs -l /dev/xvda3 </b>- to display all properties of the file system <br/>
+Mounting - means plugging file system to one of directory <br/>
+<b>$sudo mount /dev/xvda3 /mnt/ </b> - to mount a file system <br/>
+Use /media - for temporary /mnt - for permanent devices <br/>
+<b>$sudo umount /mnt/ </b> - to unmount a file system <br/>
+/etc/fstab - is used to define block device name, mount point, file system type and mount them automatically when system start <br/>
+<b>$mount </b> - to display all mounted devices on system <br/>
+<b>$sudo blkid /dev/xvda3</b> - to get the block UUID <br/>
+We can auto mount and unmount file systems on demand <br/>
+<b>$sudo dnf install autofs </b> - to install autofs <br/>
+<b>$sudo systemctl start autofs.service </b><br/>
+<b>$sudo systemctl enable autofs.service </b><br/>
+To share file/directory in network <br/>
+<b>$sudo systemctl start nfs</b><br/>
+<b>$sudo systemctl enable nfs</b><br/>
+`;
+
 let linuxNodeDataArray = [
 
     {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, category: "tree", img: "assets/img/linux.png", expand: true, toolTipHTML: linuxOverviewHTML},
@@ -536,10 +590,10 @@ let linuxNodeDataArray = [
     },
 
     {key: "Storage FS", desc: "Storage FS", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: storageHTML},
-    {key: "Storage Management", desc: "Storage Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel"},
+    {key: "Storage Management", desc: "Storage Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: storageMgmtHTML},
 
     {key: "NFS", desc: "NFS", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: networkHTML},
-    {key: "Network Management", desc: "Network Interface (NET)", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel"},
+    {key: "Network Management", desc: "Network Interface (NET)", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: nwInterfaceHTML},
 
     {key: "IO Management", desc: "IO Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: ioMgmtHTML},
     {key: "Device Drivers", desc: "Device Drivers", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: deviceDriversHTML},
