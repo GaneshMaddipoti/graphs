@@ -1,4 +1,4 @@
-let linuxOverviewHTML = `OS is b/w applications and H/W, manage storage, memory, GUI, CLI, networking, security, users, and utilities <br/>
+let linuxOverviewHTML = `OS is b/w applications and H/W, manage CPU, storage, memory, GUI, CLI, networking, security, users, and utilities <br/>
 Linux originated from Unix which is leading in 1970-90. <br/>
 GNU mission is to use free/open source tools for Unix.  <br/>
 1992, Linus Torvalds added kernel to GNU and completes Linux OS.  <br/>
@@ -16,7 +16,7 @@ Boot process : <br/>
 3) Bootloader will be loaded using MBR(first segment in boot partition) <br/>
 4) Bootloader loads the kernel selected, into RAM <br/>
 5) Kernel, will start init process (systemd) <br/>
-6) Kernel starts systemd in user space, and systemd starts all required initial programs.
+6) Kernel starts systemd in user space, and systemd starts all required initial programs. <br/>
 $cat /etc/os-release     - (to get os release version) <br/>
 `;
 
@@ -86,7 +86,7 @@ With systemctl, we normally pass subcommands <br/>
 systemctl [sub-command] --flags/options <br/>
 Commands <br/>
 systemctl list-units --type=service <br/>
-systemctl status/enable/disable/start/stop/restart/reload/kill ngnix <br/>
+systemctl status/enable/disable/start/stop/restart/reload/kill/mask ngnix <br/>
 
 `;
 
@@ -273,12 +273,22 @@ readelf - command to analyze the process structure <br/>
 `;
 
 let networkHTML =
-`System ports span between 0-1023 called root ports. <br/>
+`To share file/directory in network, we need to enable nfs-service. <br/>
+<b>$sudo dnf install nfs-utils</b><br/>
+<b>$sudo systemctl start nfs-server.service</b><br/>
+<b>$sudo systemctl enable nfs-server.service</b><br/>
+To share the which directory to share over network <br/>
+<b>sudo vim /etc/exports</b><br/>
+/etc 127.0.0.1(ro) <br/>
+<b>$sudo exportfs -r </b> Re export - reload 
+<b>$sudo vim /etc/auto.shares </b> - to define the directories to share <br/>
+<b>$sudo vim /etc/auto.master </b> - to define timeout for directories which are not used <br/>
+<b>$sudo systemctl reload autofs</b> - to reload autofs configuration <br/>
+System ports span between 0-1023 called root ports. <br/>
 User ports span between 1024-49151 <br/>
 Dynamic ports - 49151-65535 <br/>
 /etc/services - contains port numbers commonly defined in linux. <br/>
 <b>$ss -ltnup</b> - display currently listening ports/sockets <br/>
-
 Temporary changes <br/>
 <b>$ip -c address </b>- to display the ip addresses of all NI <br/>
 <b>$sudo ip link set dev eth1 up </b>- to enable/disable a NI <br/>
@@ -308,7 +318,83 @@ Prefer /etc/sysctl.d/99-sysctl.conf as /etc/sysctl.conf will be modified due to 
 After uncommenting <b>net.ipv4.ip_forward=1</b> we need to reload all these sysctl config files using <br/>
 <b>$sudo sysctl --system</b><br/>
 All networking work done by kernel using Netfilter framework. <br/>
+`;
 
+let mailHTML =
+`Mail Server - postfix<br/>
+<b>$sudo dnf install postfix</b> - to install postfix mail system<br/>
+<b>$sudo systemctl start/enable postfix</b> - to start/enable postfix mail system<br/>
+<b>$sendmail ec2-user@localhost <<< "Hi Ganesh" </b> - to send mail<br/>
+<b>$sudo cat /var/spool/mail/ec2-user</b> - to check the mail <br/>
+<b>$sudo vim /etc/aliases</b> - to set the mail aliases <br/>
+<b>$sudo newaliases</b> - to enable aliases again<br/>
+Mail Client - dovecot (IMAP - internet message access protocol)<br/>
+<b>$sudo dnf install dovecot</b> - to install <br/>
+<b>$sudo systemctl start/enable dovecot</b> - to start/enable <br/>
+<b>$sudo firewall-cmd --add-service=imap --permanent</b> - to allow via firewall <br/>
+`;
+
+let DNSHTML =
+`DNS <br/>
+<b>$sudo dnf install bind bind-utils</b> - for Caching DNS server <br/>
+<b>$sudo vim /etc/named.conf</b> - to configure Caching DNS server <br/>
+<b>$sudo systemctl start named.service</b> - to start the named server <br/>
+<b>$sudo systemctl enable named.service</b> - to enable the named server so that it will run on login <br/>
+`;
+
+let sshHTML =
+`SSH server - sshd<br/>
+<b>$sudo vim /etc/ssh/sshd_config</b> - to configure ssh server <br/>
+SSH client - ssh <br/>
+<b>$sudo vim /etc/ssh/ssh_config</b> - to configure ssh client <br/>
+`;
+
+let HTTPHTML =
+`HTTP Proxy Server - squid <br/>
+<b>$sudo dnf install squid </b> - to install squid <br/>
+<b>$sudo systemctl start/enable squid </b> - to start/enable squid <br/>
+<b>$sudo firewall-cmd --add-service=squid --permanent</b> - to allow via firewall <br/>
+<b>$sudo vim /etc/squid/squid.conf </b> - to configure squid <br/>
+HTTP server - httpd <br/>
+<b>$sudo dnf install httpd </b> - to install apache server <br/>
+<b>$sudo firewall-cmd --add-service=http --permanent</b> - to allow via firewall <br/>
+<b>$sudo firewall-cmd --add-service=https --permanent</b> - to allow via firewall <br/>
+<b>$sudo vim /etc/httpd/conf/httpd.conf</b> - to configure HTTP server <br/>
+<b>$apachectl configtest</b> - to check the configurations <br/>
+
+HTTPS server - mod_ssl <br/>
+<b>$sudo dnf install mod_ssl </b> - to install mod_ssl <br/>
+<b>$sudo vim /etc/httpd/conf.d/ssl.conf</b> - to configure SSL <br/>
+
+`;
+
+let dockerHTML =
+`Docker - Container service <br/>
+<b>$sudo dnf install docker </b> - to install docker <br/>
+<b>$sudo systemctl start docker </b> - to start the docker daemon<br/>
+<b>$sudo systemctl enable docker </b> - to add to target so that it will start on boot<br/>
+<b>$docker search nginx</b> - to search for an image<br/>
+<b>$docker pull nginx</b> - to pull a image<br/>
+<b>$docker run --detach --publish 8080:80 --name mywebserver nginx</b> - to run a process <br/>
+<b>$docker ps -a</b> - to see all processes by docker<br/>
+<b>$docker stop nameOfContainer </b> - to stop a process <br/>
+<b>$docker rm/rmi nameOfContainer </b> - to remove a container/image<br/>
+<b>$docker build --tag myCustomImg1.0 myDir</b> - to build an image<br/>
+`;
+
+let vmHTML =
+`Virtual Machine - libvirt (utility to communicate with vm), qemu-kvm (to create and run vm) <br/>
+<b>$sudo dnf install libvirt qemu-kvm </b> - to install vm and utilities <br/>
+<b>$virsh list --all  </b> - lists all vms <br/>
+<b>$virsh define TestMachine </b> - create VM <br/>
+<b>$virsh start/reboot/reset/shutdown/destroy TestMachine </b> - to start/reboot/reset/shutdown/destroy the vm  <br/>
+<b>$virsh undefine --remove-all-storage TestMachine </b> - to delete VM  <br/>
+<b>$virsh autostart TestMachine </b> - to auto start on boot <br/>
+<b>$virsh dominfo TestMachine </b> - to get resources info of TestMachine<br/>
+<b>$virsh setvcups/setmaxmem/ </b> - to set virtual cpus/maximum memory<br/>
+<b>$</b> <br/>
+<b>$</b> <br/>
+<b>$</b> <br/>
 `;
 
 let ioMgmtHTML =
@@ -490,6 +576,8 @@ let storageMgmtHTML =
 `<b>$sudo lsblk</b> - lists all blocks devices attached to system <br/>
 <b>$sudo fdisk --list </b> - format disk (a command line disk manipulation utility) <br/>
 <b>$sudo cfdisk </b> - to format/create partitions using cursor based Interface <br/>
+<b>$df </b> - disk file system to show disk usage <br/>
+<b>$ncdu </b> - nCurses disk usage <br/>
 <b>$sudo mkswap /dev/xvda2 </b> - to format it as swap <br/>
 <b>$sudo swapon /dev/xvda2 </b> - to enable swap <br/>
 <b>$swapon --show </b> - will show swap partions <br/>
@@ -509,9 +597,6 @@ We can auto mount and unmount file systems on demand <br/>
 <b>$sudo dnf install autofs </b> - to install autofs <br/>
 <b>$sudo systemctl start autofs.service </b><br/>
 <b>$sudo systemctl enable autofs.service </b><br/>
-To share file/directory in network <br/>
-<b>$sudo systemctl start nfs</b><br/>
-<b>$sudo systemctl enable nfs</b><br/>
 `;
 
 let linuxNodeDataArray = [
@@ -598,7 +683,7 @@ let linuxNodeDataArray = [
     {key: "IO Management", desc: "IO Management", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: ioMgmtHTML},
     {key: "Device Drivers", desc: "Device Drivers", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Kernel", toolTipHTML: deviceDriversHTML},
 
-    {key: "Services", desc: "Services", height: 45,color: "WhiteSmoke", category: "grid10", shape: "RoundedRectangle",
+    {key: "Services", desc: "Services", height: 45,color: "WhiteSmoke", category: "grid5", shape: "RoundedRectangle",
         isGroup: true, expand: true, group: "Kernel Space"},
 
     {key: "Security", desc: "Security", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle",
@@ -635,7 +720,10 @@ let linuxNodeDataArray = [
     {key: "Debian", desc: "dpkg/apt-get ", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Package Managers", toolTipHTML: debianHTML},
     {key: "rpm", desc: "rpm/yum", height:45, color: "WhiteSmoke", category: "simple", shape: "RoundedRectangle", group: "Package Managers", toolTipHTML: rpmHTML},
 
-
+    {key: "DNS", desc: "DNS", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle", isGroup: true, expand: false, group: "Services", toolTipHTML: DNSHTML},
+    {key: "Mail", desc: "Mail", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle", isGroup: true, expand: false, group: "Services", toolTipHTML: mailHTML},
+    {key: "SSH", desc: "SSH", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle", isGroup: true, expand: false, group: "Services", toolTipHTML: sshHTML},
+    {key: "HTTP", desc: "HTTP", height: 45,color: "WhiteSmoke", category: "grid", shape: "RoundedRectangle", isGroup: true, expand: false, group: "Services", toolTipHTML: HTTPHTML},
 ];
 
 let linuxLinkDataArray = [

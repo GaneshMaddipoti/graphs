@@ -295,6 +295,25 @@ diagram.groupTemplateMap.add("grid2", $(go.Group, "Auto", {layout: $(go.GridLayo
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 
+diagram.groupTemplateMap.add("grid5", $(go.Group, "Auto", {layout: $(go.GridLayout, {
+            wrappingColumn: 5, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(20,0)
+        }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
+    $(go.Shape, "RoundedRectangle", // surrounds everything
+        { parameter1: 0, strokeWidth: .2, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+    $(go.Panel, "Vertical",  // position header above the subgraph
+        { defaultAlignment: go.Spot.Left }, {margin: 10},
+        $(go.Panel, "Horizontal",  // the header
+            { defaultAlignment: go.Spot.Left },
+            $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
+            $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
+            $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
+            { click: (e, obj) => showDetails(e, obj) }
+        ),
+        $(go.Placeholder,     // represents area for all member parts
+            { padding: 10, background: "Transparent" })
+    ), new go.Binding("isSubGraphExpanded", "expand"),
+));
+
 diagram.groupTemplateMap.add("grid10", $(go.Group, "Auto", {layout: $(go.GridLayout, {
             wrappingColumn: 10, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(20,0)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
