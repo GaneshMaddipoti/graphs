@@ -151,7 +151,7 @@ a {
 
 .accordion {
     /*background-color: #eee;*/
-    color: #eee;
+    color: #000;
     cursor: pointer;
     /*padding: 10px;*/
     width: 100%;
@@ -173,6 +173,7 @@ a {
     overflow: hidden;
     width: 750px;
     font-size: 14px;
+    color: #000;
 }
 
 b{

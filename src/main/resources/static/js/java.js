@@ -165,7 +165,7 @@ let oopsHTML = `
 `;
 
 let syntaxHTML = `
-<pre>
+<pre style="color: #000">
     package org.example;
 
     import java.io.File;
