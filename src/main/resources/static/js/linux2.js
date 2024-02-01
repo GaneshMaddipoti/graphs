@@ -601,7 +601,8 @@ We can auto mount and unmount file systems on demand <br/>
 
 let linuxNodeDataArray = [
 
-    {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, category: "tree", img: "assets/img/linux.png", expand: true, toolTipHTML: linuxOverviewHTML},
+    {key: "Linux", desc: "Linux", color: "LightSteelBlue", isGroup: true, category: "tree", group: "Tech Skills",
+        img: "assets/img/linux.png", expand: true, toolTipHTML: linuxOverviewHTML},
 
     {key: "Log In", desc: "Log In", color: "LightSteelBlue", isGroup: true, expand: true, category: "tree90", group: "Linux"},
     {key: "GUI", desc: "GUI", color: "WhiteSmoke", shape: "RoundedRectangle", category: "simple", group: "Log In"},
