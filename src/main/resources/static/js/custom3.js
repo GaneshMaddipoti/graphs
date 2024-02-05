@@ -336,7 +336,7 @@ diagram.groupTemplateMap.add("grid-congested", $(go.Group, "Auto", {layout: $(go
             wrappingColumn: 3, alignment: go.GridLayout.Position, cellSize: new go.Size(0, 0), spacing: new go.Size(0,0)
         }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 5, strokeWidth: 1, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+        { parameter1: 5, strokeWidth: .2, stroke: "#555", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
