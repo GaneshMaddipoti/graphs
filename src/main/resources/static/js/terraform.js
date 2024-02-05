@@ -25,45 +25,45 @@ let dataDocHTML = `data "aws_ssm_parameter" "ami" {
         name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
     }    
 `;
-let resourceDocHTML = `<pre>resouce "aws_instance" "web_server" {
+let resourceDocHTML = `resouce "aws_instance" "web_server" {
     name = "web_server"
         ebs_volume {
             size = 40
         }
-        user_data = <<EOF 
+        user_data = < < EOF
         #! /bin/bash
         sudo amazon-linux-extras install -y inginx1
         sudo service nginx start
         sudo rm /usr/share/nginx/html/index.html
         echo 'hi'
         EOF
-    }</pre>
+    }
 `;
 
 
 
 let tfNodeDataArray = [
-    {key: "Terraform", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/terraform/terraform.svg", toolTipHTML: tfHTML.replaceAll("\n", "<br/>")},
+    {key: "Terraform", desc: "Terraform", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/terraform/terraform.svg", toolTipHTML: tfHTML.replaceAll("\n", "<br/>")},
 
-    {key: "hcl-doc", isGroup: true, category: "grid", img: "assets/img/terraform/tf-hcl.svg", group: "Server"},
-    {key: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: providerDocHTML.replaceAll("\n", "<br/>")},
-    {key: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: dataDocHTML.replaceAll("\n", "<br/>")},
-    {key: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: resourceDocHTML.replaceAll("\n", "<br/>")},
+    {key: "hcl-doc", desc: "hcl-doc", isGroup: true, color: "WhiteSmoke", category: "tree90", img: "assets/img/terraform/tf-hcl.svg", group: "Server"},
+    {key: "Provider", desc: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: providerDocHTML.replaceAll("\n", "<br/>")},
+    {key: "Data", desc: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: dataDocHTML.replaceAll("\n", "<br/>")},
+    {key: "Resource", desc: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: resourceDocHTML.replaceAll("\n", "<br/>")},
 
-    {key: "Server", isGroup: true, category: "tree90", img: "assets/img/terraform/tf-binary.svg", group: "Terraform"},
+    {key: "Server", desc: "Server", isGroup: true, color: "WhiteSmoke", category: "tree", img: "assets/img/terraform/tf-binary.svg", group: "Terraform"},
 
 
 
-    {key: "Workflow", isGroup: true, category: "tree", img: "assets/img/terraform/tf-workflow.svg", group: "Server"},
-    {key: "terraform init", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow"},
-    {key: "terraform plan", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow"},
-    {key: "terraform apply", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow"},
+    {key: "Workflow", desc: "Workflow", color: "WhiteSmoke", isGroup: true, category: "tree90", img: "assets/img/terraform/tf-workflow.svg", group: "Server"},
+    {key: "terraform init", desc: "terraform init", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow"},
+    {key: "terraform plan", desc: "terraform plan", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow"},
+    {key: "terraform apply", desc: "terraform apply", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow"},
 
-    {key: "State Data", category: "picTemplate", img: "assets/img/terraform/tf-state.svg", group: "Server"},
+    {key: "State Data", desc: "State Data", category: "picTemplate", img: "assets/img/terraform/tf-state.svg", group: "Server"},
 
-    {key: "Provider Plugin", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Workflow"},
+    {key: "Provider Plugin", desc: "Provider Plugin", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Workflow"},
 
-    {key: "Target Environment", img: "assets/img/gen/gen-cloud.svg", category: "picTemplate", group: "Terraform"},
+    {key: "Target Environment", desc: "Target Environment", img: "assets/img/gen/gen-cloud.svg", category: "picTemplate", group: "Terraform"},
 
 ];
 
@@ -76,3 +76,6 @@ let tfLinkDataArray = [
     {from:"terraform apply", to: "State Data", category: "simplelink"},
     {from:"Provider Plugin", to: "Target Environment", category: "simplelink"},
 ];
+
+nodeDataArray = nodeDataArray.concat(tfNodeDataArray);
+linkDataArray = linkDataArray.concat(tfLinkDataArray);
