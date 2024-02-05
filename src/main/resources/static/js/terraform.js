@@ -138,6 +138,24 @@ let tfDestroyHTML = `terraform destroy - will create plan first and ask us to co
 Will destroy everything in target environment, which terraform is maintaining in its state data <br/> 
 `;
 
+let stateDataHTML = `terraform.tfstate is the state file if you put locally <br/>
+State data contains Resources, data, and outputs <br/>
+It maps resources, data sources to infra in target environment <br/>
+State data stored in JSON format (Do not touch!) <br/>
+Maps objects id to unique id in target environment <br/>
+Planning <br/>
+Refreshes the state data by querying deployment data from target environment <br/>
+Compares the values in configuration and values in state data <br/>
+Contains metadata of terraform version used and version of state data format and S.No of current state data <br/>
+Locking - if terraform changing its state data it puts a lock for synchronization <br/>
+State data can be local or remotely in AWS s3, Azure, NFS, Terraform cloud <br/>
+Workspaces - to use same configuration to spin up multiple instances with different state data <br/>
+terraform state list - lists  all state resources <br/> 
+terraform state show ADDRESS(type.name) - to get more info <br/>
+terraform state mv SOURCE DESTINATION - to move an item in state <br/>
+terraform state rm ADDRESS - to remove an item in state <br/>
+`;
+
 let tfNodeDataArray = [
     {key: "Terraform", desc: "Terraform", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/terraform/terraform.svg", toolTipHTML: tfHTML.replaceAll("\n", "<br/>")},
 
@@ -161,7 +179,7 @@ let tfNodeDataArray = [
     {key: "terraform apply", desc: "terraform apply", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow", toolTipHTML: tfApplyHTML},
     {key: "terraform destroy", desc: "terraform destroy", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow", toolTipHTML: tfDestroyHTML},
 
-    {key: "State Data", desc: "State Data", category: "picTemplate", img: "assets/img/terraform/tf-state.svg", group: "Server"},
+    {key: "State Data", desc: "State Data", category: "picTemplate", img: "assets/img/terraform/tf-state.svg", group: "Server", toolTipHTML: stateDataHTML},
 
     {key: "Provider Plugin", desc: "Provider Plugin", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Server"},
 
