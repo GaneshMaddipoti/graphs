@@ -156,6 +156,21 @@ terraform state mv SOURCE DESTINATION - to move an item in state <br/>
 terraform state rm ADDRESS - to remove an item in state <br/>
 `;
 
+let providersHTML = `terraform.tf - file used to declare providers information <br/>
+terraform block is used to mention terraform version and provider versions. <br/>
+terraform \{ <br/>
+&emsp; required_version = "version_constraints" - to declare terraform version constraints. <br/>
+&emsp; required_providers \{ - to declare provider information <br/>
+&emsp; &emsp; provider_name = \{ <br/>
+&emsp; &emsp; &emsp; source = "address of provider" <br/>
+&emsp; &emsp; &emsp; version = "version constraints" <br/>
+&emsp; &emsp;} <br/>
+&emsp;} <br/>
+} <br/>
+When terraform init executed, it wil create actual configuration .terraform.lock.hcl <br/>
+
+`;
+
 let tfNodeDataArray = [
     {key: "Terraform", desc: "Terraform", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/terraform/terraform.svg", toolTipHTML: tfHTML.replaceAll("\n", "<br/>")},
 
@@ -181,7 +196,7 @@ let tfNodeDataArray = [
 
     {key: "State Data", desc: "State Data", category: "picTemplate", img: "assets/img/terraform/tf-state.svg", group: "Server", toolTipHTML: stateDataHTML},
 
-    {key: "Provider Plugin", desc: "Provider Plugin", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Server"},
+    {key: "Provider Plugin", desc: "Provider Plugin", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Server", toolTipHTML: providersHTML},
 
     {key: "Target Environment", desc: "Target Environment", img: "assets/img/gen/gen-cloud.svg", category: "picTemplate", group: "Terraform"},
 
