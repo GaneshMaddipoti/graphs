@@ -21,30 +21,35 @@ let tfHTML = `Terraform - Infrastructure as code.
     3) Provider plugins
     4) State data
 `;
-let providerDocHTML = `provider "aws" {
-        access_key = "ACCESS_KEY"
-        secret_key = "SECRET_KEY"
-        region = "us-east-1"
+let providerDocHTML = `Provider blocks to declare provider information <br/>
+Providers need credentials with permissions to access the target environment <br/>
+provider "aws" { <br/>
+&emsp;        access_key = "ACCESS_KEY" <br/>
+&emsp;        secret_key = "SECRET_KEY" <br/>
+&emsp;        region = "us-east-1" <br/>
     }
 `;
-let dataDocHTML = `data "aws_ssm_parameter" "ami" {
-        name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
-    }    
+let dataDocHTML = `Data blocks like data sources which information from providers <br/>
+data "aws_ssm_parameter" "ami" { <br/>
+&emsp; name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2" <br/>
+} <br/>   
 `;
-let resourceDocHTML = `resource "aws_instance" "web_server" {
-    name = "web_server"
-        ebs_volume {
-            size = 40
-        }
-        user_data = < < EOF
-        #! /bin/bash
-        sudo amazon-linux-extras install -y nginx1
-        sudo service nginx start
-        sudo rm /usr/share/nginx/html/index.html
-        echo 'hi' > /usr/share/nginx/html/index.html
-        EOF,
-    tags = local.common_tags    
-    }
+let resourceDocHTML = `Resource blocks to declare resources to create in target environment <br/>
+resource "aws_instance" "web_server" { <br/>
+&emsp;    name = "web_server" <br/>
+&emsp;       ebs_volume { <br/>
+&emsp;&emsp;            size = 40 <br/>
+&emsp;        } <br/>
+&emsp;        user_data = < < EOF <br/>
+&emsp;        #! /bin/bash <br/>
+&emsp;        sudo amazon-linux-extras install -y nginx1 <br/>
+&emsp;        sudo service nginx start <br/>
+&emsp;        sudo rm /usr/share/nginx/html/index.html <br/>
+&emsp;        echo 'hi' > /usr/share/nginx/html/index.html <br/>
+&emsp;        EOF, <br/>
+&emsp;    tags = local.common_tags     <br/>
+    } <br/>
+Scripts on resources can be added using user data, provisioners <br/>     
 `;
 
 let inputVariablesHTML = `Terraform can accept values through input variables <br/>
@@ -61,17 +66,20 @@ Variable can be referred by : var.name_label <br/>
 We can also supply input variables as command line arguments using -var (for each varialbe) -var-file (from file) <br/>
 We can supply inputs using terraform.tfvars/terraform.tfvars.json <br/>
 We can supply inputs using .auto.tfvars/ auto.tfvars.json <br/>
-We can pass from environment variables also by delcaring with name preix TF_VAR_ <br/>
-Order of precedenceTF_VAR_ > terraform.tfvars > .auto.tfvars > -var-file > -var > prompt <br/>
+We can pass from environment variables also by declaring with name preix TF_VAR_ <br/>
+Order of precedence: TF_VAR_ > terraform.tfvars > .auto.tfvars > -var-file > -var > prompt <br/>
+`;
+
+let localsHTML = `Locals are scoped to module, and assigned only once, can't be modified <br/>
 Local values - are computed values inside configuration, that can be referred throughout the configuration <br/> 
-Think of locals as intermediate variables those can be referred in multiple places <br/>`;
-let localsHTML = `
+Think of locals as intermediate variables those can be referred in multiple places <br/>
 locals {  <br/>
  &emsp; key = value (key is string, value can be any data type)<br/>
  &emsp; company = var.company (referrin input variables) <br/>
  &emsp; project = "\${var.company}-\${var.project}" <br/>   
-}
+} <br/>
 Locals can be referred by : local.key <br/>`;
+
 let outputVariablesHTML = `
 Output variables - data returned from terraform as output variables <br/>
 They are defined inside configuration, and values are computed based on more than one object <br/>
@@ -114,6 +122,66 @@ key = "value" - one or more key(string) value pairs/ available arguments of the 
 } <br/>
 We can refer objects by - object_type.name_label.attribute <br/>
 ###### - single line comments starts by # <br/>
+`;
+
+let modulesHTML = `Modules let us reuse the code in multiple places <br/>
+&emsp; module "ec2module" { <br/>
+&emsp;&emsp;  source = "../../modules/ec2" <br/>
+&emsp; } <br/>
+There are multiple options to store module sources <br/>
+1) Local system <br/>
+2) Git SCM (prefixed with git::) (branch can be added by ?ref=v1.2.3 to url) <br/>
+3) Terraform registry <br/>
+4) HTTP urls like S3, any remote location <br/>
+
+We can declare variables needed for modules, and pass them using variables at runtime <br/>
+For static data, we can declare them as locals and refer them. <br/>
+There are public modules in terraform public registry, which are free to use <br/>
+We can also publish modules to terraform public registry and maintaining them in GitHub <br/>
+`;
+
+let workSpacesHTML = `Terraform allows us to use multiple workspaces <br/>
+Each workspace has its own environment variables <br/>
+$terraform workspace list - will display all available workspaces <br/>
+$terraform workspace new dev - create new workspace named dev <br/>
+$terraform workspace show - show current workspace <br/>
+`;
+
+let gitSCMHTML = `In organizations, the terraform code is maintained in a Git SCM system <br/>
+Do not include passwords, tfstate files to git SCM <br/>
+`;
+
+let stateMgmtHTML = `In local machine, terraform.tfstage will hold default workspace state <br/>
+terraform.d/dev; terraform.d/test; terraform.d/prod - will hold the corresponding workspace state <br/>
+Whenever we do write operation on tfstate file, it holds to lock to prevent synchronization issues <br/>
+In Organizations, the terraform state file is maintained at central location <br/>
+Some of the locations are : AWS S3, HTTP, Azurerm, Consul etc... <br/>
+Remote state will use authentication protocols while managing the state <br/>
+Remote state will use locks to avoid synchronization issues <br/>
+terraform { <br/>
+&emsp;  backend "s3" { <br/>
+&emsp;&emsp;    bucket = "terraform-bucket" <br/>
+&emsp;&emsp;    key    = "path to tfstate file in bucket" <br/>
+&emsp;&emsp;    region = "us-east-1" <br/>
+&emsp;  } <br/>
+} <br/>
+Using force-unlock, we can forcefully unlock a state file <br/>
+$terraform state list - will list all state files <br/>
+$terraform state mv - will rename the state file <br/>
+$terraform state pull -  <br/>
+$terraform state push -  <br/>
+$terraform state rm -  <br/>
+$terraform state show -  <br/>
+data.terraform_remote_state will fetch output values of other project stored in remote state file <br/>
+data 'terraform_remote_state" "eip" { <br/>
+&emsp;  backend = "s3" <br/>
+<br/>
+&emsp;  config = { <br/>
+&emsp;&emsp;    bucket = "terraform-bucket" <br/>
+&emsp;&emsp;    key    = "path to tfstate file in bucket" <br/>
+&emsp;&emsp;    region = "us-east-1" <br/>
+&emsp;    } <br/>
+  } <br/>
 `;
 
 let tfInitHTML = `terraform init <br/>
@@ -175,14 +243,18 @@ let tfNodeDataArray = [
     {key: "Terraform", desc: "Terraform", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/terraform/terraform.svg", toolTipHTML: tfHTML.replaceAll("\n", "<br/>")},
 
     {key: "hcl-doc", desc: "hcl-doc", isGroup: true, color: "WhiteSmoke", category: "grid-congested", img: "assets/img/terraform/tf-hcl.svg", group: "Server", toolTipHTML: hclDocHTML},
-    {key: "Provider", desc: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: providerDocHTML.replaceAll("\n", "<br/>")},
-    {key: "Data", desc: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: dataDocHTML.replaceAll("\n", "<br/>")},
-    {key: "Resource", desc: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: resourceDocHTML.replaceAll("\n", "<br/>")},
+    {key: "Provider", desc: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: providerDocHTML},
+    {key: "Data", desc: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: dataDocHTML},
+    {key: "Resource", desc: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: resourceDocHTML},
     {key: "Input Variables", desc: "Input Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: inputVariablesHTML},
     {key: "Locals", desc: "Locals", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: localsHTML},
     {key: "Output Variables", desc: "Output Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: outputVariablesHTML},
     {key: "Linting", desc: "Linting", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: lintingHTML},
     {key: "Data Types", desc: "Data Types", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: dataTypesHTML},
+    {key: "Modules", desc: "Modules", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: modulesHTML},
+    {key: "Workspaces", desc: "Workspaces", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: workSpacesHTML},
+    {key: "GitSCM", desc: "Git SCM", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: gitSCMHTML},
+    {key: "State Mgmt", desc: "State Mgmt", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: stateMgmtHTML},
 
     {key: "Server", desc: "Server", isGroup: true, color: "WhiteSmoke", category: "tree", img: "assets/img/terraform/tf-binary.svg", group: "Terraform"},
 
