@@ -21,20 +21,40 @@ let tfHTML = `Terraform - Infrastructure as code.
     3) Provider plugins
     4) State data
 `;
+
+let terraformDocHTML = `terraform.tf - file used to declare providers information <br/>
+terraform block is used to mention terraform version and provider versions. <br/>
+<div class="sourceCode">
+terraform \{ <br/>
+&emsp; required_version = "version_constraints" - to declare terraform version constraints. <br/>
+&emsp; required_providers \{ - to declare provider information <br/>
+&emsp; &emsp; provider_name = \{ <br/>
+&emsp; &emsp; &emsp; source = "address of provider" <br/>
+&emsp; &emsp; &emsp; version = "version constraints" <br/>
+&emsp; &emsp;} <br/>
+&emsp;} <br/>
+} <br/></div>
+When terraform init executed, it wil create actual configuration .terraform.lock.hcl <br/>
+
+`;
+
 let providerDocHTML = `Provider blocks to declare provider information <br/>
 Providers need credentials with permissions to access the target environment <br/>
+<div class="sourceCode">
 provider "aws" { <br/>
 &emsp;        access_key = "ACCESS_KEY" <br/>
 &emsp;        secret_key = "SECRET_KEY" <br/>
 &emsp;        region = "us-east-1" <br/>
-    }
+    }</div>
 `;
 let dataDocHTML = `Data blocks like data sources which information from providers <br/>
+<div class="sourceCode">
 data "aws_ssm_parameter" "ami" { <br/>
 &emsp; name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2" <br/>
-} <br/>   
+} <br/>   </div>
 `;
 let resourceDocHTML = `Resource blocks to declare resources to create in target environment <br/>
+<div class="sourceCode">
 resource "aws_instance" "web_server" { <br/>
 &emsp;    name = "web_server" <br/>
 &emsp;       ebs_volume { <br/>
@@ -48,7 +68,7 @@ resource "aws_instance" "web_server" { <br/>
 &emsp;        echo 'hi' > /usr/share/nginx/html/index.html <br/>
 &emsp;        EOF, <br/>
 &emsp;    tags = local.common_tags     <br/>
-    } <br/>
+    } <br/></div>
 Scripts on resources can be added using user data, provisioners <br/>     
 `;
 
@@ -56,12 +76,13 @@ let inputVariablesHTML = `Terraform can accept values through input variables <b
 Transform values inside config, and return values as output <br/>
 Input variables - to pass information to terraform at runtime (while generating plan)<br/>
 Variables are defined inside configuration, and values are supplied when terraform is executed <br/>
+<div class="sourceCode">
 variable "name_label" { <br/>
  &emsp;   type = value (it defines the data type of the variable) <br/>
  &emsp;   description = "string" (about the purpose of the variable) <br/>
  &emsp;   default = value (to set default value, if not defined, terraform prompt you while running) <br/>
  &emsp;   sensitive = true|false (to display in logs or not) <br/>
-} <br/>
+} <br/></div>
 Variable can be referred by : var.name_label <br/>
 We can also supply input variables as command line arguments using -var (for each varialbe) -var-file (from file) <br/>
 We can supply inputs using terraform.tfvars/terraform.tfvars.json <br/>
@@ -73,11 +94,12 @@ Order of precedence: TF_VAR_ > terraform.tfvars > .auto.tfvars > -var-file > -va
 let localsHTML = `Locals are scoped to module, and assigned only once, can't be modified <br/>
 Local values - are computed values inside configuration, that can be referred throughout the configuration <br/> 
 Think of locals as intermediate variables those can be referred in multiple places <br/>
+<div class="sourceCode">
 locals {  <br/>
  &emsp; key = value (key is string, value can be any data type)<br/>
  &emsp; company = var.company (referrin input variables) <br/>
  &emsp; project = "\${var.company}-\${var.project}" <br/>   
-} <br/>
+} <br/></div>
 Locals can be referred by : local.key <br/>`;
 
 let outputVariablesHTML = `
@@ -85,11 +107,12 @@ Output variables - data returned from terraform as output variables <br/>
 They are defined inside configuration, and values are computed based on more than one object <br/>
 Outputs are printed on terminal after terraform execution <br/>
 Terraform also stores the output variables in state data <br/>
+<div class="sourceCode">
 output "name_lable" { <br/>
  &emsp; value = value <br/>
  &emsp; description = "string" <br/>
  &emsp; sensitive = true|false <br/>
- } <br/>`;
+ } <br/></div>`;
 
  let lintingHTML = `We can do linting in terraform using terraform fmt, terraform validate <br/>
  terraform fmt - shorthand for format, formats the code in current directory, to hashicorp standard <br/>
@@ -125,9 +148,10 @@ We can refer objects by - object_type.name_label.attribute <br/>
 `;
 
 let modulesHTML = `Modules let us reuse the code in multiple places <br/>
+<div class="sourceCode">
 &emsp; module "ec2module" { <br/>
 &emsp;&emsp;  source = "../../modules/ec2" <br/>
-&emsp; } <br/>
+&emsp; } <br/></div>
 There are multiple options to store module sources <br/>
 1) Local system <br/>
 2) Git SCM (prefixed with git::) (branch can be added by ?ref=v1.2.3 to url) <br/>
@@ -158,6 +182,7 @@ In Organizations, the terraform state file is maintained at central location <br
 Some of the locations are : AWS S3, HTTP, Azurerm, Consul etc... <br/>
 Remote state will use authentication protocols while managing the state <br/>
 Remote state will use locks to avoid synchronization issues <br/>
+<div class="sourceCode">
 terraform { <br/>
 &emsp;  backend "s3" { <br/>
 &emsp;&emsp;    bucket = "terraform-bucket" <br/>
@@ -165,14 +190,11 @@ terraform { <br/>
 &emsp;&emsp;    region = "us-east-1" <br/>
 &emsp;  } <br/>
 } <br/>
+</div>
 Using force-unlock, we can forcefully unlock a state file <br/>
-$terraform state list - will list all state files <br/>
-$terraform state mv - will rename the state file <br/>
-$terraform state pull -  <br/>
-$terraform state push -  <br/>
-$terraform state rm -  <br/>
-$terraform state show -  <br/>
+
 data.terraform_remote_state will fetch output values of other project stored in remote state file <br/>
+<div class="sourceCode">
 data 'terraform_remote_state" "eip" { <br/>
 &emsp;  backend = "s3" <br/>
 <br/>
@@ -182,6 +204,7 @@ data 'terraform_remote_state" "eip" { <br/>
 &emsp;&emsp;    region = "us-east-1" <br/>
 &emsp;    } <br/>
   } <br/>
+  </div>
 `;
 
 let tfInitHTML = `terraform init <br/>
@@ -224,40 +247,31 @@ terraform state mv SOURCE DESTINATION - to move an item in state <br/>
 terraform state rm ADDRESS - to remove an item in state <br/>
 `;
 
-let providersHTML = `terraform.tf - file used to declare providers information <br/>
-terraform block is used to mention terraform version and provider versions. <br/>
-terraform \{ <br/>
-&emsp; required_version = "version_constraints" - to declare terraform version constraints. <br/>
-&emsp; required_providers \{ - to declare provider information <br/>
-&emsp; &emsp; provider_name = \{ <br/>
-&emsp; &emsp; &emsp; source = "address of provider" <br/>
-&emsp; &emsp; &emsp; version = "version constraints" <br/>
-&emsp; &emsp;} <br/>
-&emsp;} <br/>
-} <br/>
-When terraform init executed, it wil create actual configuration .terraform.lock.hcl <br/>
-
+let providersHTML = `
 `;
 
 let tfNodeDataArray = [
     {key: "Terraform", desc: "Terraform", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/terraform/terraform.svg", toolTipHTML: tfHTML.replaceAll("\n", "<br/>")},
 
-    {key: "hcl-doc", desc: "hcl-doc", isGroup: true, color: "WhiteSmoke", category: "grid-congested", img: "assets/img/terraform/tf-hcl.svg", group: "Server", toolTipHTML: hclDocHTML},
-    {key: "Provider", desc: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: providerDocHTML},
-    {key: "Data", desc: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: dataDocHTML},
-    {key: "Resource", desc: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: resourceDocHTML},
-    {key: "Input Variables", desc: "Input Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: inputVariablesHTML},
-    {key: "Locals", desc: "Locals", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: localsHTML},
-    {key: "Output Variables", desc: "Output Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: outputVariablesHTML},
-    {key: "Linting", desc: "Linting", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: lintingHTML},
-    {key: "Data Types", desc: "Data Types", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: dataTypesHTML},
-    {key: "Modules", desc: "Modules", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: modulesHTML},
-    {key: "Workspaces", desc: "Workspaces", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: workSpacesHTML},
-    {key: "GitSCM", desc: "Git SCM", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: gitSCMHTML},
-    {key: "State Mgmt", desc: "State Mgmt", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "hcl-doc", toolTipHTML: stateMgmtHTML},
-
     {key: "Server", desc: "Server", isGroup: true, color: "WhiteSmoke", category: "tree", img: "assets/img/terraform/tf-binary.svg", group: "Terraform"},
 
+    {key: "SCM", desc: "SCM", color: "WhiteSmoke", isGroup: true, category: "tree90", img: "assets/img/terraform/tf-hcl.svg", group: "Server"},
+
+    {key: "sourceCode", desc: "Source Code", isGroup: true, color: "WhiteSmoke", category: "grid-congested", img: "assets/img/terraform/tf-hcl.svg", group: "SCM", toolTipHTML: hclDocHTML},
+    {key: "terraform", desc: "terraform", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: terraformDocHTML},
+    {key: "Provider", desc: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: providerDocHTML},
+    {key: "Data", desc: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: dataDocHTML},
+    {key: "Resource", desc: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: resourceDocHTML},
+    {key: "Input Variables", desc: "Input Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: inputVariablesHTML},
+    {key: "Locals", desc: "Locals", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: localsHTML},
+    {key: "Output Variables", desc: "Output Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: outputVariablesHTML},
+    {key: "Linting", desc: "Linting", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: lintingHTML},
+    {key: "Data Types", desc: "Data Types", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: dataTypesHTML},
+    {key: "Modules", desc: "Modules", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: modulesHTML},
+    {key: "Workspaces", desc: "Workspaces", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: workSpacesHTML},
+    {key: "State Mgmt", desc: "State Mgmt", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: stateMgmtHTML},
+
+    {key: "GitSCM", desc: "Git SCM", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "SCM", toolTipHTML: gitSCMHTML},
 
 
     {key: "Workflow", desc: "Workflow", color: "WhiteSmoke", isGroup: true, category: "tree90", img: "assets/img/terraform/tf-workflow.svg", group: "Server"},
@@ -275,7 +289,8 @@ let tfNodeDataArray = [
 ];
 
 let tfLinkDataArray = [
-    {from:"hcl-doc", to: "Workflow", category: "simplelink"},
+    {from:"SCM", to: "Workflow", category: "simplelink"},
+    {from:"sourceCode", to: "GitSCM", category: "simplelink"},
     {from:"terraform init", to: "terraform plan", category: "simplelink"},
     {from:"terraform init", to: "State Data", category: "simplelink"},
     {from:"terraform plan", to: "terraform apply", category: "simplelink"},

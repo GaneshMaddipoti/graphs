@@ -69,7 +69,7 @@ function showToolTip(obj, diagram, tool) {
     let toolTipDIV = document.getElementById("toolTipDIV");
     if(toolTipDIV && obj.data.toolTipHTML) {
         toolTipDIV.style.left = (pt.x) + "px";
-        toolTipDIV.style.top = (pt.y) + "px";
+        toolTipDIV.style.top = (pt.y) + 30 + "px";
         toolTipDIV.innerHTML = obj.data.toolTipHTML;
         toolTipDIV.style.display = "block";
     } else {
