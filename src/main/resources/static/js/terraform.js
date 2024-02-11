@@ -45,9 +45,9 @@ provider "aws" { <br/>
 &emsp;        access_key = "ACCESS_KEY" <br/>
 &emsp;        secret_key = "SECRET_KEY" <br/>
 &emsp;        region = "us-east-1" <br/>
-    }</div>
+    }</div>    
 `;
-let dataDocHTML = `Data blocks like data sources which information from providers <br/>
+let dataDocHTML = `Data blocks like data sources which fetch information from providers <br/>
 <div class="sourceCode">
 data "aws_ssm_parameter" "ami" { <br/>
 &emsp; name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2" <br/>
@@ -88,7 +88,7 @@ We can also supply input variables as command line arguments using -var (for eac
 We can supply inputs using terraform.tfvars/terraform.tfvars.json <br/>
 We can supply inputs using .auto.tfvars/ auto.tfvars.json <br/>
 We can pass from environment variables also by declaring with name preix TF_VAR_ <br/>
-Order of precedence: TF_VAR_ > terraform.tfvars > .auto.tfvars > -var-file > -var > prompt <br/>
+Order of precedence: prompt > -var > -var-file > .auto.tfvars > terraform.tfvars > TF_VAR_<br/>
 `;
 
 let localsHTML = `Locals are scoped to module, and assigned only once, can't be modified <br/>
@@ -111,7 +111,7 @@ Terraform also stores the output variables in state data <br/>
 output "name_lable" { <br/>
  &emsp; value = value <br/>
  &emsp; description = "string" <br/>
- &emsp; sensitive = true|false <br/>
+ &emsp; sensitive = true|false - will check to display/log while execution<br/>
  } <br/></div>`;
 
  let lintingHTML = `We can do linting in terraform using terraform fmt, terraform validate <br/>
@@ -121,14 +121,6 @@ output "name_lable" { <br/>
  terraform validate - validates the syntax and logic of code configuration is correct <br/>
  terraform init is required to run before terraform validate <br/>
  terraform validate - will not check current state of the environment <br/>
-`;
-
-let dataTypesHTML = `Terraform supports 3 types of data <br/>
-1) Primitive - String, number, bool <br/>
-2) Collection - Group of primitives or other collections(same type) (list, set, map) <br/>
-3) Structural - like collection, but heterogeneous (Tuple - list, object - map) <br/>
-any - meaning any type (ex: list(any))<br/> 
-Null - no value <br/>
 `;
 
 let hclDocHTML = `Terraform Objects types are <br/>
@@ -148,10 +140,19 @@ We can refer objects by - object_type.name_label.attribute <br/>
 `;
 
 let modulesHTML = `Modules let us reuse the code in multiple places <br/>
+Group of tf files make up the module<br/>
+Each module will have input variables, resources/data sources, output variables <br/>
+Terraform starts with root module, and executes child module, and so on... <br/>
+Flow of information between the modules are controlled by input and out variables <br/>
 <div class="sourceCode">
 &emsp; module "ec2module" { <br/>
-&emsp;&emsp;  source = "../../modules/ec2" <br/>
-&emsp; } <br/></div>
+&emsp;&emsp; source = "../../modules/ec2" <br/>
+&emsp;&emsp; version = "" <br/>     
+&emsp;&emsp; providers  = \{ <br/>
+&emsp;&emsp;&emsp; module_provider = parent_provider <br/>
+&emsp;&emsp; } <br/>     
+&emsp;
+} <br/></div>
 There are multiple options to store module sources <br/>
 1) Local system <br/>
 2) Git SCM (prefixed with git::) (branch can be added by ?ref=v1.2.3 to url) <br/>
@@ -169,6 +170,14 @@ Each workspace has its own environment variables <br/>
 $terraform workspace list - will display all available workspaces <br/>
 $terraform workspace new dev - create new workspace named dev <br/>
 $terraform workspace show - show current workspace <br/>
+`;
+
+let workFlwoHTML = `terraform plan <br/>
+terraform plan <br/>
+terraform apply <br/>
+terraform import - will import the corresponding state of current infra <br/>
+terraform graph - will generate visual representation of plan in DOT format<br/>
+terraform taint - will force the resource to be destroyed and re-created next time<br/>
 `;
 
 let gitSCMHTML = `In organizations, the terraform code is maintained in a Git SCM system <br/>
@@ -207,16 +216,48 @@ data 'terraform_remote_state" "eip" { <br/>
   </div>
 `;
 
+let tfSyntaxHTML = `Terraform supports 3 types of data <br/>
+1) Primitive - String, number, bool <br/>
+2) Collection - Group of primitives or other collections(same type) (list, set, map) <br/>
+3) Structural - like collection, but heterogeneous (Tuple - list, object - map) <br/>
+any - meaning any type (ex: list(any))<br/> 
+Null - no value
+Path expressions to get paths while constructing urls <br/>
+\${path.root} - path of root directory<br/>
+\${path.module} - path of module directory<br/>
+\${path.cwd} - path of current working directory <br/>
+Terraform has built-in functions <br/>
+max(1,2,3) -> 3, will give max from the list of numbers <br/>
+`;
+
+let configurationHTML = `Logging can be enabled by setting TF_LOG environment variable <br/>
+TF_LOG can be set to TRACE, DEBUG, INFO, WARN, and ERROR <br/>
+Also, to persist logs we can set the TF_LOG_PATH environment variable <br/>
+`;
+
 let tfInitHTML = `terraform init <br/>
 Will check all configuration files in current directory <br/>
-If it's required, it will pull plugins from terraform repository/mentioned repository <br/>
+If it's required, it will pull modules/plugins from terraform repository/mentioned repository <br/>
 It will create state data file in current directory / will initialize state data backend <br/>
 `;
 
 let tfPlanHTML = `terraform plan -out sample.tfplan <br/>
-Will compare configuration in current directory with state data <br/>
+terraform use resources meta argument to manage a resource <br/>
+terraform will load the state into memory and updates its resource/data attributes with target infra <br/>
+terraform will make dependency graph based on the objects defined in the code <br/>
+Will compare configuration in current directory with state data, and prepare additions, updates, deletes <br/>
 Make out the differences and make the plan to update the infra in target environment. <br/>
+terraform will try to do updates in parallel <br/>
 We can save the plan to text file, and feed it to apply stage <br/>
+Scenario 1 : Configuration is present(ec2), no state, no infra <br/>
+<b>terraform will plan to create infra, and update state to (ec2:id:1) </b><br/>
+Scenario 2 : Configuration is present(ec2),  state present (ec2:id:1), no infra <br/>
+<b>terraform will plan to create infra, and update state to (ec2:id:2) </b><br/>
+Scenario 3 : No configuration, have state, have infra <br/>
+<b>terraform will plan to destroy the infra, and remove state data</b><br/>
+Scenario 4 : Configuration is present(ec2), no state, have infra <br/>
+<b>terraform will plan to create infra, and update the state data</b><br/>
+
 `;
 
 let tfApplyHTML = `terraform apply "sample.tfplan" (if we didn't provide sample.tfplan, it will do plan and ask for confirm)<br/> 
@@ -247,7 +288,20 @@ terraform state mv SOURCE DESTINATION - to move an item in state <br/>
 terraform state rm ADDRESS - to remove an item in state <br/>
 `;
 
-let providersHTML = `
+let providerPluginHTML = `There are multiple ways of specifying version to provider plugin <br/>
+>=1.0   - greater than or equal to <br/>
+<=1.0   - less than or equal to <br/>
+~>2.0   - any version in the range 2.x <br/>
+>=2.10,<=2.30 - any version between 2.10 and 2.30 <br/> 
+`;
+
+let provisionersHTML = `Provisioners to configure the resource post deployment <br/>
+Provisioners are of file, local-exec, remote-exec types <br/>
+If provisioner fails, terraform apply also will be failed by default <br/>
+We can change this behavior by setting on_failure = continue/fail <br/>
+There are 2 primary types of provisioners <br/>
+1) Creation time provisioner - if it fails, resource marked a tainted<br/>
+2) Destroy time provisioner <br/>
 `;
 
 let tfNodeDataArray = [
@@ -257,24 +311,29 @@ let tfNodeDataArray = [
 
     {key: "SCM", desc: "SCM", color: "WhiteSmoke", isGroup: true, category: "tree90", img: "assets/img/terraform/tf-hcl.svg", group: "Server"},
 
-    {key: "sourceCode", desc: "Source Code", isGroup: true, color: "WhiteSmoke", category: "grid-congested", img: "assets/img/terraform/tf-hcl.svg", group: "SCM", toolTipHTML: hclDocHTML},
-    {key: "terraform", desc: "terraform", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: terraformDocHTML},
-    {key: "Provider", desc: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: providerDocHTML},
-    {key: "Data", desc: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: dataDocHTML},
-    {key: "Resource", desc: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: resourceDocHTML},
-    {key: "Input Variables", desc: "Input Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: inputVariablesHTML},
-    {key: "Locals", desc: "Locals", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: localsHTML},
-    {key: "Output Variables", desc: "Output Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: outputVariablesHTML},
-    {key: "Linting", desc: "Linting", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: lintingHTML},
-    {key: "Data Types", desc: "Data Types", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: dataTypesHTML},
-    {key: "Modules", desc: "Modules", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: modulesHTML},
-    {key: "Workspaces", desc: "Workspaces", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: workSpacesHTML},
-    {key: "State Mgmt", desc: "State Mgmt", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "sourceCode", toolTipHTML: stateMgmtHTML},
+    {key: "sourceCode", desc: "Source Code", isGroup: true, color: "WhiteSmoke", category: "tree90", img: "assets/img/terraform/tf-hcl.svg", group: "SCM", toolTipHTML: hclDocHTML},
+
+    {key: "Modules", desc: "Modules", isGroup: true, color: "WhiteSmoke", category: "grid-congested", img: "assets/img/terraform/tf-hcl.svg", group: "sourceCode", toolTipHTML: modulesHTML},
+
+    {key: "Syntax", desc: "Syntax", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: tfSyntaxHTML},
+    {key: "Configuration", desc: "Configuration", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: configurationHTML},
+    {key: "terraform", desc: "terraform", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: terraformDocHTML},
+    {key: "Provider", desc: "Provider", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: providerDocHTML},
+    {key: "Data", desc: "Data", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: dataDocHTML},
+    {key: "Resource", desc: "Resource", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: resourceDocHTML},
+    {key: "Input Variables", desc: "Input Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: inputVariablesHTML},
+    {key: "Locals", desc: "Locals", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: localsHTML},
+    {key: "Output Variables", desc: "Output Variables", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: outputVariablesHTML},
+    {key: "Linting", desc: "Linting", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: lintingHTML},
+
+    {key: "State Mgmt", desc: "State Mgmt", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "Modules", toolTipHTML: stateMgmtHTML},
+
 
     {key: "GitSCM", desc: "Git SCM", img: "assets/img/terraform/tf-hcl.svg", category: "picTemplate", group: "SCM", toolTipHTML: gitSCMHTML},
 
+    {key: "Workspaces", desc: "Workspaces", img: "assets/img/terraform/tf-hcl.svg", color: "WhiteSmoke", isGroup: true, category: "tree90", group: "Server", toolTipHTML: workSpacesHTML},
 
-    {key: "Workflow", desc: "Workflow", color: "WhiteSmoke", isGroup: true, category: "tree90", img: "assets/img/terraform/tf-workflow.svg", group: "Server"},
+    {key: "Workflow", desc: "Workflow", color: "WhiteSmoke", isGroup: true, category: "tree90", img: "assets/img/terraform/tf-workflow.svg", group: "Workspaces", toolTipHTML: workFlwoHTML},
     {key: "terraform init", desc: "terraform init", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow", toolTipHTML: tfInitHTML},
     {key: "terraform plan", desc: "terraform plan", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow", toolTipHTML: tfPlanHTML},
     {key: "terraform apply", desc: "terraform apply", img: "assets/img/terraform/tf-binary.svg", category: "picTemplate", group: "Workflow", toolTipHTML: tfApplyHTML},
@@ -282,20 +341,22 @@ let tfNodeDataArray = [
 
     {key: "State Data", desc: "State Data", category: "picTemplate", img: "assets/img/terraform/tf-state.svg", group: "Server", toolTipHTML: stateDataHTML},
 
-    {key: "Provider Plugin", desc: "Provider Plugin", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Server", toolTipHTML: providersHTML},
+    {key: "Provider Plugin", desc: "Provider Plugin", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Server", toolTipHTML: providerPluginHTML},
+    {key: "Provisioners", desc: "Provisioners", img: "assets/img/terraform/tf-plugin.svg", category: "picTemplate", group: "Server", toolTipHTML: provisionersHTML},
 
     {key: "Target Environment", desc: "Target Environment", img: "assets/img/gen/gen-cloud.svg", category: "picTemplate", group: "Terraform"},
 
 ];
 
 let tfLinkDataArray = [
-    {from:"SCM", to: "Workflow", category: "simplelink"},
+    {from:"SCM", to: "Workspaces", category: "simplelink"},
     {from:"sourceCode", to: "GitSCM", category: "simplelink"},
     {from:"terraform init", to: "terraform plan", category: "simplelink"},
     {from:"terraform init", to: "State Data", category: "simplelink"},
     {from:"terraform plan", to: "terraform apply", category: "simplelink"},
     {from:"terraform plan", to: "State Data", category: "simplelink"},
     {from:"terraform apply", to: "Provider Plugin", category: "simplelink"},
+    {from:"terraform apply", to: "Provisioners", category: "simplelink"},
     {from:"terraform apply", to: "State Data", category: "simplelink"},
     {from:"Provider Plugin", to: "Target Environment", category: "simplelink"},
 ];
