@@ -170,18 +170,32 @@ Each workspace has its own environment variables <br/>
 $terraform workspace list - will display all available workspaces <br/>
 $terraform workspace new dev - create new workspace named dev <br/>
 $terraform workspace show - show current workspace <br/>
+$terraform workspace select dev - will select the workspace <br/>
 `;
 
-let workFlwoHTML = `terraform plan <br/>
+let workFlwoHTML = `terraform init <br/>
 terraform plan <br/>
 terraform apply <br/>
 terraform import - will import the corresponding state of current infra <br/>
 terraform graph - will generate visual representation of plan in DOT format<br/>
 terraform taint - will force the resource to be destroyed and re-created next time<br/>
+terraform console - to get interactive cli for expression evaluation <br/>
+terraform get -update - to update modules <br/>
 `;
 
 let gitSCMHTML = `In organizations, the terraform code is maintained in a Git SCM system <br/>
 Do not include passwords, tfstate files to git SCM <br/>
+Supported SCM providers <br/>
+GitHub.com <br/>
+GitHub App for TFE <br/>
+GitHub.com (OAuth) <br/>
+GitHub Enterprise <br/>
+GitLab.com <br/>
+GitLab EE and CE <br/>
+Bitbucket Cloud <br/>
+Bitbucket Server <br/>
+Azure DevOps Server <br/>
+Azure DevOps Services <br/>
 `;
 
 let stateMgmtHTML = `In local machine, terraform.tfstage will hold default workspace state <br/>
@@ -238,6 +252,8 @@ Also, to persist logs we can set the TF_LOG_PATH environment variable <br/>
 let tfInitHTML = `terraform init <br/>
 Will check all configuration files in current directory <br/>
 If it's required, it will pull modules/plugins from terraform repository/mentioned repository <br/>
+.terraform/modules <br/>
+.terraform/providers <br/>
 It will create state data file in current directory / will initialize state data backend <br/>
 `;
 
@@ -247,7 +263,7 @@ terraform will load the state into memory and updates its resource/data attribut
 terraform will make dependency graph based on the objects defined in the code <br/>
 Will compare configuration in current directory with state data, and prepare additions, updates, deletes <br/>
 Make out the differences and make the plan to update the infra in target environment. <br/>
-terraform will try to do updates in parallel <br/>
+terraform will try to do updates in parallel - (Defaults to 10 threads)<br/>
 We can save the plan to text file, and feed it to apply stage <br/>
 Scenario 1 : Configuration is present(ec2), no state, no infra <br/>
 <b>terraform will plan to create infra, and update state to (ec2:id:1) </b><br/>
