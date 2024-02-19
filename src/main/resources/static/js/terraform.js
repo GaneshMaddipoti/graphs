@@ -25,15 +25,15 @@ let tfHTML = `Terraform - Infrastructure as code.
 let terraformDocHTML = `terraform.tf - file used to declare providers information <br/>
 terraform block is used to mention terraform version and provider versions. <br/>
 <div class="sourceCode">
-terraform \{ <br/>
-&emsp; required_version = "version_constraints" - to declare terraform version constraints. <br/>
-&emsp; required_providers \{ - to declare provider information <br/>
-&emsp; &emsp; provider_name = \{ <br/>
-&emsp; &emsp; &emsp; source = "address of provider" <br/>
-&emsp; &emsp; &emsp; version = "version constraints" <br/>
-&emsp; &emsp;} <br/>
-&emsp;} <br/>
-} <br/></div>
+terraform \{ 
+&emsp; required_version = "version_constraints" - to declare terraform version constraints. 
+&emsp; required_providers \{ - to declare provider information 
+&emsp; &emsp; provider_name = \{ 
+&emsp; &emsp; &emsp; source = "address of provider" 
+&emsp; &emsp; &emsp; version = "version constraints" 
+&emsp; &emsp;} 
+&emsp;} 
+} </div>
 When terraform init executed, it wil create actual configuration .terraform.lock.hcl <br/>
 
 `;
@@ -41,34 +41,34 @@ When terraform init executed, it wil create actual configuration .terraform.lock
 let providerDocHTML = `Provider blocks to declare provider information <br/>
 Providers need credentials with permissions to access the target environment <br/>
 <div class="sourceCode">
-provider "aws" { <br/>
-&emsp;        access_key = "ACCESS_KEY" <br/>
-&emsp;        secret_key = "SECRET_KEY" <br/>
-&emsp;        region = "us-east-1" <br/>
+provider "aws" { 
+&emsp;        access_key = "ACCESS_KEY" 
+&emsp;        secret_key = "SECRET_KEY" 
+&emsp;        region = "us-east-1" 
     }</div>    
 `;
 let dataDocHTML = `Data blocks like data sources which fetch information from providers <br/>
 <div class="sourceCode">
-data "aws_ssm_parameter" "ami" { <br/>
-&emsp; name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2" <br/>
-} <br/>   </div>
+data "aws_ssm_parameter" "ami" { 
+&emsp; name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2" 
+}    </div>
 `;
 let resourceDocHTML = `Resource blocks to declare resources to create in target environment <br/>
 <div class="sourceCode">
-resource "aws_instance" "web_server" { <br/>
-&emsp;    name = "web_server" <br/>
-&emsp;       ebs_volume { <br/>
-&emsp;&emsp;            size = 40 <br/>
-&emsp;        } <br/>
-&emsp;        user_data = < < EOF <br/>
-&emsp;        #! /bin/bash <br/>
-&emsp;        sudo amazon-linux-extras install -y nginx1 <br/>
-&emsp;        sudo service nginx start <br/>
-&emsp;        sudo rm /usr/share/nginx/html/index.html <br/>
-&emsp;        echo 'hi' > /usr/share/nginx/html/index.html <br/>
-&emsp;        EOF, <br/>
-&emsp;    tags = local.common_tags     <br/>
-    } <br/></div>
+resource "aws_instance" "web_server" { 
+&emsp;    name = "web_server" 
+&emsp;       ebs_volume { 
+&emsp;&emsp;            size = 40 
+&emsp;        } 
+&emsp;        user_data = < < EOF 
+&emsp;        #! /bin/bash 
+&emsp;        sudo amazon-linux-extras install -y nginx1 
+&emsp;        sudo service nginx start 
+&emsp;        sudo rm /usr/share/nginx/html/index.html 
+&emsp;        echo 'hi' > /usr/share/nginx/html/index.html 
+&emsp;        EOF, 
+&emsp;    tags = local.common_tags     
+    } </div>
 Scripts on resources can be added using user data, provisioners <br/>     
 `;
 
@@ -77,11 +77,11 @@ Transform values inside config, and return values as output <br/>
 Input variables - to pass information to terraform at runtime (while generating plan)<br/>
 Variables are defined inside configuration, and values are supplied when terraform is executed <br/>
 <div class="sourceCode">
-variable "name_label" { <br/>
- &emsp;   type = value (it defines the data type of the variable) <br/>
- &emsp;   description = "string" (about the purpose of the variable) <br/>
- &emsp;   default = value (to set default value, if not defined, terraform prompt you while running) <br/>
- &emsp;   sensitive = true|false (to display in logs or not) <br/>
+variable "name_label" { 
+ &emsp;   type = value (it defines the data type of the variable) 
+ &emsp;   description = "string" (about the purpose of the variable) 
+ &emsp;   default = value (to set default value, if not defined, terraform prompt you while running) 
+ &emsp;   sensitive = true|false (to display in logs or not) 
 } <br/></div>
 Variable can be referred by : var.name_label <br/>
 We can also supply input variables as command line arguments using -var (for each varialbe) -var-file (from file) <br/>
@@ -95,11 +95,11 @@ let localsHTML = `Locals are scoped to module, and assigned only once, can't be 
 Local values - are computed values inside configuration, that can be referred throughout the configuration <br/> 
 Think of locals as intermediate variables those can be referred in multiple places <br/>
 <div class="sourceCode">
-locals {  <br/>
- &emsp; key = value (key is string, value can be any data type)<br/>
- &emsp; company = var.company (referrin input variables) <br/>
- &emsp; project = "\${var.company}-\${var.project}" <br/>   
-} <br/></div>
+locals {  
+ &emsp; key = value (key is string, value can be any data type)
+ &emsp; company = var.company (referrin input variables) 
+ &emsp; project = "\${var.company}-\${var.project}"    
+} </div>
 Locals can be referred by : local.key <br/>`;
 
 let outputVariablesHTML = `
@@ -108,11 +108,11 @@ They are defined inside configuration, and values are computed based on more tha
 Outputs are printed on terminal after terraform execution <br/>
 Terraform also stores the output variables in state data <br/>
 <div class="sourceCode">
-output "name_lable" { <br/>
- &emsp; value = value <br/>
- &emsp; description = "string" <br/>
- &emsp; sensitive = true|false - will check to display/log while execution<br/>
- } <br/></div>`;
+output "name_lable" { 
+ &emsp; value = value 
+ &emsp; description = "string" 
+ &emsp; sensitive = true|false - will check to display/log while execution
+ } </div>`;
 
  let lintingHTML = `We can do linting in terraform using terraform fmt, terraform validate <br/>
  terraform fmt - shorthand for format, formats the code in current directory, to hashicorp standard <br/>
@@ -145,14 +145,14 @@ Each module will have input variables, resources/data sources, output variables 
 Terraform starts with root module, and executes child module, and so on... <br/>
 Flow of information between the modules are controlled by input and out variables <br/>
 <div class="sourceCode">
-&emsp; module "ec2module" { <br/>
-&emsp;&emsp; source = "../../modules/ec2" <br/>
-&emsp;&emsp; version = "" <br/>     
-&emsp;&emsp; providers  = \{ <br/>
-&emsp;&emsp;&emsp; module_provider = parent_provider <br/>
-&emsp;&emsp; } <br/>     
+&emsp; module "ec2module" { 
+&emsp;&emsp; source = "../../modules/ec2" 
+&emsp;&emsp; version = ""      
+&emsp;&emsp; providers  = \{ 
+&emsp;&emsp;&emsp; module_provider = parent_provider 
+&emsp;&emsp; }      
 &emsp;
-} <br/></div>
+} </div>
 There are multiple options to store module sources <br/>
 1) Local system <br/>
 2) Git SCM (prefixed with git::) (branch can be added by ?ref=v1.2.3 to url) <br/>
@@ -206,27 +206,27 @@ Some of the locations are : AWS S3, HTTP, Azurerm, Consul etc... <br/>
 Remote state will use authentication protocols while managing the state <br/>
 Remote state will use locks to avoid synchronization issues <br/>
 <div class="sourceCode">
-terraform { <br/>
-&emsp;  backend "s3" { <br/>
-&emsp;&emsp;    bucket = "terraform-bucket" <br/>
-&emsp;&emsp;    key    = "path to tfstate file in bucket" <br/>
-&emsp;&emsp;    region = "us-east-1" <br/>
-&emsp;  } <br/>
-} <br/>
+terraform { 
+&emsp;  backend "s3" { 
+&emsp;&emsp;    bucket = "terraform-bucket" 
+&emsp;&emsp;    key    = "path to tfstate file in bucket" 
+&emsp;&emsp;    region = "us-east-1" 
+&emsp;  } 
+} 
 </div>
 Using force-unlock, we can forcefully unlock a state file <br/>
 
 data.terraform_remote_state will fetch output values of other project stored in remote state file <br/>
 <div class="sourceCode">
-data 'terraform_remote_state" "eip" { <br/>
-&emsp;  backend = "s3" <br/>
-<br/>
-&emsp;  config = { <br/>
-&emsp;&emsp;    bucket = "terraform-bucket" <br/>
-&emsp;&emsp;    key    = "path to tfstate file in bucket" <br/>
-&emsp;&emsp;    region = "us-east-1" <br/>
-&emsp;    } <br/>
-  } <br/>
+data 'terraform_remote_state" "eip" { 
+&emsp;  backend = "s3" 
+
+&emsp;  config = { 
+&emsp;&emsp;    bucket = "terraform-bucket" 
+&emsp;&emsp;    key    = "path to tfstate file in bucket" 
+&emsp;&emsp;    region = "us-east-1" 
+&emsp;    } 
+  } 
   </div>
 `;
 

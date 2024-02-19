@@ -60,8 +60,8 @@ str - (Ordered sequence of characters (seperated by' or ") - "Hello", "Sample qu
 &emsp;&emsp; "This is object {1} {0}".format(obj.name, obj.id) - is used when formatting an object into string <br/>
 
 <br/>
-tup - (Ordered immutable sequence of objects - (10, "hello", 23.2323), etc...) <br/>
-list - (Ordered sequence of objects - [10, "hello", 23.343], etc...) <br/>
+tup - (Ordered sequence of immutable objects - (10, "hello", 23.2323), etc...) <br/>
+list - (Ordered sequence of mutable objects - [10, "hello", 23.343], etc...) <br/>
 set - (Unordered collection of unique objects - {"test", 10, 23.2323}, etc... <br/>
 dict - (Unordered key value pairs - {"key1":"value1", "name":"John"}, etc...) <br/>
 `;
@@ -137,6 +137,33 @@ str() function convert a number into a string <br/>
 min() - return minimum value of passed parameters <br/>
 max() - return maximum value of passed parameters <br/>
 range(start, stop, step) - is responsible for generating all the desired values upto given value(not including last one) <br/>
+`;
+
+let pythonListsHTML = `list is a collection of elements, different datatype, and can be nested <br/>
+list - (Ordered sequence of mutable objects - [10, "hello", 23.343], etc...) <br/>
+We can access the list element by using index : my_list[0] <br/>
+len(my_list) - will give the length of the list <br/>
+del numbers[1] - will delete element at index 1 <br/>
+del my_list[1:3] - will delete the slice of the list <br/>
+del my_list[:] will delete content <br/>
+del my_list will delete the list itself <br/>
+my_list.insert(3, 'o') - will insert element at index 3 <br/>
+List elements can also be accessed by reverse/negative indexes(-1, -2, ... from last) <br/>
+my_list.sort() - can sort the elements of the list <br/>
+lst.reverse() - can reverse the elements of the list <br/>
+my_list[start:end] - make a brand-new copy of a list, or parts of a list <br/>
+if start element lying further than the element of end, it will give empty list <br/>
+if start is omitted it assumes 0, if end omitted it assumes the end element <br/>
+elem in my_list - true if element in list <br/>
+elem not in my_list - true if element not in list <br/>
+<b>List comprehension</b><br/>
+<div class="sourceCode">row = []
+for i in range(8):
+    row.append("WHITE_PAWN")
+row1 = ["BLACK_PAWN" for i in range(8)]
+</div>
+<b>Two dimensional arrays </b><br/>
+<div class="sourceCode">board = [["pawn" for i in range(8)] for j in range(8)]</div>
 
 `;
 
@@ -151,6 +178,8 @@ let pythonNodeDataArray = [
     {key: "Python-Operators", desc: "Operators", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonOperatorsHTML},
     {key: "Python-Variables", desc: "Variables", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonVariablesHTML},
     {key: "Python-FlowControls", desc: "FlowControls", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonFlowControlsHTML},
+    {key: "Python-Functions", desc: "Functions", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonFunctionsHTML},
+    {key: "Python-Lists", desc: "Lists", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonListsHTML},
 
 
 
