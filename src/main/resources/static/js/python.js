@@ -60,10 +60,9 @@ str - (Ordered sequence of characters (seperated by' or ") - "Hello", "Sample qu
 &emsp;&emsp; "This is object {1} {0}".format(obj.name, obj.id) - is used when formatting an object into string <br/>
 
 <br/>
-tup - (Ordered sequence of immutable objects - (10, "hello", 23.2323), etc...) <br/>
+
 list - (Ordered sequence of mutable objects - [10, "hello", 23.343], etc...) <br/>
 set - (Unordered collection of unique objects - {"test", 10, 23.2323}, etc... <br/>
-dict - (Unordered key value pairs - {"key1":"value1", "name":"John"}, etc...) <br/>
 `;
 
 let pythonOperatorsHTML = `If both operands integers, result integer, if one is float result is float <br/>
@@ -126,7 +125,19 @@ Rules for variable names : <br/>
 7) Dynamic typing - meaning we can re-assign a variable different data type <br/>
 `;
 
-let pythonFunctionsHTML = ` print() -  Prints the values to a stream, or to sys.stdout by default.<br/> 
+let pythonFunctionsHTML = `If block of code is repeated and used more than once, then we can wrap that in a function. <br/>
+<div class="sourceCode">def my_function():
+    # function body
+    return expression
+</div> 
+Rules for naming a function is same as variables <br/>
+Arguments to function can be passed by position, or keyword(parameter name) <br/>
+We can have default values to function parameters <br/>
+We can return value from function using return statement, if no return statement it returns None. <br/>
+A variable existing outside a function has a scope inside the functions' bodies. (reading)<br/>
+If we want to modify the variable defined outside of function, make it global <br/>
+The values to functions are passed by value means, the value is copied to parameter <br/>
+print() -  Prints the values to a stream, or to sys.stdout by default.<br/> 
 &emsp; - print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)  <br/>
 round() - to round the outputted result to the number of decimal places specified in the parentheses <br/>
 &emsp; - round(number, ndigits=None) <br/>
@@ -164,6 +175,112 @@ row1 = ["BLACK_PAWN" for i in range(8)]
 </div>
 <b>Two dimensional arrays </b><br/>
 <div class="sourceCode">board = [["pawn" for i in range(8)] for j in range(8)]</div>
+`;
+
+let pythonTuplesHTML = `tup - (Ordered sequence of immutable objects - (10, "hello", 23.2323), etc...) <br/>
+tuple_1 = (1, 2, 4, 8) <br/>
+tuple_2 = 1., .5, .25, .125 <br/>
+the len() function accepts tuples, and returns the number of elements contained inside; <br/>
+the + operator can join tuples together (we've shown you this already) <br/>
+the * operator can multiply tuples, just like lists; <br/>
+the in and not in operators work in the same way as in lists. <br/>
+a tuple's elements can be variables <br/>
+`;
+
+let pythonDictionariesHTML = `dict - (Unordered key value pairs - {"key1":"value1", "name":"John"}, etc...) <br/>
+each key must be unique - it's not possible to have more than one key of the same value;  <br/>
+a key may be any immutable type of object: it can be a number, or even a string, but not a list; <br/>
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"} <br/>
+print(dictionary['cat']) <br/>
+dictionary.keys() - returns an iterable object consisting of all the keys gathered within the dictionary <br/>
+dictionary.items() - returns tuples  where each tuple is a key-value pair. <br/>
+dictionary.values() - which works similarly to keys(), but returns values. <br/>
+dictionary.update({"duck": "canard"}) - to update the dictionary <br/>
+del dictionary['dog'] - to delete an item <br/>
+
+`;
+
+let pythonModulesHTML = `a file containing Python definitions and statements <br/>
+Each module consists of entities - functions, variables, constants, classes, and objects.<br/>
+Modules are just .py scripts that you call in other .py script <br/>
+To make a module usable, you must import it, using import statement: import math <br/>
+The instruction may be located anywhere in code, but it must be placed before the first use of the module's entities. <br/>
+If we need to import multiple modules : import math, sys (single line preferred) <br/>
+A namespace is a space in which some names exist and the names don't conflict with each other <br/>
+`;
+
+let pythonPackagesHTML = `Packages are a collection of modules <br/>
+We need __init__.py script is required to treat the current directory as package <br/>
+
+`;
+
+let pythonPypiHTML = `PyPI is a repository for open source third party python packages(Package Manager) <br/>
+Using pip install we can install third party packages (downloading from PyPI repo to local) <br/>
+
+`;
+
+let pythonStringsHTML = `Python's strings are immutable sequences. <br/>
+The multiline strings can be delimited by triple quotes, or, three single quotes <br/>
+In general, strings can be: concatenated (joined) (+), replicated. (*) <br/>
+ord() - to know a specific character's ASCII/UNICODE code point value <br/>
+chr() - takes a code point and returns its character. <br/>
+Indexing, in, not in operators works with Strings <br/>     
+min() - finds the minimum element of the sequence passed as an argument <br/>
+max() - finds the maximum element of the sequence. <br/>
+index() - searches the sequence from the beginning, to find the first element of the value specified <br/>
+
+list() - takes its argument (a string) and creates a new list containing all the string's characters <br/>
+count() - counts all occurrences of the element inside the sequence <br/>
+capitalize() - it creates a new string filled with characters, first letter capital, remaining lower case <br/>
+lower() - it creates a new string filled with characters, with lowercase <br/>
+upper() - it creates a new string filled with characters, with uppercase <br/>
+center() - adding some spaces before and after the string. <br/>
+The two-parameter variant of center() makes use of the character from the second argument, instead of a space <br/>
+startswith - it checks if a given string starts with the specified substring. <br/>
+endswith() - checks if the given string ends with the specified argument and returns True or False <br/>
+<br/>
+find() - it looks for a substring and returns the index of first occurrence of this substring (safer) <br/>
+you can use a two-parameter variant of the find() method, to specify the start index of the search <br/>
+3 argument the third argument points to the first index which won't be taken into consideration during the search <br/>
+rfind() - same like find but start from reverse order <br/>
+<br/>
+isalpha() - checks if the string contains only alphabets <br/>
+isdigit() - checks if the string contains only digits <br/>
+isalnum() - checks if the string contains only digits or alphabetical characters (letters), and returns True or False <br/>
+islower() - checks if the string in lower case letters <br/>
+isupper() - checks if the string in upper cases letters <br/>
+isspace() - checks if the string is space <br/>
+swapcase() - makes a new string by swapping the case of all letters within the source string <br/>
+title() - capitalize each work in the string <br/>
+join() - joins all elements of list using the seperator specified <br/>
+<br/>
+strip() - it makes a new string lacking all the leading and trailing whitespaces. <br/>
+lstrip() - removes the lift side spaces <br/>
+rstrip() - removes the right side spaces <br/>
+<br/>
+replace() - returns a copy of the original string in which all occurrences of the first argument have been replaced by the second argument. <br/>
+The three-parameter replace() variant uses the third argument (a number) to limit the number of replacements. <br/>
+split() - it splits the string and builds a list of all detected substrings <br/>
+<br/>
+Strings can be compared using the same set of operators - ==, !=, >, >=, <, <= <br/>
+sort() - sorts the list of strings/collection <br/> 
+`;
+
+let pythonOOPHTML = `Python allows create objects with attributes and methods <br/>
+<div class="sourceCode">class NameOfClass(BaseClass):
+    # class attributes
+    attr1 = 'value1'
+    def __init__(self, param1, param2):
+        BaseClass.__init__(self)
+        self.param1 = param1
+        self.param2 = param2
+    
+    def some_method(self):
+        print(self.param)
+
+my_object = NameOfClass()
+my_object.some_method()
+</div>
 
 `;
 
@@ -180,13 +297,21 @@ let pythonNodeDataArray = [
     {key: "Python-FlowControls", desc: "FlowControls", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonFlowControlsHTML},
     {key: "Python-Functions", desc: "Functions", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonFunctionsHTML},
     {key: "Python-Lists", desc: "Lists", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonListsHTML},
+    {key: "Python-Tuples", desc: "Tuples", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonTuplesHTML},
+    {key: "Python-Dicts", desc: "Dictionaries", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonDictionariesHTML},
+    {key: "Python-Strings", desc: "Strings", color: "WhiteSmoke", group:"Python-Syntax", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonStringsHTML},
 
+    {key: "Python-Semantics", desc: "Semantics", color: "WhiteSmoke", isGroup: true, group: "Python", category: "grid-congested",},
+    {key: "Python-Modules", desc: "Modules", color: "WhiteSmoke", group:"Python-Semantics", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonModulesHTML},
+    {key: "Python-Packages", desc: "Packages", color: "WhiteSmoke", group:"Python-Semantics", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonPackagesHTML},
+    {key: "Python-PyPI", desc: "PyPI", color: "WhiteSmoke", group:"Python-Semantics", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg", toolTipHTML: pythonPypiHTML},
 
 
 ];
 
 let pythonLinkDataArray = [
     {from:"Python-Install", to: "Python-Syntax", category: "simplelink"},
+    {from:"Python-Syntax", to: "Python-Semantics", category: "simplelink"},
 ];
 
 nodeDataArray = nodeDataArray.concat(pythonNodeDataArray);

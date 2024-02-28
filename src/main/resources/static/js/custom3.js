@@ -11,7 +11,7 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 0, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, width: 100, textAlign: "center", font: '500 14px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
@@ -69,7 +69,7 @@ function showToolTip(obj, diagram, tool) {
     let toolTipDIV = document.getElementById("toolTipDIV");
     if(toolTipDIV && obj.data.toolTipHTML) {
         toolTipDIV.style.left = (pt.x) + "px";
-        toolTipDIV.style.top = (pt.y) + 30 + "px";
+        toolTipDIV.style.top = (pt.y) + 10 + "px";
         toolTipDIV.innerHTML = obj.data.toolTipHTML;
         toolTipDIV.style.display = "block";
     } else {

@@ -50,8 +50,9 @@
 }
 
 .sourceCode{
-    background-color: lightyellow;
-    color: black;
-    font-style: italic;
+    padding-left: 10px;
+    background: #41464b;
+    color: #f8f9fa;
+    /*font-style: italic;*/
     white-space: pre;
 }
