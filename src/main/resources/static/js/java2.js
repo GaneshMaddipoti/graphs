@@ -521,26 +521,195 @@ Write data to Databases <br/>
 Write data over Network <br/>
 `;
 
+let javaSPSingleRespHTML = `a class should only have one responsibility <br/>`;
+let javaSPOpenCloseHTML = `classes should be open for extension but closed for modification <br/>`;
+let javaSPLiskovSubHTML = `Objects of a superclass should be replaceable with objects of its subclasses without breaking the system.<br/>`;
+let javaSPInterfaceSegregationHTML = `No client should be forced to depend on methods that it does not use.<br/>`;
+let javaSPDIHTML = `High-level modules should not depend on low-level modules, both should depend on abstractions. <br/>`;
+
+
+let javaDPSingletonHTML = `The singleton pattern restricts the instantiation of a Class and ensures that 
+only one instance of the class exists in the Java Virtual Machine. <br/>
+<div class="sourceCode">class Singleton {    
+    private static Singleton single_instance = null;     
+    public static Singleton Singleton() { 
+        if (single_instance == null) {
+            single_instance = new Singleton();
+        }
+        return single_instance;
+    }
+</div>
+`;
+
+let javaDPFactoryHTML = `Its used when we have a superclass with multiple subclasses and based on input, 
+we need to return one of the subclass. <br/>
+<div class="sourceCode">public class ComputerFactory {
+        public static Computer getComputer(String type, String ram, String hdd, String cpu){
+        if("PC".equalsIgnoreCase(type)) return new PC(ram, hdd, cpu);
+        else if("Server".equalsIgnoreCase(type)) return new Server(ram, hdd, cpu);
+        return null;
+    }
+}</div>`;
+
+let javaDPAbstractFactoryHTML = `It is a factory of factory design pattern. <br/>`;
+
+let javaDPBuilderHTML = `By providing a constructor with required parameters 
+and then different setter methods to set the optional parameters. <br/>
+<div class="sourceCode">public static class ComputerBuilder{
+    private String HDD;
+    private String RAM;
+    private boolean isGraphicsCardEnabled;
+    private boolean isBluetoothEnabled;
+    public ComputerBuilder(String hdd, String ram){
+        this.HDD=hdd;
+        this.RAM=ram;
+    }
+    public ComputerBuilder setGraphicsCardEnabled(boolean isGraphicsCardEnabled) {
+        this.isGraphicsCardEnabled = isGraphicsCardEnabled;
+        return this;
+    }
+}</div>
+`;
+
+let javaDPPrototypeHTML = `It is used when the Object creation is a costly affair and requires <br/> 
+a lot of time and resources, and you have a similar object already existing. <br/> 
+It provides a mechanism to copy the original object to a new object and then modify it according to our needs. <br/> 
+Prototype design pattern uses java cloning to copy the object. <br/>
+<div class="sourceCode">public class Employees implements Cloneable{
+    private List<String> empList;
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        List<String> temp = new ArrayList<String>();
+        for(String s : this.getEmpList()){
+        temp.add(s);
+    }
+    return new Employees(temp);
+}</div>
+`;
+
+let javaDPAdapterHTML = `It's used so that two unrelated interfaces can work together.<br/> 
+The object that joins these unrelated interface is called an Adapter. <br/>
+<div class="sourceCode">public class Iphone4sTo6sAdapter implements Charger{
+    Iphone4sCharger iphone4sCharger;
+    Iphone4sTo6sAdapter()    {
+        iphone4sCharger = new Iphone4sCharger();
+    }
+    @Override
+    public void charge()    {
+        iphone4sCharger.charge();
+    }
+}</div>
+`;
+
+let javaDPStrategyHTML = `It is used when we have multiple algorithm for a specific task and client decides the actual implementation to be used at runtime. <br/>
+<div class="sourceCode">public interface PaymentStrategy {
+    public void pay(int amount);
+}    
+public class CreditCardStrategy implements PaymentStrategy {    
+    @Override
+    public void pay(int amount) {
+        System.out.println(amount +" paid with credit/debit card");
+    }
+}
+public class ShoppingCart {
+    public void pay(PaymentStrategy paymentMethod){
+        int amount = calculateTotal();
+        paymentMethod.pay(amount);
+    }
+}</div>
+`;
+
+let javaDPCompositeHTML = `When we need to create a structure in a way that the objects in the structure has to be treated the same way <br/>
+<div class="sourceCode">public class Drawing implements Shape {
+    private List&lt;Shape&gt; shapes = new ArrayList&lt;Shape&gt;();
+    @Override
+    public void draw(String fillColor) {
+        for (Shape sh : shapes) {
+            sh.draw(fillColor);
+        }
+    }
+}</div>
+`;
+
+let javaDPProxyHTML = `Provide a surrogate or placeholder for another object to control access to it<br/>
+<div class="sourceCode">public class CommandExecutorProxy implements CommandExecutor {
+    private boolean isAdmin;
+    private CommandExecutor executor;
+    public CommandExecutorProxy(String user, String pwd){
+        if("test".equals(user) && "test123".equals(pwd)) isAdmin=true;
+        executor = new CommandExecutorImpl();
+    }
+    @Override
+    public void runCommand(String cmd) throws Exception {
+        if(isAdmin){
+            executor.runCommand(cmd);
+        }else{
+            if(cmd.trim().startsWith("rm")){
+                throw new Exception("rm command is not allowed for non-admin users.");
+            }else{
+                executor.runCommand(cmd);
+            }
+        }
+    }
+}</div>
+`;
+
+let javaDPFlyWeightHTML = `It is used when we need to create a lot of Objects of a class. <br/>
+Since every object consumes memory space that can be crucial for low memory devices, <br/>
+it can be applied to reduce the load on memory by sharing objects. <br/>
+<div class="sourceCode">public class ShapeFactory {
+    private static final HashMap&lt;ShapeType, Shape&gt; shapes = new HashMap&lt;ShapeType, Shape&gt;();
+    public static Shape getShape(ShapeType type) {
+        Shape shapeImpl = shapes.get(type);
+        if (type.equals(ShapeType.OVAL_FILL)) {
+            shapeImpl = new Oval(true);
+        } else if (type.equals(ShapeType.OVAL_NOFILL)) {
+            shapeImpl = new Oval(false);
+        } else if (type.equals(ShapeType.LINE)) {
+            shapeImpl = new Line();
+        }
+        shapes.put(type, shapeImpl);
+    }
+    return shapeImpl;
+}</div>
+`;
+
+let javaDPFacadeHTML = `It is used to help client applications easily interact with the system.<br/>`;
+
+let javaDPDecoratorHTML = `It is used to modify the functionality of an object at runtime. <br/>
+<div class="sourceCode">public abstract class TreeDecorator implements ChristmasTree {
+    private ChristmasTree tree;    
+    @Override
+    public String decorate() {
+        return tree.decorate();
+    }
+}
+public class BubbleLights extends TreeDecorator {
+    public BubbleLights(ChristmasTree tree) {
+        super(tree);
+    }
+    public String decorate() {
+        return super.decorate() + decorateWithBubbleLights();
+    }
+    private String decorateWithBubbleLights() {
+        return " with Bubble Lights";
+    }
+}</div>`;
+
 let javaNodeDataArray = [
     {key: "Java", desc: "Java", color: "WhiteSmoke", isGroup: true, category: "tree", img: "assets/img/python.png", toolTipHTML: javaHTML},
+    {key: "Java-Features", desc: "Features", color: "WhiteSmoke", isGroup: true, group: "Java", category: "grid-congested", toolTipHTML: javaFeaturesHTML},
 
-    {key: "Java-Programming", desc: "Programming", color: "WhiteSmoke", isGroup: true, group: "Java", category: "tree", toolTipHTML: javaProgrammingHTML},
+    {key: "Java-Solid", desc: "Solid Principles", color: "WhiteSmoke", isGroup: true, group: "Java", category: "tree"},
+    {key: "Java-SP-singleResp", desc: "Single Responsibility", color: "WhiteSmoke", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPSingleRespHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-SP-OpenClose", desc: "Open Close", color: "WhiteSmoke", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPOpenCloseHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-SP-LiskovSubs", desc: "Liskov Substitution", color: "WhiteSmoke", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPLiskovSubHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-SP-Interface-Segregation", desc: "Interface Segregation", color: "WhiteSmoke", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPInterfaceSegregationHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-SP-DI", desc: "Dependency Inversion", color: "WhiteSmoke", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPDIHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
-    {key: "Java-Data-Ingestion", desc: "Data Ingestion", color: "WhiteSmoke", isGroup: true, group: "Java-Programming", category: "tree90", toolTipHTML: javaDataIngestionHTML},
-    {key: "Java-ReadFrom-InputDevices", desc: "Read from Input devices", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadInputDevHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-ReadFrom-Memory", desc: "Read from Memory", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadMemoryHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-ReadFrom-Files", desc: "Read from Files", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadFilesHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-ReadFrom-Network", desc: "Read from Network", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadNetworkHTML, img: "assets/img/terraform/tf-hcl.svg"},
-
-    {key: "Java-Data-Transformation", desc: "Data Transformation", color: "WhiteSmoke", isGroup: true, group: "Java-Programming", category: "grid-congested", toolTipHTML: javaDataTransformationHTML},
-    {key: "Java-Data-Iteration", desc: "Iteration", color: "WhiteSmoke", group:"Java-Data-Transformation", category: "picTemplate", toolTipHTML: javaIterationHTML, img: "assets/img/terraform/tf-hcl.svg"},
-
-
-    {key: "Java-Data-Generation", desc: "Data Generation", color: "WhiteSmoke", isGroup: true, group: "Java-Programming", category: "grid-congested", toolTipHTML: javaDataGenerationHTML},
 
     {key: "Java-Install", desc: "Install", color: "WhiteSmoke", isGroup: true, group: "Java", category: "grid-congested",},
     {key: "Java-Shell", desc: "Shell", color: "WhiteSmoke", group:"Java-Install", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Features", desc: "Features", color: "WhiteSmoke", isGroup: true, group: "Java", category: "grid-congested", toolTipHTML: javaFeaturesHTML},
 
     {key: "Java-Syntax", desc: "Syntax", color: "WhiteSmoke", isGroup: true, group: "Java", category: "grid-congested", toolTipHTML: javaSyntaxHTML},
     {key: "Java-Literals", desc: "Literals", color: "WhiteSmoke", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaLiteralHTML, img: "assets/img/terraform/tf-hcl.svg"},
@@ -568,10 +737,41 @@ let javaNodeDataArray = [
     {key: "Java-Lambdas", desc: "Lambdas", color: "WhiteSmoke", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaLambdasHTML, img: "assets/img/terraform/tf-hcl.svg"},
     {key: "Java-Streams", desc: "Streams", color: "WhiteSmoke", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaStreamsHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
+    {key: "Java-Design-Patterns", desc: "Design Patterns", color: "WhiteSmoke", isGroup: true, group: "Java", category: "tree90",},
+
+    {key: "Java-DP-Creational", desc: "Creational", color: "WhiteSmoke", isGroup: true, group: "Java-Design-Patterns", category: "grid-congested",},
+    {key: "Java-DP-Singleton", desc: "Singleton", color: "WhiteSmoke", group:"Java-DP-Creational", category: "picTemplate", toolTipHTML: javaDPSingletonHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-Factory", desc: "Factory", color: "WhiteSmoke", group:"Java-DP-Creational", category: "picTemplate", toolTipHTML: javaDPFactoryHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-AbstractFactory", desc: "Abstract Factory", color: "WhiteSmoke", group:"Java-DP-Creational", category: "picTemplate", toolTipHTML: javaDPAbstractFactoryHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-Builder", desc: "Builder", color: "WhiteSmoke", group:"Java-DP-Creational", category: "picTemplate", toolTipHTML: javaDPBuilderHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-Prototype", desc: "Prototype", color: "WhiteSmoke", group:"Java-DP-Creational", category: "picTemplate", toolTipHTML: javaDPPrototypeHTML, img: "assets/img/terraform/tf-hcl.svg"},
+
+    {key: "Java-DP-Structural", desc: "Structural", color: "WhiteSmoke", isGroup: true, group: "Java-Design-Patterns", category: "grid-congested",},
+    {key: "Java-DP-Adapter", desc: "Adapter", color: "WhiteSmoke", group:"Java-DP-Structural", category: "picTemplate", toolTipHTML: javaDPAdapterHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-Composite", desc: "Composite", color: "WhiteSmoke", group:"Java-DP-Structural", category: "picTemplate", toolTipHTML: javaDPCompositeHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-Proxy", desc: "Proxy", color: "WhiteSmoke", group:"Java-DP-Structural", category: "picTemplate", toolTipHTML: javaDPProxyHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-FlyWeight", desc: "FlyWeight", color: "WhiteSmoke", group:"Java-DP-Structural", category: "picTemplate", toolTipHTML: javaDPFlyWeightHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-Facade", desc: "Facade", color: "WhiteSmoke", group:"Java-DP-Structural", category: "picTemplate", toolTipHTML: javaDPFacadeHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-DP-Decorator", desc: "Decorator", color: "WhiteSmoke", group:"Java-DP-Structural", category: "picTemplate", toolTipHTML: javaDPDecoratorHTML, img: "assets/img/terraform/tf-hcl.svg"},
+
+    {key: "Java-DP-Behavioral", desc: "Behavioral", color: "WhiteSmoke", isGroup: true, group: "Java-Design-Patterns", category: "grid-congested",},
+    {key: "Java-DP-Strategy", desc: "Strategy", color: "WhiteSmoke", group:"Java-DP-Behavioral", category: "picTemplate", toolTipHTML: javaDPStrategyHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
 
-    {key: "Java-Semantics", desc: "Semantics", color: "WhiteSmoke", isGroup: true, group: "Java", category: "grid-congested",},
-    {key: "Java-Packages", desc: "Packages", color: "WhiteSmoke", group:"Java-Semantics", category: "picTemplate", img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-Programming", desc: "Programming", color: "WhiteSmoke", isGroup: true, group: "Java", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true},
+
+    {key: "Java-Data-Ingestion", desc: "Data Ingestion", color: "WhiteSmoke", isGroup: true, group: "Java-Programming", category: "tree90", toolTipHTML: javaDataIngestionHTML},
+    {key: "Java-ReadFrom-InputDevices", desc: "Read from Input devices", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadInputDevHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-ReadFrom-Memory", desc: "Read from Memory", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadMemoryHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-ReadFrom-Files", desc: "Read from Files", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadFilesHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-ReadFrom-Network", desc: "Read from Network", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadNetworkHTML, img: "assets/img/terraform/tf-hcl.svg"},
+
+    {key: "Java-Data-Transformation", desc: "Data Transformation", color: "WhiteSmoke", isGroup: true, group: "Java-Programming", category: "grid-congested", toolTipHTML: javaDataTransformationHTML},
+    {key: "Java-Data-Iteration", desc: "Iteration", color: "WhiteSmoke", group:"Java-Data-Transformation", category: "picTemplate", toolTipHTML: javaIterationHTML, img: "assets/img/terraform/tf-hcl.svg"},
+
+
+    {key: "Java-Data-Generation", desc: "Data Generation", color: "WhiteSmoke", isGroup: true, group: "Java-Programming", category: "grid-congested", toolTipHTML: javaDataGenerationHTML},
+
 
 ];
 
@@ -580,7 +780,9 @@ let javaLinkDataArray = [
     {from:"Java-Data-Ingestion", to: "Java-Data-Transformation", category: "simplelink"},
     {from:"Java-Data-Transformation", to: "Java-Data-Generation", category: "simplelink"},
     {from:"Java-Syntax", to: "Java-OOP", category: "simplelink"},
-    {from:"Java-OOP", to: "Java-Semantics", category: "simplelink"},
+    {from:"Java-OOP", to: "Java-Design-Patterns", category: "simplelink"},
+    {from:"Java-Design-Patterns", to: "Java-Solid", category: "simplelink"},
+
 ];
 
 nodeDataArray = nodeDataArray.concat(javaNodeDataArray);
