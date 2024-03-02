@@ -1,6 +1,9 @@
 package com.jtechy.graphs.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +12,8 @@ import java.util.Objects;
 
 @Table(name = "countries")
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Country {
 
     @Id
@@ -16,6 +21,11 @@ public class Country {
     private int id;
 
     private String name;
+
+    public Country(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public int getId() {
         return id;
