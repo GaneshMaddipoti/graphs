@@ -17,7 +17,6 @@ import java.util.Objects;
 public class Country {
 
     @Id
-    @GeneratedValue
     private int id;
 
     private String name;

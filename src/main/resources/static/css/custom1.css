@@ -55,4 +55,6 @@
     color: #f8f9fa;
     /*font-style: italic;*/
     white-space: pre;
+    font-weight: lighter;
+    letter-spacing: 1px;
 }
