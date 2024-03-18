@@ -11,7 +11,7 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 0, width: 100, textAlign: "center", font: '500 14px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 10, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
@@ -104,7 +104,7 @@ const picTemplate =
 
 const simpleTemplate =
     $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
-        $(go.Shape, {height: 30}, new go.Binding("height", "height"), new go.Binding("width", "width"),
+        $(go.Shape, {height: 30}, new go.Binding("height", "height"), {width: 145}, new go.Binding("width", "width"),
             new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
         $(go.TextBlock, textStyle150(), new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }
