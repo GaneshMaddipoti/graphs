@@ -27,6 +27,8 @@ let dangerPowerHTML = `
 <tr><td>Sign the contract</td><td>Do the paper work <br/>Authorize the agreement</td></tr>
 <tr><td>My Name is</td><td>I am Ganesh</td></tr>
 <tr><td>No Problem</td><td>Its my pleasure</td></tr>
+<tr><td>I disagree</td><td>I see it another way/differently</td></tr>
+<tr><td>Better/good</td><td>Put the reason too</td></tr>
 </tr>
 </table>
 `;
