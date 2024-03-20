@@ -96,7 +96,7 @@ const picTemplate =
             new go.Binding("source", "img")),
         $(go.TextBlock, textStyle(),
             { margin: new go.Margin(0, 0, 0, 0),
-                maxSize: new go.Size(50, 30),
+                maxSize: new go.Size(50, 50),
                 isMultiline: false },
             new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }

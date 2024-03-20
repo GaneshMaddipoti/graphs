@@ -458,38 +458,38 @@ fobj.abstractFun(5);
 let javaProgrammingHTML = `Programming is about data analysis, data ingestion, data transformation, and data generation <br/>
 `;
 
-let javaDataIngestionHTML = `Use BufferedReader if we need to read long strings from a file, as it has better performance than Scanner <br/>
-Use Scanner if we need to parse the input stream with a custom regular expression <br/>
-Consider Console if we’re reading secure data from the system console and want to hide what is being typed <br/>
+let bufferedReaderHTML = `Use BufferedReader if we need to read long strings from a file
+<div class="sourceCode">//From System console input
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//From files
+BufferedReader br = new BufferedReader(new FileReader("file.txt"));
+//From Network
+Socket socket = new Socket(hostName, portNumber);
+BufferedReader br =  new BufferedReader(
+                new InputStreamReader(socket.getInputStream()));
+
+String line = br.readLine();
+</div>
 `;
 
-let javaReadInputDevHTML = `<div class="sourceCode">BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-String line = bufferedReader.readLine(); //reads string
-
-//if we need to parse the input stream with a custom regular expression
+let scannerHTML = `if we need to parse the input stream with a custom regular expression <br/>
+<div class="sourceCode">//From System console input
 Scanner sc = new Scanner(System.in).useDelimiter("\\n");
-String line = sc.next();    //to get parsed input use next***()
-
-//if we’re reading secure data from the system console 
-Console console = System.console();
-String line = console.readLine(); //to get password use readPassword()
-
-</div>
-`;
-
-let javaReadMemoryHTML = `We can directly access memory using variables, objects, collections`;
-
-let javaReadFilesHTML = `<div class="sourceCode">BufferedReader br = new BufferedReader(new FileReader("file.txt"));
-
+//From Files
 Scanner sc = new Scanner(new File("file.txt"));
+//From Network
+Socket socket = new Socket(hostName, portNumber);
+Scanner sc =  new Scanner(socket.getInputStream());
+
+String line = sc.next();    //to get parsed input use next***()
 </div>
 `;
 
-let javaReadNetworkHTML = `<div class="sourceCode">Socket socket = new Socket(hostName, portNumber);
-BufferedReader br =  new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-Scanner sc =  new Scanner(socket.getInputStream());
-</div>`;
+let consoleHTML = `if we’re reading secure data from the system console  <br/>
+<div class="sourceCode">Console console = System.console();
+String line = console.readLine(); //to get password use readPassword()
+</div>
+`;
 
 let javaDataTransformationHTML = `
 `;
@@ -702,11 +702,10 @@ let javaNodeDataArray = [
 
     {key: "Application", desc: "Application", isGroup: true, group: "System", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true},
 
-    {key: "Java-Input", desc: "Input", isGroup: true, group: "Application", category: "tree", expand: false, toolTipHTML: javaDataIngestionHTML},
-    {key: "Java-ReadFrom-InputDevices", desc: "Read from Input devices", group:"Java-Input", category: "picTemplate", toolTipHTML: javaReadInputDevHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-ReadFrom-Memory", desc: "Read from Memory", group:"Java-Input", category: "picTemplate", toolTipHTML: javaReadMemoryHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-ReadFrom-Files", desc: "Read from Files", group:"Java-Input", category: "picTemplate", toolTipHTML: javaReadFilesHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-ReadFrom-Network", desc: "Read from Network", group:"Java-Input", category: "picTemplate", toolTipHTML: javaReadNetworkHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-Input", desc: "Input", isGroup: true, group: "Application", category: "tree", expand: false},
+    {key: "Java-BufferedReader", desc: "Buffered Reader", group:"Java-Input", category: "picTemplate", toolTipHTML: bufferedReaderHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-Scanner", desc: "Scanner", group:"Java-Input", category: "picTemplate", toolTipHTML: scannerHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-Console", desc: "Console", group:"Java-Input", category: "picTemplate", toolTipHTML: consoleHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
     {key: "Java-Process", desc: "Process", isGroup: true, group: "Application", category: "grid-congested", expand: false, toolTipHTML: javaDataTransformationHTML},
     {key: "Java-Data-Iteration", desc: "Iteration", group:"Java-Process", category: "picTemplate", toolTipHTML: javaIterationHTML, img: "assets/img/terraform/tf-hcl.svg"},
@@ -716,7 +715,7 @@ let javaNodeDataArray = [
 
 
     {key: "Java", desc: "Java", isGroup: true, group: "System", category: "tree", img: "assets/img/java/java.png", toolTipHTML: javaHTML},
-    {key: "Java-Features", desc: "Features", isGroup: true, group: "Java", category: "grid-congested", toolTipHTML: javaFeaturesHTML},
+//    {key: "Java-Features", desc: "Features", isGroup: true, group: "Java", category: "grid-congested", toolTipHTML: javaFeaturesHTML},
 
     {key: "Java-Solid", desc: "Solid Principles", isGroup: true, group: "Java-Semantics", category: "tree"},
     {key: "Java-SP-singleResp", desc: "Single Responsibility", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPSingleRespHTML, img: "assets/img/terraform/tf-hcl.svg"},
@@ -751,7 +750,7 @@ let javaNodeDataArray = [
     {key: "Java-Lambdas", desc: "Lambdas", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaLambdasHTML, img: "assets/img/terraform/tf-hcl.svg"},
     {key: "Java-Streams", desc: "Streams", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaStreamsHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
-    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java", category: "grid-congested"},
+    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java", expand: false, category: "grid-congested"},
 
     {key: "Java-Design-Patterns", desc: "Design Patterns", isGroup: true, group: "Java-Semantics", category: "tree90",},
 
