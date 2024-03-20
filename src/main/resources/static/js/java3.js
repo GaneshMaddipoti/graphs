@@ -696,6 +696,10 @@ public class BubbleLights extends TreeDecorator {
     }
 }</div>`;
 
+let javaPropertyHTML = `
+
+`;
+
 let javaNodeDataArray = [
     {key: "System", desc: "System", isGroup: true, category: "tree", img: "assets/img/gen/gen-servers.svg", toolTipHTML: javaHTML},
 
@@ -724,25 +728,39 @@ let javaNodeDataArray = [
     {key: "Java-SP-Interface-Segregation", desc: "Interface Segregation", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPInterfaceSegregationHTML, img: "assets/img/terraform/tf-hcl.svg"},
     {key: "Java-SP-DI", desc: "Dependency Inversion", group:"Java-Solid", category: "picTemplate", toolTipHTML: javaSPDIHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
-    {key: "Java-Syntax", desc: "Syntax", isGroup: true, group: "Java", category: "grid-congested", expand: false, toolTipHTML: javaSyntaxHTML},
-    {key: "Java-Literals", desc: "Literals", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaLiteralHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Datatypes", desc: "Datatypes", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaDataTypeHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Operators", desc: "Operators", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaOperatorHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Variables", desc: "Variables", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaVariableHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Arrays", desc: "Arrays", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaArraysHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Expressions", desc: "Expressions", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaExpressionHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Statements", desc: "Statements", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaStatementHTML, img: "assets/img/terraform/tf-hcl.svg"},
+    {key: "Java-Syntax", desc: "Syntax", isGroup: true, group: "Java", category: "grid-congested", expand: true, toolTipHTML: javaSyntaxHTML},
+
+    {key: "Java-Class", desc: "Class", isGroup: true, group:"Java-Syntax", category: "tree", toolTipHTML: javaClassHTML},
+    {key: "Java-Property", desc: "Properties", isGroup: true, group:"Java-Class", expand: false, category: "grid", toolTipHTML: javaPropertyHTML},
+    {key: "Java-Datatypes", desc: "Datatypes", isGroup: true, group:"Java-Property", category: "grid", expand: false, toolTipHTML: javaDataTypeHTML},
+    {key: "Java-Arrays", desc: "Arrays", group:"Java-Datatypes", category: "simple", toolTipHTML: javaArraysHTML},
+    {key: "Java-String", desc: "String", group:"Java-Datatypes", category: "simple", toolTipHTML: javaStringHTML},
+
+
+    {key: "Java-Variables", desc: "Variables", group:"Java-Property", category: "simple", toolTipHTML: javaVariableHTML},
+    {key: "Java-Literals", desc: "Literals", group:"Java-Property", category: "simple", toolTipHTML: javaLiteralHTML},
+
+
+    {key: "Java-Method", desc: "Methods", isGroup: true, group:"Java-Class", expand: true, category: "grid", toolTipHTML: javaPropertyHTML},
+    {key: "Java-Statements", desc: "Statements", group:"Java-Method", isGroup: true, category: "grid", expand: false, toolTipHTML: javaStatementHTML},
+    {key: "Java-Operators", desc: "Operators", group:"Java-Statements", category: "simple", toolTipHTML: javaOperatorHTML},
+    {key: "Java-Expressions", desc: "Expressions", group:"Java-Statements", category: "simple", toolTipHTML: javaExpressionHTML},
+    {key: "Java-FlowControls", desc: "FlowControls", group:"Java-Method", category: "simple", toolTipHTML: javaFlowControlsHTML},
+    {key: "Java-Loops", desc: "Loops", group:"Java-Method", category: "simple", toolTipHTML: javaLoopsHTML},
+    {key: "Java-Exceptions", desc: "Exceptions", group:"Java-Method", category: "simple", toolTipHTML: javaExceptionsHTML},
+
+
+
+
+
     {key: "Java-Keywords", desc: "Keywords", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaKeywordHTML, img: "assets/img/terraform/tf-hcl.svg"},
     {key: "Java-Casting", desc: "Casting", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaCastingHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-FlowControls", desc: "FlowControls", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaFlowControlsHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Loops", desc: "Loops", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaLoopsHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Exceptions", desc: "Exceptions", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaExceptionsHTML, img: "assets/img/terraform/tf-hcl.svg"},
+
     {key: "Java-Threads", desc: "Multi-Threading", group:"Java-Syntax", category: "picTemplate", toolTipHTML: javaMultiThreadsHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
     {key: "Java-OOP", desc: "OOP", isGroup: true, group: "Java-Syntax", category: "grid-congested", expand: false},
-    {key: "Java-Class", desc: "Class", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaClassHTML, img: "assets/img/terraform/tf-hcl.svg"},
+
     {key: "Java-WrapperClass", desc: "Wrapper Classes", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaWrapperClassHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-String", desc: "String", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaStringHTML, img: "assets/img/terraform/tf-hcl.svg"},
     {key: "Java-Collections", desc: "Collections", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaCollectionsHTML, img: "assets/img/terraform/tf-hcl.svg"},
     {key: "Java-Generics", desc: "Generics", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaGenericsHTML, img: "assets/img/terraform/tf-hcl.svg"},
     {key: "Java-Iterators", desc: "Iterators", group:"Java-OOP", category: "picTemplate", toolTipHTML: javaIteratorsHTML, img: "assets/img/terraform/tf-hcl.svg"},

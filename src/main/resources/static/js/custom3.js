@@ -266,7 +266,7 @@ diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", {layout: $(go.GridLayou
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Left }, {margin: 10},
+            { defaultAlignment: go.Spot.Left },
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
