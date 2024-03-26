@@ -67,20 +67,25 @@ itemtemplates.add("text",$(go.Panel, $(go.TextBlock, new go.Binding("text"))));
 function showToolTip(obj, diagram, tool) {
     var pt = diagram.lastInput.viewPoint;
     let toolTipDIV = document.getElementById("toolTipDIV");
+    let diagramDiv = document.getElementById("myDiagramDiv");
     if(toolTipDIV && obj.data.toolTipHTML) {
-        toolTipDIV.style.left = (pt.x) + "px";
-        toolTipDIV.style.top = (pt.y) + 10 + "px";
+        diagramDiv.style.filter = "blur(3px)";
+        toolTipDIV.style.left = 20 + "px";
+        toolTipDIV.style.top = (pt.y) - 80 + "px";
         toolTipDIV.innerHTML = obj.data.toolTipHTML;
         toolTipDIV.style.display = "block";
     } else {
         hideToolTip();
+        diagramDiv.style.filter = "blur(0px)";
     }
 }
 
 function hideToolTip() {
     var toolTipDIV = document.getElementById('toolTipDIV');
+    let diagramDiv = document.getElementById("myDiagramDiv");
     if(toolTipDIV) {
         toolTipDIV.style.display = "none";
+        diagramDiv.style.filter = "blur(0px)";
     }
 }
 

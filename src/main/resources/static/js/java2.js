@@ -758,7 +758,7 @@ let javaNodeDataArray = [
     {key: "Java-DP-Strategy", desc: "Strategy", color: "WhiteSmoke", group:"Java-DP-Behavioral", category: "picTemplate", toolTipHTML: javaDPStrategyHTML, img: "assets/img/terraform/tf-hcl.svg"},
 
 
-    {key: "Java-Programming", desc: "Programming", color: "WhiteSmoke", isGroup: true, group: "Java", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true},
+    {key: "Java-Programming", desc: "Programming", color: "WhiteSmoke", isGroup: true, group: "Java", category: "tree", toolTipHTML: javaProgrammingHTML, expand: false},
 
     {key: "Java-Data-Ingestion", desc: "Data Ingestion", color: "WhiteSmoke", isGroup: true, group: "Java-Programming", category: "tree90", toolTipHTML: javaDataIngestionHTML},
     {key: "Java-ReadFrom-InputDevices", desc: "Read from Input devices", color: "WhiteSmoke", group:"Java-Data-Ingestion", category: "picTemplate", toolTipHTML: javaReadInputDevHTML, img: "assets/img/terraform/tf-hcl.svg"},

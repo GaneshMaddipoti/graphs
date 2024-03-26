@@ -701,21 +701,21 @@ let javaPropertyHTML = `
 `;
 
 let javaNodeDataArray = [
-    {key: "System", desc: "System", isGroup: true, category: "tree", img: "assets/img/gen/gen-servers.svg", toolTipHTML: javaHTML},
+//    {key: "System", desc: "System", isGroup: true, category: "tree", img: "assets/img/gen/gen-servers.svg", toolTipHTML: javaHTML},
 
 
-    {key: "Application", desc: "Application", isGroup: true, group: "System", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true},
-
-    {key: "Java-Input", desc: "Input", isGroup: true, group: "Application", category: "tree", expand: false},
-    {key: "Java-BufferedReader", desc: "Buffered Reader", group:"Java-Input", category: "picTemplate", toolTipHTML: bufferedReaderHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Scanner", desc: "Scanner", group:"Java-Input", category: "picTemplate", toolTipHTML: scannerHTML, img: "assets/img/terraform/tf-hcl.svg"},
-    {key: "Java-Console", desc: "Console", group:"Java-Input", category: "picTemplate", toolTipHTML: consoleHTML, img: "assets/img/terraform/tf-hcl.svg"},
-
-    {key: "Java-Process", desc: "Process", isGroup: true, group: "Application", category: "grid-congested", expand: false, toolTipHTML: javaDataTransformationHTML},
-    {key: "Java-Data-Iteration", desc: "Iteration", group:"Java-Process", category: "picTemplate", toolTipHTML: javaIterationHTML, img: "assets/img/terraform/tf-hcl.svg"},
-
-
-    {key: "Java-Output", desc: "Output", isGroup: true, group: "Application", category: "grid-congested", expand: false, toolTipHTML: javaDataGenerationHTML},
+//    {key: "Application", desc: "Application", isGroup: true, group: "System", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true},
+//
+//    {key: "Java-Input", desc: "Input", isGroup: true, group: "Application", category: "tree", expand: false},
+//    {key: "Java-BufferedReader", desc: "Buffered Reader", group:"Java-Input", category: "picTemplate", toolTipHTML: bufferedReaderHTML, img: "assets/img/terraform/tf-hcl.svg"},
+//    {key: "Java-Scanner", desc: "Scanner", group:"Java-Input", category: "picTemplate", toolTipHTML: scannerHTML, img: "assets/img/terraform/tf-hcl.svg"},
+//    {key: "Java-Console", desc: "Console", group:"Java-Input", category: "picTemplate", toolTipHTML: consoleHTML, img: "assets/img/terraform/tf-hcl.svg"},
+//
+//    {key: "Java-Process", desc: "Process", isGroup: true, group: "Application", category: "grid-congested", expand: false, toolTipHTML: javaDataTransformationHTML},
+//    {key: "Java-Data-Iteration", desc: "Iteration", group:"Java-Process", category: "picTemplate", toolTipHTML: javaIterationHTML, img: "assets/img/terraform/tf-hcl.svg"},
+//
+//
+//    {key: "Java-Output", desc: "Output", isGroup: true, group: "Application", category: "grid-congested", expand: false, toolTipHTML: javaDataGenerationHTML},
 
 
     {key: "Java", desc: "Java", isGroup: true, group: "System", category: "tree", img: "assets/img/java/java.png", toolTipHTML: javaHTML},
