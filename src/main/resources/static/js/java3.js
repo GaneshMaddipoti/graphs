@@ -1,4 +1,8 @@
 let javaHTML = `
+<b>Programming Language</b><br/>
+The language system can understand and execute<br/>
+Ex: Assembly language, C, Python, etc... <br/>
+<br/>
 <b>Java</b> <br/>
 It is a high level programming language<br/>
 Created by James Gosling and team at Sun micro systems in 1991 <br/>
@@ -362,7 +366,7 @@ Scanner sc = new Scanner(new File("file.txt"));
 Socket socket = new Socket(hostName, portNumber);
 Scanner sc =  new Scanner(socket.getInputStream());
 
-String line = sc.next();    //to get parsed input use next***()
+String line = sc.next(); //to get parsed input use next***()
 </div>
 `;
 

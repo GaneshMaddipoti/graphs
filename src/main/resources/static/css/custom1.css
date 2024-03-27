@@ -58,5 +58,6 @@
     white-space: pre;
     font-weight: lighter;
     letter-spacing: 1px;
-    max-width: 700px;
+    /*max-width: 700px;*/
+    font-size: 15px;
 }

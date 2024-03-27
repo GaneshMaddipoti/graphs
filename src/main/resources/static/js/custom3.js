@@ -84,7 +84,7 @@ var myToolTip = $(go.HTMLInfo, {
 });
 
 const picTemplate =
-    $(go.Node, "Vertical", {padding: 0, margin: new go.Margin(0, 0, 0, 0),},
+    $(go.Node, "Vertical", { selectionAdorned: false },{padding: 0, margin: new go.Margin(0, 0, 0, 0),},
         $(go.Picture,
             { maxSize: new go.Size(30, 30), },
             new go.Binding("source", "img")),
@@ -97,14 +97,14 @@ const picTemplate =
     );
 
 const simpleTemplate =
-    $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
+    $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, {height: 30}, new go.Binding("height", "height"), {width: 145}, new go.Binding("width", "width"),
             new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
         $(go.TextBlock, textStyle150(), new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }
     );
 const simpleBorderLessTemplate =
-    $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
+    $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, new go.Binding("desiredSize", "size"),
             new go.Binding("figure", "shape"), { strokeWidth: 0, fill:"Transparent" }, new go.Binding("stroke", "color")),
         $(go.TextBlock, textStyleLong(), new go.Binding("text", "desc")),
@@ -112,7 +112,7 @@ const simpleBorderLessTemplate =
     );
 
 const simpleWithTooltipTemplate =
-    $(go.Node, "Auto",{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
+    $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, new go.Binding("desiredSize", "size"),
             new go.Binding("figure", "shape"), { strokeWidth: 1, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
         $(go.TextBlock,textStyle(), new go.Binding("text", "desc")),
@@ -122,7 +122,7 @@ const simpleWithTooltipTemplate =
 
 // the "detailed" template shows all of the information in a Table Panel
 const detailTemplate =
-    $(go.Node, "Auto", { fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
+    $(go.Node, "Auto", { selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, new go.Binding("desiredSize", "size"),
             new go.Binding("figure", "shape"), { strokeWidth: 1, stroke: "#555" }, new go.Binding("fill", "color")),
         $(go.Panel, "Vertical",
