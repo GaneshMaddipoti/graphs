@@ -242,14 +242,14 @@ diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", { selectionAdorned: f
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Right },{margin: 10},
+            { defaultAlignment: go.Spot.Right },
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
             { click: (e, obj) => showDetails(e, obj) }
         ),
         $(go.Placeholder,     // represents area for all member parts
-            { padding: new go.Margin(0, 0), background: "Transparent" })
+            { padding: new go.Margin(10, 10), background: "Transparent" })
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.GridLayout, {

@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/custom2.css">
     <link rel="stylesheet" type="text/css" href="css/custom1.css">
 </head>
-<body style="margin:0px">
+<body style="margin:0px;overflow-x: hidden;overflow-y: hidden;">
 
 <div id="myDiagramDiv"
      style="width:100%;height: 111vh; background-color: #2b2d30;
@@ -27,7 +27,11 @@
 <script src="js/java3.js"></script>
 <script>
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-    //zoomSlider = new ZoomSlider(diagram);
+    zoomSlider = new ZoomSlider(diagram,
+        {
+            alignment: go.Spot.TopRight, alignmentFocus: go.Spot.TopRight,
+            size: 100, buttonSize: 20, orientation: 'horizontal'
+        });
     diagram.commandHandler.zoomToFit();
 
     //For left menu
