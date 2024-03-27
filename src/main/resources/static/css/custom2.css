@@ -21,10 +21,11 @@
 #tooltipClose{
     position: relative;
     float: right;
-    background: DarkSlateGray;
-    color: Silver;
+    background: Silver;
+    color: DarkSlateGray;
     top: -10px;
     right: -10px;
+    border: 0px;
 }
 
 .zoomSlider {
