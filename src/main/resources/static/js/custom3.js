@@ -4,8 +4,6 @@ function showDetails(e, obj) {
         const diagram = node.diagram;
         let details = node.data;
         showToolTip(node, diagram, null);
-    } else {
-        hideToolTip();
     }
 }
 
@@ -48,16 +46,10 @@ function subGraphExpanderButtonStyle() {
     ];
 }
 
-function doMouseOver(e) {
-    hideToolTip()
-}
-
 //Diagram
 var $ = go.GraphObject.make;
 let diagram = new go.Diagram("myDiagramDiv",{layout: $(go.TreeLayout,
         { angle: 0, nodeSpacing: 50, layerSpacing: 50}), "undoManager.isEnabled": true, "linkReshapingTool": new OrthogonalLinkReshapingTool(),
-    mouseOver: doMouseOver,
-    click: hideToolTip ,
 });
 
 //Nodes
@@ -68,15 +60,13 @@ function showToolTip(obj, diagram, tool) {
     var pt = diagram.lastInput.viewPoint;
     let toolTipDIV = document.getElementById("toolTipDIV");
     let diagramDiv = document.getElementById("myDiagramDiv");
+    let closeButtonHTML = '<button id="tooltipClose" onclick="hideToolTip()">X</button>';
     if(toolTipDIV && obj.data.toolTipHTML) {
         diagramDiv.style.filter = "blur(3px)";
-        toolTipDIV.style.left = 20 + "px";
-        toolTipDIV.style.top = (pt.y) - 80 + "px";
-        toolTipDIV.innerHTML = obj.data.toolTipHTML;
+        toolTipDIV.style.left = (window.innerWidth - 600)/2 + "px";
+        toolTipDIV.style.top = (window.innerHeight - 600)/2 + "px";
+        toolTipDIV.innerHTML = closeButtonHTML + obj.data.toolTipHTML;
         toolTipDIV.style.display = "block";
-    } else {
-        hideToolTip();
-        diagramDiv.style.filter = "blur(0px)";
     }
 }
 
@@ -91,7 +81,6 @@ function hideToolTip() {
 
 var myToolTip = $(go.HTMLInfo, {
     show: showToolTip,
-    //hide: hideToolTip
 });
 
 const picTemplate =
@@ -210,7 +199,7 @@ linktemplmap.add("", diagram.linkTemplate);
 diagram.linkTemplateMap = linktemplmap;
 
 
-diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", {layout: $(go.TreeLayout,
+diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
         { parameter1: 5, strokeWidth: 0.2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
@@ -228,7 +217,7 @@ diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", {layout: $(go.TreeLayou
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 
-diagram.groupTemplateMap.add("treeBL", $(go.Group, "Auto", {layout: $(go.TreeLayout,
+diagram.groupTemplateMap.add("treeBL", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
         { parameter1: 0, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
@@ -246,7 +235,7 @@ diagram.groupTemplateMap.add("treeBL", $(go.Group, "Auto", {layout: $(go.TreeLay
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 
-diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", {layout: $(go.TreeLayout,
+diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 90, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
         { parameter1: 0, strokeWidth: .2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
@@ -263,7 +252,7 @@ diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", {layout: $(go.TreeLay
             { padding: new go.Margin(0, 0), background: "Transparent" })
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
-diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", {layout: $(go.GridLayout, {
+diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.GridLayout, {
             wrappingColumn: 3, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(5,5)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
     $(go.Shape, "RoundedRectangle",
@@ -281,7 +270,7 @@ diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", {layout: $(go.GridLayou
             { padding: new go.Margin(10, 10), background: "Transparent" })
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
-diagram.groupTemplateMap.add("grid2", $(go.Group, "Auto", {layout: $(go.GridLayout, {
+diagram.groupTemplateMap.add("grid2", $(go.Group, "Auto",{ selectionAdorned: false },  {layout: $(go.GridLayout, {
             wrappingColumn: 2, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(20,0)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
@@ -300,7 +289,7 @@ diagram.groupTemplateMap.add("grid2", $(go.Group, "Auto", {layout: $(go.GridLayo
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 
-diagram.groupTemplateMap.add("grid5", $(go.Group, "Auto", {layout: $(go.GridLayout, {
+diagram.groupTemplateMap.add("grid5", $(go.Group, "Auto",{ selectionAdorned: false },  {layout: $(go.GridLayout, {
             wrappingColumn: 5, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(20,0)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
@@ -319,7 +308,7 @@ diagram.groupTemplateMap.add("grid5", $(go.Group, "Auto", {layout: $(go.GridLayo
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
 
-diagram.groupTemplateMap.add("grid10", $(go.Group, "Auto", {layout: $(go.GridLayout, {
+diagram.groupTemplateMap.add("grid10", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.GridLayout, {
             wrappingColumn: 10, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(20,0)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
@@ -337,7 +326,7 @@ diagram.groupTemplateMap.add("grid10", $(go.Group, "Auto", {layout: $(go.GridLay
             { padding: 10, background: "Transparent" })
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
-diagram.groupTemplateMap.add("grid-congested", $(go.Group, "Auto", {layout: $(go.GridLayout, {
+diagram.groupTemplateMap.add("grid-congested", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.GridLayout, {
             wrappingColumn: 3, alignment: go.GridLayout.Position, cellSize: new go.Size(0, 0), spacing: new go.Size(0,0)
         }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
