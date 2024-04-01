@@ -586,8 +586,7 @@ let javaPropertyHTML = `
 `;
 
 let javaNodeDataArray = [
-//    {key: "System", desc: "System", isGroup: true, category: "tree", img: "assets/img/gen/gen-servers.svg", toolTipHTML: javaHTML},
-
+    {key: "Java", desc: "Java", isGroup: true, group: "System", category: "tree", img: "assets/img/java/java.svg", toolTipHTML: javaHTML},
 
     {key: "Application", desc: "Application", isGroup: true, group: "Java Source Code", category: "tree", toolTipHTML: javaProgrammingHTML, expand: false},
 
@@ -601,9 +600,6 @@ let javaNodeDataArray = [
 
 
     {key: "Java-Output", desc: "Output", isGroup: true, group: "Application", category: "grid", expand: false, toolTipHTML: javaDataGenerationHTML},
-
-
-    {key: "Java", desc: "Java", isGroup: true, group: "System", category: "tree90", img: "assets/img/java/java.png", toolTipHTML: javaHTML},
 
     {key: "Java Language", desc: "Language", isGroup: true, group: "Java Source Code", category: "tree", toolTipHTML: javaProgrammingHTML, expand: false},
 
@@ -669,7 +665,7 @@ let javaNodeDataArray = [
     {key: "Java-SP-DI", desc: "Dependency Inversion", group:"Java-Solid", category: "simple", toolTipHTML: javaSPDIHTML},
 
     {key: "Java Source Code", desc: "Source Code", isGroup: true, expand: false, category: "tree", group: "Java"},
-    {key: "Java Compiler", desc: "Compiler (javac)", category: "simple", group: "Java"},
+    {key: "Java Compiler", desc: "Compiler (javac)", category: "picTemplate", group: "Java", img: "assets/img/java/compiler.svg"},
     {key: "Java Byte Code", desc: "Byte Code", category: "simple", group: "Java"},
     {key: "Java RE", desc: "JRE", isGroup: true, expand: false, category: "grid", group: "Java"},
 
