@@ -15,7 +15,7 @@ function textStyle() {
 
 function textStyle150() {
     return [
-        { margin: 0, width: 150, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
     ];
 }
 
@@ -109,11 +109,20 @@ const simplePicTemplate =
 
 const simpleTemplate =
     $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
-        $(go.Shape, {height: 30}, new go.Binding("height", "height"), {width: 145}, new go.Binding("width", "width"),
+        $(go.Shape, {height: 35}, new go.Binding("height", "height"), {width: 100}, new go.Binding("width", "width"),
             new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
         $(go.TextBlock, textStyle150(), new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }
     );
+
+const simpleTextTemplate =
+    $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
+        $(go.Shape, {height: 50}, new go.Binding("height", "height"), new go.Binding("width", "width"),
+            new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
+        $(go.TextBlock, textStyle150(), new go.Binding("text", "desc")),
+        { click: (e, obj) => showDetails(e, obj) }
+    );
+
 const simpleBorderLessTemplate =
     $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, new go.Binding("desiredSize", "size"),
@@ -151,6 +160,7 @@ const detailTemplate =
 const templateMap = new go.Map();
 templateMap.add("simplePic", simplePicTemplate);
 templateMap.add("simple", simpleTemplate);
+templateMap.add("simpleText", simpleTextTemplate);
 templateMap.add("simpleBL", simpleBorderLessTemplate);
 templateMap.add("simpleTooltip", simpleWithTooltipTemplate)
 templateMap.add("detailed", detailTemplate);

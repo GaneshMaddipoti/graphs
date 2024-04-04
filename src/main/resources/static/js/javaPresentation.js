@@ -591,46 +591,43 @@ let javaPropertyHTML = `
 
 let javaNodeDataArray = [
 
-    {key: "System", desc: "System", isGroup: true, category: "treeSolid", img: "img/system.svg", toolTipHTML: systemHTML, expand: true},
+    {key: "System", desc: "System", isGroup: true, category: "treeSolid", img: "img/system.svg", expand: true},
 
-    {key: "Storage", desc: "Storage", isGroup: true, group: "System", category: "treeSolid", img: "img/harddisk.svg", toolTipHTML: javaHTML, expand: true},
+    {key: "Storage", desc: "Storage", isGroup: true, group: "System", category: "treeSolid", img: "img/harddisk.svg", expand: true},
 
-    {key: "CPU", desc: "CPU", isGroup: true, group: "System", category: "tree90", img: "img/pc.svg", toolTipHTML: javaHTML, expand: true},
-    {key: "IO", desc: "Input/Output", group: "System", category: "picTemplate", img: "img/terminal.svg", toolTipHTML: javaHTML, expand: true},
+    {key: "CPU", desc: "CPU", isGroup: true, group: "System", category: "tree90", img: "img/pc.svg", expand: true},
+    {key: "IO", desc: "Input/Output", group: "System", category: "picTemplate", img: "img/terminal.svg", expand: false},
 
-    {key: "Memory", desc: "Memory", isGroup: true, group: "CPU", category: "treeSolid", img: "img/memory.svg", toolTipHTML: javaHTML, expand: false},
-    {key: "Processor", desc: "Processor", group: "CPU", category: "simplePic", img: "img/processor.svg", toolTipHTML: javaHTML, expand: false},
+    {key: "Memory", desc: "Memory", isGroup: true, group: "CPU", category: "grid", img: "img/memory.svg", expand: true},
+    {key: "Processor", desc: "Processor", group: "CPU", category: "simplePic", img: "img/processor.svg", expand: false},
 
 
     {key: "Application", desc: "Application", isGroup: true, group: "Storage", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true, img: "img/javaFile.svg",},
 
     {key: "Sourcecode", desc: "Sourcecode", group: "Application", category: "picTemplate", toolTipHTML: javaProgrammingHTML, expand: false, img: "img/byteFile.svg",},
     {key: "Bytecode", desc: "Bytecode", group: "Application", category: "picTemplate", toolTipHTML: javaProgrammingHTML, expand: false, img: "img/byteFile.svg",},
-    {key: "Java", desc: "JDK", isGroup: true, group: "Storage", category: "grid", img: "assets/img/java/java.svg", toolTipHTML: javaHTML, expand: false},
+    {key: "Java", desc: "JDK", isGroup: true, group: "Storage", category: "grid", img: "assets/img/java/java.svg", toolTipHTML: javaHTML, expand: true},
 
-    {key: "Java Language", desc: "Language", isGroup: true, group: "Application", category: "tree", toolTipHTML: javaProgrammingHTML, expand: false},
+    {key: "Java Language", desc: "Language", isGroup: true, group: "Application", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true},
 
-    {key: "Java-Syntax", desc: "Syntax", isGroup: true, group: "Java Language", category: "tree", expand: false, toolTipHTML: javaSyntaxHTML},
+    {key: "Java-Syntax", desc: "Syntax", isGroup: true, group: "Java Language", category: "tree", expand: true, toolTipHTML: javaSyntaxHTML},
 
-    {key: "Java-Class", desc: "Class", isGroup: true, group:"Java-Syntax", category: "tree", toolTipHTML: javaClassHTML},
-    {key: "Java-Property", desc: "Properties", isGroup: true, group:"Java-Class", expand: false, category: "grid", toolTipHTML: javaPropertyHTML},
-    {key: "Java-Datatypes", desc: "Datatypes", isGroup: true, group:"Java-Property", category: "grid", expand: false, toolTipHTML: javaDataTypeHTML},
-    {key: "Java-Arrays", desc: "Arrays", group:"Java-Datatypes", category: "simple", toolTipHTML: javaArraysHTML},
-    {key: "Java-String", desc: "String", group:"Java-Datatypes", category: "simple", toolTipHTML: javaStringHTML},
+    {key: "Initialization", desc: "Initialize", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
+    {key: "Java-Literals", desc: "Literals", group:"Initialization", category: "simple", toolTipHTML: javaLiteralHTML},
+    {key: "Java-Variables", desc: "Variables", group:"Initialization", category: "simple", toolTipHTML: javaVariableHTML},
+    {key: "Java-Datatypes", desc: "Datatypes", group:"Initialization", category: "simple", expand: false, toolTipHTML: javaDataTypeHTML},
+    {key: "Java-Arrays", desc: "Arrays", group:"Initialization", category: "simple", toolTipHTML: javaArraysHTML},
+    {key: "Java-String", desc: "String", group:"Initialization", category: "simple", toolTipHTML: javaStringHTML},
+    {key: "Class", desc: "Class", group:"Initialization", category: "simple", toolTipHTML: javaClassHTML},
 
-
-    {key: "Java-Variables", desc: "Variables", group:"Java-Property", category: "simple", toolTipHTML: javaVariableHTML},
-    {key: "Java-Literals", desc: "Literals", group:"Java-Property", category: "simple", toolTipHTML: javaLiteralHTML},
-
-
-    {key: "Java-Method", desc: "Methods", isGroup: true, group:"Java-Class", expand: false, category: "grid", toolTipHTML: javaPropertyHTML},
-    {key: "Java-Statements", desc: "Statements", group:"Java-Method", isGroup: true, category: "grid", expand: false, toolTipHTML: javaStatementHTML},
-    {key: "Java-Operators", desc: "Operators", group:"Java-Statements", category: "simple", toolTipHTML: javaOperatorHTML},
-    {key: "Java-Expressions", desc: "Expressions", group:"Java-Statements", category: "simple", toolTipHTML: javaExpressionHTML},
-    {key: "Java-FlowControls", desc: "FlowControls", group:"Java-Method", category: "simple", toolTipHTML: javaFlowControlsHTML},
-    {key: "Java-Loops", desc: "Loops", group:"Java-Method", category: "simple", toolTipHTML: javaLoopsHTML},
-    {key: "Java-Exceptions", desc: "Exceptions", group:"Java-Method", category: "simple", toolTipHTML: javaExceptionsHTML},
-    {key: "Java-Threads", desc: "Multi-Threading", group:"Java-Method", category: "simple", toolTipHTML: javaMultiThreadsHTML},
+    {key: "Process", desc: "Process", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
+    {key: "Java-Operators", desc: "Operators", group:"Process", category: "simple", toolTipHTML: javaOperatorHTML},
+    {key: "Java-Expressions", desc: "Expressions", group:"Process", category: "simple", toolTipHTML: javaExpressionHTML},
+    {key: "Java-Statements", desc: "Statements", group:"Process", category: "simple",toolTipHTML: javaStatementHTML},
+    {key: "Java-FlowControls", desc: "FlowControls", group:"Process", category: "simple", toolTipHTML: javaFlowControlsHTML},
+    {key: "Java-Loops", desc: "Loops", group:"Process", category: "simple", toolTipHTML: javaLoopsHTML},
+    {key: "Java-Exceptions", desc: "Exceptions", group:"Process", category: "simple", toolTipHTML: javaExceptionsHTML},
+    {key: "Java-Threads", desc: "Multi Threading", group:"Process", category: "simple", toolTipHTML: javaMultiThreadsHTML},
 
     {key: "Java-OOP", desc: "OOP", isGroup: true, group: "Java-Syntax", category: "grid", expand: false},
 
@@ -646,14 +643,14 @@ let javaNodeDataArray = [
 
     {key: "Java-Design-Patterns", desc: "Design Patterns", isGroup: true, group: "Java-Semantics", category: "tree", expand: false},
 
-    {key: "Java-DP-Creational", desc: "Creational", isGroup: true, group: "Java-Design-Patterns", category: "grid",},
+    {key: "Java-DP-Creational", desc: "Creational", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: false},
     {key: "Java-DP-Singleton", desc: "Singleton", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPSingletonHTML},
     {key: "Java-DP-Factory", desc: "Factory", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPFactoryHTML},
     {key: "Java-DP-AbstractFactory", desc: "Abstract Factory", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPAbstractFactoryHTML},
     {key: "Java-DP-Builder", desc: "Builder", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPBuilderHTML},
     {key: "Java-DP-Prototype", desc: "Prototype", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPPrototypeHTML},
 
-    {key: "Java-DP-Structural", desc: "Structural", isGroup: true, group: "Java-Design-Patterns", category: "grid",},
+    {key: "Java-DP-Structural", desc: "Structural", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: false},
     {key: "Java-DP-Adapter", desc: "Adapter", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPAdapterHTML},
     {key: "Java-DP-Composite", desc: "Composite", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPCompositeHTML},
     {key: "Java-DP-Proxy", desc: "Proxy", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPProxyHTML},
@@ -661,7 +658,7 @@ let javaNodeDataArray = [
     {key: "Java-DP-Facade", desc: "Facade", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPFacadeHTML},
     {key: "Java-DP-Decorator", desc: "Decorator", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPDecoratorHTML},
 
-    {key: "Java-DP-Behavioral", desc: "Behavioral", isGroup: true, group: "Java-Design-Patterns", category: "grid",},
+    {key: "Java-DP-Behavioral", desc: "Behavioral", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: false},
     {key: "Java-DP-Strategy", desc: "Strategy", group:"Java-DP-Behavioral", category: "simple", toolTipHTML: javaDPStrategyHTML},
 
     {key: "Java-Solid", desc: "Solid Principles", isGroup: true, group: "Java-Semantics", category: "tree", expand: false},
@@ -671,15 +668,18 @@ let javaNodeDataArray = [
     {key: "Java-SP-Interface-Segregation", desc: "Interface Segregation", group:"Java-Solid", category: "simple", toolTipHTML: javaSPInterfaceSegregationHTML},
     {key: "Java-SP-DI", desc: "Dependency Inversion", group:"Java-Solid", category: "simple", toolTipHTML: javaSPDIHTML},
 
-    {key: "Java Compiler", desc: "Compiler", category: "picTemplate", group: "Java", img: "assets/img/java/compiler.svg"},
+    {key: "Java Compiler", desc: "Compiler", category: "simplePic", group: "Java", img: "assets/img/java/compiler.svg"},
     {key: "Java RE", desc: "JRE", isGroup: true, expand: false, category: "grid", group: "Java"},
 
-    {key: "Java API", desc: "API", expand: false, category: "picTemplate", group: "Java RE", img: "img/plugin.svg"},
-    {key: "JVM", desc: "JVM", expand: false, category: "picTemplate", group: "Java RE", img: "img/tools.svg"},
+    {key: "Java API", desc: "API", category: "simplePic", group: "Java RE", img: "img/plugin.svg"},
 
-    {key: "Java VM", desc: "Java VM", isGroup: true, expand: false, category: "tree90", group: "Memory"},
+    {key: "Meta", desc: "Meta", category: "simple", group: "Memory"},
+    {key: "Heap", desc: "Heap", category: "simple", group: "Memory"},
+    {key: "Stack", desc: "Stack", category: "simple", group: "Memory"},
 
-    {key: "Java Class Loader", desc: "Class Loader", isGroup: true, expand: false, category: "tree", group: "Java VM"},
+    {key: "Java VM", desc: "Java VM", isGroup: true, expand: true, category: "tree90", group: "Java RE"},
+
+    {key: "Java Class Loader", desc: "Class Loader", isGroup: true, expand: true, category: "tree", group: "Java VM"},
     {key: "Java Loading", desc: "Loading", isGroup: true, expand: false, category: "tree90", group: "Java Class Loader"},
     {key: "Java Bootstrap Loader", desc: "Bootstrap Loader", category: "simple", group: "Java Loading"},
     {key: "Java Extension Loader", desc: "Extension Loader", category: "simple", group: "Java Loading"},
@@ -692,8 +692,10 @@ let javaNodeDataArray = [
 
     {key: "Java Initialization", desc: "Initialization", category: "simple", group: "Java Class Loader"},
 
-    {key: "Java Runtime Area", desc: "Runtime Area", isGroup: true, expand: false, category: "tree", group: "Java VM"},
-
+    {key: "Execution Engine", desc: "Exec Engine", isGroup: true, expand: true, category: "grid", group: "Java VM"},
+    {key: "Interpreter", desc: "Interpreter", category: "simple",  group: "Execution Engine"},
+    {key: "JIT Compiler", desc: "JIT Compiler", category: "simple",  group: "Execution Engine"},
+    {key: "Garbage collector", desc: "Garbage Collector", category: "simple",  group: "Execution Engine"},
 
 
 ];
@@ -701,6 +703,7 @@ let javaNodeDataArray = [
 let javaLinkDataArray = [
 
     {from:"Storage", to: "CPU", category: "byDirLink"},
+    {from:"Memory", to: "Processor", category: "byDirLink"},
     {from:"CPU", to: "IO", category: "byDirLink"},
 
 
@@ -721,7 +724,6 @@ let javaLinkDataArray = [
     {key: "extensionToApplication", from: "Java Extension Loader", to: "Java Application Loader", category: "simplelink"},
     {key: "verifyToPrepare", from: "Java Verify", to: "Java Prepare", category: "simplelink"},
     {key: "prepareToResolve", from: "Java Prepare", to: "Java Resolve", category: "simplelink"},
-    {key: "classLoaderToRuntimeArea", from: "Java Class Loader", to: "Java Runtime Area", category: "simplelink"},
 ];
 
 nodeDataArray = nodeDataArray.concat(javaNodeDataArray);
