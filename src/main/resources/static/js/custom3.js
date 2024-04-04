@@ -48,7 +48,7 @@ function subGraphExpanderButtonStyle() {
 
 //Diagram
 var $ = go.GraphObject.make;
-let diagram = new go.Diagram("myDiagramDiv",{layout: $(go.TreeLayout,
+let diagram = new go.Diagram("myDiagramDiv",{layout: $(go.TreeLayout,{ isInitial: false, isOngoing: false },
         { angle: 0, nodeSpacing: 50, layerSpacing: 50}), "undoManager.isEnabled": true, "linkReshapingTool": new OrthogonalLinkReshapingTool(),
 });
 
