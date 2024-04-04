@@ -128,6 +128,13 @@ async function showAnimation() {
     svgElement.innerHTML += getYDotElement(325, 150, 325, 300);
     await new Promise(r => setTimeout(r, 4000));
     document.getElementById("dotId").remove();
+
+    svgElement.innerHTML += getXDotElement(250, 375, 150, 375);
+    svgElement.innerHTML += getXDotElement(400, 375, 495, 375);
+
+    await new Promise(r => setTimeout(r, 3000));
+    document.getElementById("dotId").remove();
+    document.getElementById("dotId").remove();
 }
 
 
