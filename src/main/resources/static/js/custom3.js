@@ -96,6 +96,17 @@ const picTemplate =
         { click: (e, obj) => showDetails(e, obj) }
     );
 
+const simplePicTemplate =
+    $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.LeftSide,  toSpot: go.Spot.RightSide, isShadowed: false, shadowOffset: new go.Point(3, 3) },
+            $(go.Shape, "RoundedRectangle", new go.Binding("height", "height"), {width: 150}, new go.Binding("width", "width"),
+                new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#eeeeee", fill:"Transparent" }, new go.Binding("stroke", "color")),
+            $(go.Panel, "Horizontal",  // the header
+                { defaultAlignment: go.Spot.Right },
+                $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
+                $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
+            ),
+        );
+
 const simpleTemplate =
     $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
         $(go.Shape, {height: 30}, new go.Binding("height", "height"), {width: 145}, new go.Binding("width", "width"),
@@ -138,6 +149,7 @@ const detailTemplate =
     );
 
 const templateMap = new go.Map();
+templateMap.add("simplePic", simplePicTemplate);
 templateMap.add("simple", simpleTemplate);
 templateMap.add("simpleBL", simpleBorderLessTemplate);
 templateMap.add("simpleTooltip", simpleWithTooltipTemplate)
@@ -151,6 +163,12 @@ const simplelinktemplate =
     $(go.Link, {routing: go.Link.AvoidsNodes, reshapable: true, resegmentable: true, corner: 5},
         $(go.Shape, { strokeWidth: 1, stroke: "WhiteSmoke" }),
         $(go.Shape, { toArrow: "Standard" }, {stroke: "WhiteSmoke", fill: "WhiteSmoke"}),
+    );
+
+const reverselinktemplate =
+    $(go.Link, {routing: go.Link.AvoidsNodes, reshapable: true, resegmentable: true, corner: 5},
+        $(go.Shape, { strokeWidth: 1, stroke: "WhiteSmoke" }),
+        $(go.Shape, { fromArrow: "Backward" }, {stroke: "WhiteSmoke", fill: "WhiteSmoke"}),
     );
 
 const byDirLinkTemplate =
@@ -191,6 +209,7 @@ const animatedLinkTemplate =
 
 const linktemplmap = new go.Map();
 linktemplmap.add("simplelink", simplelinktemplate);
+linktemplmap.add("reverselink", reverselinktemplate);
 linktemplmap.add("byDirLink", byDirLinkTemplate);
 linktemplmap.add("thickLink", thickLinkTemplate);
 linktemplmap.add("simplelinklabel", simplelinklabletemplate);
@@ -198,6 +217,26 @@ linktemplmap.add("animatedLink", animatedLinkTemplate);
 linktemplmap.add("", diagram.linkTemplate);
 diagram.linkTemplateMap = linktemplmap;
 
+diagram.groupTemplateMap.add("treeSolid", $(go.Group, "Auto",
+    { fromSpot: go.Spot.RightSide,  // coming out from right side
+          toSpot: go.Spot.LeftSide },
+    { selectionAdorned: false }, {layout: $(go.TreeLayout,
+            { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
+    $(go.Shape, "RoundedRectangle", // surrounds everything
+        { parameter1: 5, strokeWidth: 0.2, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
+    $(go.Panel, "Vertical",  // position header above the subgraph
+        { defaultAlignment: go.Spot.Left },
+        $(go.Panel, "Horizontal",  // the header
+            { defaultAlignment: go.Spot.Right },
+            $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
+            $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
+            $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
+             { click: (e, obj) => showDetails(e, obj) }
+        ),
+        $(go.Placeholder,     // represents area for all member parts
+            { padding: 10, background: "Transparent" }),
+    ), new go.Binding("isSubGraphExpanded", "expand"),
+));
 
 diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
