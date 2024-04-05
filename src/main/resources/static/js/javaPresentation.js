@@ -1,19 +1,39 @@
 let aboutMeHTML = `
-I am <b>Ganesh Maddipoti </b>, <br/>
-I am a cloud architect with over 15 years of experience in IT<br/>
-Primary Skills - java, spring, python, spark, linux, AWS, Terraform <br/>
-Roles - full stack developer, data engineer, solution architect, devOps associate <br/>
-Domains - Banking and Finance, Logistics and Travel, IoT <br/>
-<br/>
+I am <b>Ganesh Maddipoti </b>,
+<ul>
+<li>Cloud architect with over 15 years of experience in IT</li>
+<li>Primary Skills - java, spring, python, spark, linux, AWS, Terraform </li>
+<li>Roles - full stack developer, data engineer, solution architect</li>
+<li>Domains - Banking and Finance, Logistics and Travel, IoT </li>
+</ul>
 <b>Certifications</b><br/>
-Oracle certified Java Professional <br/>
-AWS certified solution architect <br/>
-Hashicorp certified Terraform associate <br/>
-Linux foundations certified system administrator <br/>
-<br/>
+<ul>
+<li>Oracle certified Java Professional</li>
+<li>AWS certified solution architect </li>
+<li>Hashicorp certified Terraform associate</li>
+<li>Linux foundations certified system administrator  </li>
+</ul>
 <b>Hobbies & Interests </b> <br/>
-Blogging and content writing <br/>
+<ul><li>Blogging and content writing on technology </li></ul>
+`;
 
+let featuresHTML = `
+<b>Content Features</b>
+<ul>
+<li>Starting with system architecture</li>
+<li>Program execution with internals </li>
+<li>Learning along by coding an application</li>
+<li>Language fundamentals to advanced features</li>
+</ul>
+<b>Content Presentation</b><br/>
+<ul>
+<li>Simple enough to understand</li>
+<li>Block diagram with flow</li>
+<li>Coding in Intellij IDE</li>
+<li>One flow without any deviations</li>
+</ul>
+<b>Users</b>
+<ul><li>Anyone who wants to learn Java language from zero to advanced</li></ul>
 `;
 
 let systemHTML = `
@@ -22,7 +42,7 @@ A system is collection of components, serves set of users with set of requiremen
 
 let javaHTML = `
 <b>Programming Language</b><br/>
-The language system can understand and execute<br/>
+A programming language is a set of instructions written by a programmer to deliver instructions to the computer to perform and accomplish a task<br/>
 Ex: Assembly language, C, Python, etc... <br/>
 <br/>
 <b>Java</b> <br/>
@@ -50,34 +70,66 @@ Ex: byte value = (byte) 1000;
 `;
 
 let javaLiteralHTML = `
-It's a character or word which denotes either number,string, boolean<br/>
-Ex: 6, 23.332, 'A', "Hello", true, '\u0044'(unicode literal D) <br/>
-In java, we can not put commas in a numberic literal, but we can use _ for readability <br/>
-We can not use comma, at start or end of the numeric literal <br/>
-Ex: long income = 1_234_456l;
-
+<b>Literals</b><br/>
+<ul>
+<li>We need literals to represent data</li>
+<li>It's a character or word which denotes either integers, floats, string,
+and boolean values (Ex: 6, 23.332, 'A', "Hello", true, '\u0044'(unicode literal D))</li>
+<li>We can not put commas in a numberic literal, but we can use _ for readability <br/>
+Ex: long income = 1_234_456l;</li>
+</ul>
+<b>Integer Literals</b> <br/>
+<ul>
+<li>Decimal Base 10 - use digits(0-9) no prefix of any kind</li>
+<li>octal Base 8 - use only digits(0-7), and preceding 0</li>
+<li>Hexa decimal Base 16 - use digits (0-9) and A,B,C,D,E,F preceding 0x</li>
+</ul>
+<b>Floating point Literals</b> <br/>
+Ex: double val = 23.456;
 `;
 
 let javaDataTypeHTML = `
-There are 8 data types we can have in Java primitively <br/>
-Whole Numbers are int by default, we can put l or L as suffix to treat it as long <br/>
-Real numbers are double by default, we can put f or F as suffix to treat it as float <br/>
-boolean         - 1 bit
-byte            - 1 byte
-short           - 2 byte
-int             - 4 byte
-long            - 8 byte
-float           - 4 byte
-double          - 8 byte
-char            - 2 byte
-For precise calculations use BigDecimal, because float, double will behave inconsistently <br/>
+<b>Data Types </b>
+<ul>
+<li>Java is statically typed language</li>
+<li>Data type is either primitive or object <br/>
+<li>There are 8 primitive data types <br/>
+<ol>
+<li>boolean         - 1 bit</li>
+<li>byte            - 1 byte</li>
+<li>short           - 2 byte</li>
+<li>int             - 4 byte</li>
+<li>long            - 8 byte</li>
+<li>float           - 4 byte</li>
+<li>double          - 8 byte</li>
+<li>char            - 2 byte</li>
+</ol>
+</li>
+<li>Integer literals are int by default, we can put l or L as suffix to treat it as long</li>
+<li>Float literals are double by default, we can put f or F as suffix to treat it as float</li>
+<li>For precise calculations use BigDecimal, because float, double will behave inconsistently</li>
+</ul>
 `;
 
 let javaVariableHTML = `
-Variables with given name, we use to store and retrieve information in memory <br/>
-A variable can be any primitive data type - boolean, byte, short, int, long, float, double, char <br/>
-or any custom data type (class) that user defined <br/>
-Ex : int orderNumber = 0;
+<b>Variables</b><br/>
+<ul>
+<li>Variables with given name, used to store and retrieve information in memory <br/>
+Ex: length = 120;
+</li>
+<li>A variable is statically typed to a primitive or object <br/>
+Ex: int length = 120;
+</li>
+</ul>
+<b>Rules</b><br/>
+There are rules for legal variable names/identifiers.
+<ol>
+<li>Identifiers must start with a letter($),(_)</li>
+<li>After first character, they can contain numbers also.</li>
+<li>There is no limit on number of characters</li>
+<li>You can’t use java keyword as an identifier</li>
+<li>Identifiers are case sensitive.</li>
+</ol>
 `;
 
 let javaOperatorHTML = `
@@ -627,11 +679,11 @@ let javaNodeDataArray = [
     {key: "Bytecode", desc: "Bytecode", group: "Application", category: "picTemplate", toolTipHTML: javaProgrammingHTML, expand: false, img: "img/byteFile.svg",},
     {key: "Java", desc: "JDK", isGroup: true, group: "Storage", category: "grid", img: "assets/img/java/java.svg", toolTipHTML: javaHTML, expand: true},
 
-    {key: "Java Language", desc: "Language", isGroup: true, group: "Application", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true},
+    {key: "Java Language", desc: "Language", isGroup: true, group: "Application", category: "tree", toolTipHTML: javaHTML, expand: true},
 
     {key: "Java-Syntax", desc: "Syntax", isGroup: true, group: "Java Language", category: "tree", expand: true, toolTipHTML: javaSyntaxHTML},
 
-    {key: "Initialization", desc: "Initialize", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
+    {key: "Initialization", desc: "Initialize", isGroup: true, group: "Java-Syntax", category: "grid", expand: true, toolTipHTML: javaSyntaxHTML},
     {key: "Java-Literals", desc: "Literals", group:"Initialization", category: "simple", toolTipHTML: javaLiteralHTML},
     {key: "Java-Variables", desc: "Variables", group:"Initialization", category: "simple", toolTipHTML: javaVariableHTML},
     {key: "Java-Datatypes", desc: "Datatypes", group:"Initialization", category: "simple", expand: false, toolTipHTML: javaDataTypeHTML},
@@ -717,6 +769,7 @@ let javaNodeDataArray = [
     {key: "Garbage collector", desc: "Garbage Collector", category: "simple",  group: "Execution Engine"},
 
     {key: "About Me", desc: "About Me", category: "simplePic", img: "img/PP.jpg", group: "Presentation", toolTipHTML: aboutMeHTML},
+    {key: "Features", desc: "Features", category: "simplePic", group: "Presentation", toolTipHTML: featuresHTML},
 
 
 ];
@@ -726,6 +779,7 @@ let javaLinkDataArray = [
     {from:"Storage", to: "CPU", category: "byDirLink"},
     {from:"Memory", to: "Processor", category: "byDirLink"},
     {from:"CPU", to: "IO", category: "byDirLink"},
+    {from:"About Me", to: "Features", category: "invisibleLink"},
 
 
     { from: "Add1", fromPort: "Out", to: "Subtract1", toPort: "A" },

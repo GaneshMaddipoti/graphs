@@ -1,5 +1,5 @@
 .tooltip {
-    background: Silver;
+    background-image: linear-gradient(to left, rgb(200, 200, 200), rgb(175, 175, 175));
     color: #150d0d;
     z-index: 1000;
     display: none;
@@ -12,13 +12,13 @@
     border-radius: 5px;
     line-height: 150%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    max-height: 600px;
     width: 60%;
     overflow-y: auto;
     overflow-x: hidden;
     margin: auto;
     position: absolute;
     left: 300px;
+    top: 30px;
 }
 
 #tooltipClose{
@@ -29,6 +29,16 @@
     top: 0px;
     right: 0px;
     border: 0px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.tooltipFooter {
+  position: relative;
+  background: red;
+  color: DarkSlateGray;
+  bottom: 0px;
+  border: 0px;
 }
 
 .zoomSlider {
@@ -122,13 +132,8 @@
     display: none;
 }
 
-ul, #myUL {
-  list-style-type: none;
-}
-
-#myUL {
-  margin: 0;
-  padding: 0;
+ul {
+    margin-top: 5px;
 }
 
 .caret {

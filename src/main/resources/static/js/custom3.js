@@ -61,11 +61,13 @@ function showToolTip(obj, diagram, tool) {
     let toolTipDIV = document.getElementById("toolTipDIV");
     let diagramDiv = document.getElementById("myDiagramDiv");
     let closeButtonHTML = '<button id="tooltipClose" onclick="hideToolTip()">X</button>';
+    let footerHTML = '<p class="tooltipFooter">Footer</p>';
     if(toolTipDIV && obj.data.toolTipHTML) {
         diagramDiv.style.filter = "blur(3px)";
 //        toolTipDIV.style.left = (window.innerWidth - 600)/2 + "px";
-        toolTipDIV.style.top = (window.innerHeight - 600)/2 + "px";
+//        toolTipDIV.style.top = (window.innerHeight - 600)/2 + "px";
         toolTipDIV.innerHTML = closeButtonHTML + obj.data.toolTipHTML;
+
         toolTipDIV.style.display = "block";
     }
 }
@@ -104,8 +106,9 @@ const simplePicTemplate =
                 { defaultAlignment: go.Spot.Right },
                 $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
                 $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
-                { click: (e, obj) => showDetails(e, obj) }
+
             ),
+            { click: (e, obj) => showDetails(e, obj) }
         );
 
 const simpleTemplate =
@@ -176,6 +179,11 @@ const simplelinktemplate =
         $(go.Shape, { toArrow: "Standard" }, {stroke: "WhiteSmoke", fill: "WhiteSmoke"}),
     );
 
+const invisibleLinkTemplate =
+    $(go.Link, {routing: go.Link.AvoidsNodes, reshapable: true, resegmentable: true, corner: 5},
+        $(go.Shape, { strokeWidth: 0, stroke: "WhiteSmoke" }),
+    );
+
 const reverselinktemplate =
     $(go.Link, {routing: go.Link.AvoidsNodes, reshapable: true, resegmentable: true, corner: 5},
         $(go.Shape, { strokeWidth: 1, stroke: "WhiteSmoke" }),
@@ -225,6 +233,7 @@ linktemplmap.add("byDirLink", byDirLinkTemplate);
 linktemplmap.add("thickLink", thickLinkTemplate);
 linktemplmap.add("simplelinklabel", simplelinklabletemplate);
 linktemplmap.add("animatedLink", animatedLinkTemplate);
+linktemplmap.add("invisibleLink", invisibleLinkTemplate);
 linktemplmap.add("", diagram.linkTemplate);
 diagram.linkTemplateMap = linktemplmap;
 
