@@ -9,7 +9,7 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 10, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "beige"}
+        { margin: 10, width: 90, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "beige"}
     ];
 }
 
@@ -103,7 +103,7 @@ const simplePicTemplate =
             $(go.Shape, "RoundedRectangle", new go.Binding("height", "height"), {width: 150}, new go.Binding("width", "width"),
                 new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#eeeeee", fill:"Transparent" }, new go.Binding("stroke", "color")),
             $(go.Panel, "Horizontal",  // the header
-                { defaultAlignment: go.Spot.Right },
+//                $(go.TextBlock, "'  '"),
                 $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
                 $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
 
@@ -243,7 +243,7 @@ diagram.groupTemplateMap.add("treeSolid", $(go.Group, "Auto",
     { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 5, strokeWidth: 0.2, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
+        { parameter1: 10, strokeWidth: 0.2, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
@@ -264,7 +264,7 @@ diagram.groupTemplateMap.add("treeHL", $(go.Group, "Auto",
     { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 5, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
+        { parameter1: 10, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
@@ -278,7 +278,7 @@ diagram.groupTemplateMap.add("treeHL", $(go.Group, "Auto",
 diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 5, strokeWidth: 0.2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+        { parameter1: 10, strokeWidth: 0.2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
@@ -296,7 +296,7 @@ diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", { selectionAdorned: fal
 diagram.groupTemplateMap.add("treeBL", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 0, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
+        { parameter1: 10, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
@@ -314,7 +314,7 @@ diagram.groupTemplateMap.add("treeBL", $(go.Group, "Auto", { selectionAdorned: f
 diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
             { angle: 90, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
     $(go.Shape, "RoundedRectangle", // surrounds everything
-        { parameter1: 0, strokeWidth: .2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+        { parameter1: 10, strokeWidth: .2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
@@ -332,7 +332,7 @@ diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", { selectionAdorned: fal
             wrappingColumn: 3, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(5,5)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
     $(go.Shape, "RoundedRectangle",
-        { parameter1: 0, strokeWidth: .2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+        { parameter1: 10, strokeWidth: .2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header

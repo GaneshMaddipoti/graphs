@@ -1,3 +1,17 @@
+let titleHTML = `
+<table style="width: 100%; align:center">
+<tr>
+<td width="25%">
+<div style=""><img src="img/java.png"/></div>
+</td><td style="align:right">
+<div style="font-size:175px;font-family:fantasy;
+margin-top:100px;padding:20px;color:#F8981D">Java</div><br/>
+<div style="padding:20px; color:#5382A1">Programming Language </div>
+</td>
+</tr>
+</table>
+`;
+
 let aboutMeHTML = `
 I am <b>Ganesh Maddipoti </b>,
 <ul>
@@ -74,7 +88,8 @@ let javaLiteralHTML = `
 <ul>
 <li>We need literals to represent data</li>
 <li>It's a character or word which denotes either integers, floats, string,
-and boolean values (Ex: 6, 23.332, 'A', "Hello", true, '\u0044'(unicode literal D))</li>
+and boolean values <br/>
+(Ex: 6, 23.332, 'A', "Hello", true, '\u0044'(unicode literal D))</li>
 <li>We can not put commas in a numberic literal, but we can use _ for readability <br/>
 Ex: long income = 1_234_456l;</li>
 </ul>
@@ -171,14 +186,38 @@ They are indexed from 0 <br/>
 
 let javaStringHTML = `
 <b>Strings</b><br/>
-A string is an object that contains a sequence of characters. <br/>
-Ex: String name = "Sample sentence."; <br/>
 <ul>
-<li></li>
+<li>A string is an object that contains a sequence of characters. <br/>
+    Ex: String name = "Sample sentence."; <br/></li>
+<li>Strings are immutable</li>
 </ul>
-A string is an object that contains a sequence of characters. <br/>
-Strings are immutable <br/>
-+       - for concatenation <br/>
+`;
+
+let javaClassHTML = `
+<b>Class</b><br/>
+<ul>
+<li>It's a template to create objects, and we use it to create custom data types</li>
+<li>Class contain properties and methods which operate on properties
+<div class="sourceCode">class Box {
+    int length;
+    int width;
+    int area(int length, int width) {
+        return length, width;
+    }
+}</div>
+</li>
+</ul>
+<b>Access Modifiers </b><br/>
+We can modify class/members access using public, protected, default, private <br/>
+<b>public</b> - access to all classes in application <br/>
+<b>protected</b> - access to all classes in that package and sub classes of other packages <br/>
+<b>default</b> - access to all classes in that package <br/>
+<b>private</b> - access to that class only<br/>
+<br/>
+<b>Non access modifiers </b> <br/>
+<b>final</b> - if applied to class, it can't be subclassed <br/>
+&emsp;&emsp;&emsp; - if applied to method, it can't be override <br/>
+&emsp;&emsp;&emsp; - if applied to property, it can't be re-assigned <br/>
 `;
 
 let javaFlowControlsHTML = `<div class="sourceCode">if (condition) {
@@ -275,17 +314,7 @@ Join() //The non-static method of class thread lets one thread “ join onto the
 To prevent race condition, synchronization issues we use synchronized keyword <br/>
 `;
 
-let javaClassHTML = `It's a template to create objects, and we use it to create custom data types <br/>
-Class contain attributes/properties and methods/behavior which operate on properties <br/>
-<div class="sourceCode">class Box {                                                 
-    int length;                                             
-    int width;                                              
-    int area(int length, int width) {                       
-        return length, width;                               
-    }                                                       
-}
-</div>
-`;
+
 
 let javaWrapperClassHTML = `
 A wrapper class provides the basic operations like the corresponding primitive data type <br/>
@@ -758,7 +787,7 @@ let javaNodeDataArray = [
     {key: "Java-SP-Interface-Segregation", desc: "Interface Segregation", group:"Java-Solid", category: "simple", toolTipHTML: javaSPInterfaceSegregationHTML},
     {key: "Java-SP-DI", desc: "Dependency Inversion", group:"Java-Solid", category: "simple", toolTipHTML: javaSPDIHTML},
 
-    {key: "Java Compiler", desc: "Compiler", category: "simplePic", group: "Java", img: "assets/img/java/compiler.svg"},
+    {key: "Java Compiler", desc: "Compiler", category: "simplePic", group: "Java", img: "img/tools.svg"},
     {key: "Java RE", desc: "JRE", isGroup: true, expand: false, category: "grid", group: "Java"},
 
     {key: "Java API", desc: "API", category: "simplePic", group: "Java RE", img: "img/plugin.svg"},
@@ -787,6 +816,7 @@ let javaNodeDataArray = [
     {key: "JIT Compiler", desc: "JIT Compiler", category: "simple",  group: "Execution Engine"},
     {key: "Garbage collector", desc: "Garbage Collector", category: "simple",  group: "Execution Engine"},
 
+    {key: "Title", desc: "Title", category: "simplePic", group: "Presentation", toolTipHTML: titleHTML},
     {key: "About Me", desc: "About Me", category: "simplePic", img: "img/PP.jpg", group: "Presentation", toolTipHTML: aboutMeHTML},
     {key: "Features", desc: "Features", category: "simplePic", group: "Presentation", toolTipHTML: featuresHTML},
 
@@ -799,6 +829,7 @@ let javaLinkDataArray = [
     {from:"Memory", to: "Processor", category: "byDirLink"},
     {from:"CPU", to: "IO", category: "byDirLink"},
     {from:"About Me", to: "Features", category: "invisibleLink"},
+    {from:"Title", to: "About Me", category: "invisibleLink"},
 
 
     { from: "Add1", fromPort: "Out", to: "Subtract1", toPort: "A" },
