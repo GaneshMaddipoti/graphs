@@ -63,7 +63,7 @@ function showToolTip(obj, diagram, tool) {
     let closeButtonHTML = '<button id="tooltipClose" onclick="hideToolTip()">X</button>';
     if(toolTipDIV && obj.data.toolTipHTML) {
         diagramDiv.style.filter = "blur(3px)";
-        toolTipDIV.style.left = (window.innerWidth - 600)/2 + "px";
+//        toolTipDIV.style.left = (window.innerWidth - 600)/2 + "px";
         toolTipDIV.style.top = (window.innerHeight - 600)/2 + "px";
         toolTipDIV.innerHTML = closeButtonHTML + obj.data.toolTipHTML;
         toolTipDIV.style.display = "block";
@@ -104,6 +104,7 @@ const simplePicTemplate =
                 { defaultAlignment: go.Spot.Right },
                 $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
                 $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
+                { click: (e, obj) => showDetails(e, obj) }
             ),
         );
 
@@ -242,6 +243,23 @@ diagram.groupTemplateMap.add("treeSolid", $(go.Group, "Auto",
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
              { click: (e, obj) => showDetails(e, obj) }
+        ),
+        $(go.Placeholder,     // represents area for all member parts
+            { padding: 10, background: "Transparent" }),
+    ), new go.Binding("isSubGraphExpanded", "expand"),
+));
+
+diagram.groupTemplateMap.add("treeHL", $(go.Group, "Auto",
+    { fromSpot: go.Spot.RightSide,  // coming out from right side
+          toSpot: go.Spot.LeftSide },
+    { selectionAdorned: false }, {layout: $(go.TreeLayout,
+            { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
+    $(go.Shape, "RoundedRectangle", // surrounds everything
+        { parameter1: 5, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
+    $(go.Panel, "Vertical",  // position header above the subgraph
+        { defaultAlignment: go.Spot.Left },
+        $(go.Panel, "Horizontal",  // the header
+            { defaultAlignment: go.Spot.Right },
         ),
         $(go.Placeholder,     // represents area for all member parts
             { padding: 10, background: "Transparent" }),

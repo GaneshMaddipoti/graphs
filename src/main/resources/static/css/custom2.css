@@ -1,22 +1,24 @@
 .tooltip {
-    position: absolute;
     background: Silver;
     color: #150d0d;
     z-index: 1000;
     display: none;
     font-family: Roboto, Arial, serif;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: lighter;
-    padding: 10px;
+    padding: 30px;
     /*width: 300px;*/
     border: 0px solid WhiteSmoke;
     border-radius: 5px;
     line-height: 150%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     max-height: 600px;
-    width: 600px;
+    width: 60%;
     overflow-y: auto;
     overflow-x: hidden;
+    margin: auto;
+    position: absolute;
+    left: 300px;
 }
 
 #tooltipClose{

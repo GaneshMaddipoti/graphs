@@ -1,3 +1,21 @@
+let aboutMeHTML = `
+I am <b>Ganesh Maddipoti </b>, <br/>
+I am a cloud architect with over 15 years of experience in IT<br/>
+Primary Skills - java, spring, python, spark, linux, AWS, Terraform <br/>
+Roles - full stack developer, data engineer, solution architect, devOps associate <br/>
+Domains - Banking and Finance, Logistics and Travel, IoT <br/>
+<br/>
+<b>Certifications</b><br/>
+Oracle certified Java Professional <br/>
+AWS certified solution architect <br/>
+Hashicorp certified Terraform associate <br/>
+Linux foundations certified system administrator <br/>
+<br/>
+<b>Hobbies & Interests </b> <br/>
+Blogging and content writing <br/>
+
+`;
+
 let systemHTML = `
 A system is collection of components, serves set of users with set of requirements <br/>
 `;
@@ -591,7 +609,8 @@ let javaPropertyHTML = `
 
 let javaNodeDataArray = [
 
-    {key: "System", desc: "System", isGroup: true, category: "treeSolid", img: "img/system.svg", expand: true},
+    {key: "Presentation", desc: "Presentation", isGroup: true, category: "treeHL", img: "img/system.svg", expand: true},
+    {key: "System", desc: "System", group: "Presentation", isGroup: true, category: "treeSolid", img: "img/system.svg", expand: true},
 
     {key: "Storage", desc: "Storage", isGroup: true, group: "System", category: "treeSolid", img: "img/harddisk.svg", expand: true},
 
@@ -696,6 +715,8 @@ let javaNodeDataArray = [
     {key: "Interpreter", desc: "Interpreter", category: "simple",  group: "Execution Engine"},
     {key: "JIT Compiler", desc: "JIT Compiler", category: "simple",  group: "Execution Engine"},
     {key: "Garbage collector", desc: "Garbage Collector", category: "simple",  group: "Execution Engine"},
+
+    {key: "About Me", desc: "About Me", category: "simplePic", img: "img/PP.jpg", group: "Presentation", toolTipHTML: aboutMeHTML},
 
 
 ];
