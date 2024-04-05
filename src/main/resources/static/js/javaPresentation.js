@@ -94,19 +94,19 @@ let javaDataTypeHTML = `
 <li>Java is statically typed language</li>
 <li>Data type is either primitive or object <br/>
 <li>There are 8 primitive data types <br/>
-<ol>
-<li>boolean         - 1 bit</li>
-<li>byte            - 1 byte</li>
-<li>short           - 2 byte</li>
-<li>int             - 4 byte</li>
-<li>long            - 8 byte</li>
-<li>float           - 4 byte</li>
-<li>double          - 8 byte</li>
-<li>char            - 2 byte</li>
-</ol>
+<table>
+<tr><td>1)</td><td width="200px">boolean</td><td>1 bit</td></tr>
+<tr><td>2)</td><td>byte</td><td>1 byte</td></tr>
+<tr><td>3)</td><td>short</td><td>2 byte</td></tr>
+<tr><td>4)</td><td>int</td><td>4 byte</td></tr>
+<tr><td>5)</td><td>long</td><td>8 byte</td></tr>
+<tr><td>6)</td><td>float</td><td>4 byte</td></tr>
+<tr><td>7)</td><td>double</td><td>8 byte</td></tr>
+<tr><td>8)</td><td>char</td><td>2 byte</td></tr>
+</table>
 </li>
 <li>Integer literals are int by default, we can put l or L as suffix to treat it as long</li>
-<li>Float literals are double by default, we can put f or F as suffix to treat it as float</li>
+<li>Float literals are double by default, f or F as suffix to treat it as float</li>
 <li>For precise calculations use BigDecimal, because float, double will behave inconsistently</li>
 </ul>
 `;
@@ -149,12 +149,37 @@ It can include one or more expressions <br/>
 Ex : total = orderValue + tax;
 `;
 
-let javaArraysHTML = `Arrays are objects that store multiple variables of the same type or variables that are all subclasses of the same type. <br/>
+let javaArraysHTML = `
+<b>Arrays</b><br/>
+Arrays are objects that store multiple variables of the same type or variables that are all subclasses of the same type.<br/>
+<br/>
+<b>Declare</b><br/>
+Arrays are declared by stating the type of elements <br/>
+Ex: int[] marks; <br/>
+<br/>
+<b>Construct</b><br/>
+Arrays are constructed/created on heap with mentioned size <br/>
+Ex: int[] marks = new int[100]; <br/>
+<br/>
+<b>Initialize</b><br/>
+Arrays initialization means that putting things into it <br/>
+Ex: int[] marks = {11, 12, 13, 14}; <br/>
+&emsp;&emsp; marks[0] = 21; <br/>
+<br/>
 They are indexed from 0 <br/>
-<div class="sourceCode">int[] nums = new int[10];
-nums = \{10, 20, 30, 40\};
-Animal[] animals = new Animal[10];
-</div>`;
+`;
+
+let javaStringHTML = `
+<b>Strings</b><br/>
+A string is an object that contains a sequence of characters. <br/>
+Ex: String name = "Sample sentence."; <br/>
+<ul>
+<li></li>
+</ul>
+A string is an object that contains a sequence of characters. <br/>
+Strings are immutable <br/>
++       - for concatenation <br/>
+`;
 
 let javaFlowControlsHTML = `<div class="sourceCode">if (condition) {
     //statements to execute if true
@@ -277,12 +302,6 @@ char        - Character         <br/>
 Wraparound will happen for byte, short, int, long data types <br/>
 Integer wraparounds (Integer.MIN_VALUE - 1)(-2147483648 -1) to 2147483647 (Integer.MAX_VALUE) <br/>
 Integer wraparounds (Integer.MAX_VALUE + 1)(2147483647+1) to -2147483648 (Integer.MIN_VALUE) <br/>
-`;
-
-let javaStringHTML = `
-A string is a class object that contains a sequence of characters. <br/>
-Strings are immutable <br/>
-+       - for concatenation <br/>
 `;
 
 let javaCollectionsHTML = `
