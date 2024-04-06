@@ -197,27 +197,23 @@ let javaClassHTML = `
 <b>Class</b><br/>
 <ul>
 <li>It's a template to create objects, and we use it to create custom data types</li>
-<li>Class contain properties and methods which operate on properties
-<div class="sourceCode">class Box {
-    int length;
-    int width;
-    int area(int length, int width) {
-        return length, width;
-    }
-}</div>
-</li>
+<li>Class contain properties and methods which operate on properties</li>
 </ul>
 <b>Access Modifiers </b><br/>
 We can modify class/members access using public, protected, default, private <br/>
-<b>public</b> - access to all classes in application <br/>
-<b>protected</b> - access to all classes in that package and sub classes of other packages <br/>
-<b>default</b> - access to all classes in that package <br/>
-<b>private</b> - access to that class only<br/>
+public - access to all classes in application <br/>
+protected - access to all classes in that package and sub classes of other packages <br/>
+default - access to all classes in that package <br/>
+private - access to that class only<br/>
 <br/>
 <b>Non access modifiers </b> <br/>
-<b>final</b> - if applied to class, it can't be subclassed <br/>
+final - if applied to class, it can't be subclassed <br/>
 &emsp;&emsp;&emsp; - if applied to method, it can't be override <br/>
 &emsp;&emsp;&emsp; - if applied to property, it can't be re-assigned <br/>
+abstract - if applied to class, it cant be initialized <br/>
+&emsp;&emsp;&emsp; - if applied to methods, no need to implement it<br/>
+strictfp - if applied to class, all methods are complied to IEEE standard for FP. <br/>
+&emsp;&emsp;&emsp; - if applied to method, only that method is complied to IEEE FP.
 `;
 
 let javaFlowControlsHTML = `<div class="sourceCode">if (condition) {

@@ -41,7 +41,8 @@ function subGraphExpanderButtonStyle() {
             "_buttonStrokeNormal": "DarkSlateGray",
             "_buttonFillOver": "DarkSlateGray",
             "_buttonStrokeOver": "DarkSlateGray ",
-            "ButtonBorder.fill": "DarkSlateGray"
+            "ButtonBorder.fill": "DarkSlateGray",
+            "ButtonBorder.stroke": "DarkSlateGray",
         }
     ];
 }
