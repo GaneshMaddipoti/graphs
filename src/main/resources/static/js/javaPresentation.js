@@ -124,6 +124,11 @@ let javaDataTypeHTML = `
 <li>Float literals are double by default, f or F as suffix to treat it as float</li>
 <li>For precise calculations use BigDecimal, because float, double will behave inconsistently</li>
 </ul>
+<b>Enums</b><br/>
+Java lets you restrict a variable to having one of only a few predefined values<br/>
+Ex: enum CoffeeSize {BIG,HUGE,SMALL,LARGE}; <br/>
+In enums, you can add constructors, variables, methods. <br/>
+Every enum has a static method, values() that returns an array of the enum’s values. <br/>
 `;
 
 let javaVariableHTML = `
@@ -147,21 +152,31 @@ There are rules for legal variable names/identifiers.
 </ol>
 `;
 
-let javaOperatorHTML = `
-The operator performs an operation on variable values its used with <br/>
-Ex : +, -, *, >, etc... <br/>
-`;
-
-let javaExpressionHTML = `
-An expression is a coding construct, that evaluates to a single value <br/>
-This will be the code segment on the right side of = operator, in an assignment or declaration statement <br/>
-Ex : (orderNumber + 100)
-`;
-
 let javaStatementHTML = `
+<b>Statement </b><br/>
 It's a complete command to be executed <br/>
 It can include one or more expressions <br/>
-Ex : total = orderValue + tax;
+Ex : total = orderValue + tax; <br/>
+<br/>
+<b>Expression </b><br/>
+An expression is a coding construct, that evaluates to a single value <br/>
+This will be the code segment on the right side of = operator, in an assignment or declaration statement <br/>
+Ex : (orderNumber + 100) <br/>
+<br/>
+<b>Operators</b><br/>
+The operator performs an operation on variable values its used with <br/>
+Ex : +, -, *, >, etc... <br/>
+<table>
+<tr><td>1)</td><td width="300px">Assignment</td><td>=</td></tr>
+<tr><td>2)</td><td >Compound Assignment </td><td>+=, -=, *=, /=, etc...</td></tr>
+<tr><td>3)</td><td >Arithmetic</td><td>+, -, *, /, %</td></tr>
+<tr><td>4)</td><td>Increment & Decrement</td><td>++, --</td></tr>
+<tr><td>5)</td><td>Relational</td><td><, <=, >, >=, ==, !=</td></tr>
+<tr><td>6)</td><td>Logical</td><td>&, |, ^, !, &&, ||</td></tr>
+<tr><td>7)</td><td>Bitwise</td><td>&, |, ^</td></tr>
+<tr><td>8)</td><td>Conditional</td><td>? :/td></tr>
+<tr><td>9)</td><td>Type check</td><td>instanceOf</td></tr>
+</table>
 `;
 
 let javaArraysHTML = `
@@ -198,6 +213,7 @@ let javaClassHTML = `
 <ul>
 <li>It's a template to create objects, and we use it to create custom data types</li>
 <li>Class contain properties and methods which operate on properties</li>
+<li>Class names and method names are also should follow legal identifier rules <br/>
 </ul>
 <b>Access Modifiers </b><br/>
 We can modify class/members access using public, protected, default, private <br/>
@@ -216,13 +232,19 @@ strictfp - if applied to class, all methods are complied to IEEE standard for FP
 &emsp;&emsp;&emsp; - if applied to method, only that method is complied to IEEE FP.
 `;
 
-let javaFlowControlsHTML = `<div class="sourceCode">if (condition) {
+let javaFlowControlsHTML = `
+<b>Conditions</b> <br/>
+The if & switch statements are decision / conditional controls  <br/>
+that allow your program to behave differently on the result of logical test.<br/>
+<br/>
+<div class="sourceCode">if (condition) {
     //statements to execute if true
 } else if (condition) {
     //statements to execute else if ture
 } else {
     //statements to execute else
 }
+
 switch (condition) { //condition can be int, string, enum
     case 0:
         System.out.println(0);
@@ -237,8 +259,19 @@ switch (condition) { //condition can be int, string, enum
 </div>
 `;
 
-let javaLoopsHTML = `<div class="sourceCode">while(condition) {
-    //Statements to execute while true            
+let javaLoopsHTML = `
+<b>Loops</b><br/>
+In situations, where we want to perform task iteratively until a condition met. <br/>
+We can use while, do-while, or for loops <br/>
+<br/>
+<b>Use cases</b><br/>
+<ul>
+<li>while - here you don’t know how many times a block or statement should repeat, <br/>
+    &emsp; &emsp; but you want to continue as long as some condition is true. <br/></li>
+<li>do-while - similar to while, but the code in do loop is guaranteed to execute at least once. <br/></li>
+<li>for - when you already know how many times you need to execute the statements <br/>
+<div class="sourceCode">while(condition) {
+    //Statements to execute while true
 }
 
 do {
@@ -248,19 +281,22 @@ do {
 for(int i=0; i<5; i++) {
    //Statements to execute for condition met times
 }</div>
-Break : Execution jumps immediately to the first statement after the loop.<br/>
-Continue : Execution jumps immediately to the next iteration by skipping below code. <br/>
-Return : execution jumps back to the calling method. <br/>
-System.exit() : All program execution stops. JVM shutdown. <br/>    
-Many statements in java program can be labeled, but mostly used with break, continue <br/>
-`;
+</li>
+<li>Break : Execution jumps immediately to the first statement after the loop.<br/></li>
+<li>Continue : Execution jumps immediately to the next iteration by skipping below code. <br/></li>
+<li>Return : execution jumps back to the calling method. <br/></li>
+<li>System.exit() : All program execution stops. JVM shutdown. <br/></li>
+<li>Many statements in java program can be labeled, but mostly used with break, continue <br/></li>
+</ul>`;
 
-let javaExceptionsHTML = `Probable block of code which will raise exception will be placed in try <br/>
-We can catch multiple exceptions, with specific to generic order <br/>
-finally block if present, will always be executed irrespective of exception <br/>
-Checked exceptions: the compiler checks to make sure that they have handled or declared <br/>
-Runtime exceptions: are unchecked exceptions, which no need to handle or declare <br/>
-
+let javaExceptionsHTML = `
+<b>Exceptions </b><br/>
+<ul>
+<li>The term exception means exceptional condition and is an occurrence that alters the normal program flow. <br/></li>
+<li>A bunch of things can lead to exceptions, including hardware failures, resource exhaustion and some old-bugs. <br/></li>
+<li>Probable block of code which will raise exception will be placed in try <br/></li>
+<li>We can catch multiple exceptions, with specific to generic order <br/></li>
+<li>finally block if present, will always be executed irrespective of exception <br/>
 <div class="sourceCode">try {
     Scanner scanner = new Scanner(new File(""));
 } catch (FileNotFoundException fileNotFoundException) {
@@ -271,6 +307,15 @@ Runtime exceptions: are unchecked exceptions, which no need to handle or declare
     System.out.println("");
 }
 </div>
+</li>
+</ul>
+<b>Exception Hierarchy </b><br/>
+<img src="img/java-exceptions.svg" style="width:600px;height:400px;"/><br/>
+<b>Checked exceptions</b><br/>
+the compiler checks to make sure that they have handled or declared <br/>
+<b>Runtime exceptions</b><br/>
+are unchecked exceptions, which no need to handle or declare <br/>
+<b>Custom Exceptions</b><br/>
 We can create custom exceptions by extending Exception class <br/>
 <div class="sourceCode">Class MyException extends Exception{
     //code
@@ -278,37 +323,48 @@ We can create custom exceptions by extending Exception class <br/>
 </div>
 `;
 
-let javaMultiThreadsHTML = `A thread is a light weight process that has its own call stack          <br/>
-The main() method, that starts the whole ball rolling runs in one thread called main thread                 <br/>
-When we create a new thread, a new stack materializes and method called from that thread run in a call that separate from the main <br/>
-Every new call stack, run concurrently with other                                                            <br/>
-The jvm like mini os, schedules its own threads  regardless of the underlying us                             <br/>   
-In some jvm’s the java threads are actually mapped to native os threads.                                     <br/>   
-Different jvm’s acts differently while scheduling the threads                                                   <br/>
-We can create thread by extending Thread class, or implementing Runnable interface <br/>
-<div class="sourceCode">class MyThread extends Thread {
-    @Override
-    public void run() {
-        System.out.println("Thread executed");
+let javaMultiThreadsHTML = `
+<b>Multithreading</b><br/>
+<ul>
+<li>A thread is a light weight process that has its own call stack</li>
+<li>The main() method, that starts the whole ball rolling runs in one thread called main thread</li>
+<li>When we create a new thread, a new stack materializes and method called from that thread run in parallel to main</li>
+<li>Every new call stack, run concurrently with other</li>
+<li>The jvm like mini os, schedules its own threads  regardless of the underlying us</li>
+<li>In some jvm’s the java threads are actually mapped to native os threads</li>
+<li>We can create thread by extending Thread class, or implementing Runnable interface <br/>
+    <div class="sourceCode">class MyThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println("Thread executed");
+        }
     }
-}
-Thread thread = new MyThread();
-thread.start();
+    Thread thread = new MyThread();
+    thread.start();
 
-class Task implements Runnable {
-    @Override
-    public void run() {
-        System.out.println("Task executed");
+    class Task implements Runnable {
+        @Override
+        public void run() {
+            System.out.println("Task executed");
+        }
     }
-}
-Thread thread1 = new Thread(new Task());
-thread1.start();
-</div>
-Sleep() // static method, which to sleep the thread for some time <br/>
-Yield () //static method, It make the currently running thread to back to runnable state to allow other threads of equal priority to get their turn. <br/>
-Join() //The non-static method of class thread lets one thread “ join onto the end” of other thread main.join() <br/>
-To prevent race condition, synchronization issues we use synchronized keyword <br/>
-`;
+    Thread thread1 = new Thread(new Task());
+    thread1.start();
+    </div></li>
+<li>Sleep() // static method, which to sleep the thread for some time <br/></li>
+<li>Yield () //static method, It make the currently running thread to back to runnable state to allow other threads of equal priority to get their turn.</li>
+<li>Join() //The non-static method of class thread lets one thread “ join onto the end” of other thread main.join()</li>
+<li>To prevent race condition, synchronization issues we use synchronized keyword</li>
+</ul>
+<b>Thread Interaction </b><br/>
+The thread interaction will be done through wait(), notify(), and notifyAll() methods of object
+They must be called with in synchronized block
+<ul>
+<li>b.wait();  waits until b thread finishes</li>
+<li>notify(); used to notify one waiting threads</li>
+<li>notifyAll(); used to notify all waiting threads
+</li>
+</ul>`;
 
 
 
@@ -735,11 +791,9 @@ let javaNodeDataArray = [
     {key: "Java-String", desc: "String", group:"Initialization", category: "simple", toolTipHTML: javaStringHTML},
     {key: "Class", desc: "Class", group:"Initialization", category: "simple", toolTipHTML: javaClassHTML},
 
-    {key: "Process", desc: "Process", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
-    {key: "Java-Operators", desc: "Operators", group:"Process", category: "simple", toolTipHTML: javaOperatorHTML},
-    {key: "Java-Expressions", desc: "Expressions", group:"Process", category: "simple", toolTipHTML: javaExpressionHTML},
+    {key: "Process", desc: "Process", isGroup: true, group: "Java-Syntax", category: "grid", expand: true, toolTipHTML: javaSyntaxHTML},
     {key: "Java-Statements", desc: "Statements", group:"Process", category: "simple",toolTipHTML: javaStatementHTML},
-    {key: "Java-FlowControls", desc: "FlowControls", group:"Process", category: "simple", toolTipHTML: javaFlowControlsHTML},
+    {key: "Java-FlowControls", desc: "Conditions", group:"Process", category: "simple", toolTipHTML: javaFlowControlsHTML},
     {key: "Java-Loops", desc: "Loops", group:"Process", category: "simple", toolTipHTML: javaLoopsHTML},
     {key: "Java-Exceptions", desc: "Exceptions", group:"Process", category: "simple", toolTipHTML: javaExceptionsHTML},
     {key: "Java-Threads", desc: "Multi Threading", group:"Process", category: "simple", toolTipHTML: javaMultiThreadsHTML},
