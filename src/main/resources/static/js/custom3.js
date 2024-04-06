@@ -9,19 +9,19 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 10, width: 90, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "beige"}
+        { margin: 10, width: 90, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "#cccccc"}
     ];
 }
 
 function textStyle150() {
     return [
-        { margin: 0, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "#cccccc"}
     ];
 }
 
 function textStyleLong() {
     return [
-        { margin: 0, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "WhiteSmoke"}
+        { margin: 0, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "#999999"}
     ];
 }
 
@@ -34,14 +34,14 @@ function itemStyle() {
 function subGraphExpanderButtonStyle() {
     return [
         {
-            width: 10, height: 10, margin: 5,
+            width: 10, height: 10, margin: 0,
             "_subGraphExpandedFigure": "MinusLine",
             "_subGraphCollapsedFigure": "PlusLine",
-            // "_buttonFillNormal": "DarkSlateGray",
-            // "_buttonStrokeNormal": "DarkSlateGray",
-            // "_buttonFillOver": "DarkSlateGray",
+            "_buttonFillNormal": "DarkSlateGray",
+            "_buttonStrokeNormal": "DarkSlateGray",
+            "_buttonFillOver": "DarkSlateGray",
             "_buttonStrokeOver": "DarkSlateGray ",
-            // "ButtonBorder.fill": "DarkSlateGray"
+            "ButtonBorder.fill": "DarkSlateGray"
         }
     ];
 }

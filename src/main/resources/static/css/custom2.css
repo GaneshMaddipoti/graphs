@@ -1,7 +1,7 @@
 .tooltip {
     background: #2b2d30;
-    color: beige;
-    background-image: linear-gradient(to left, rgb(75, 75, 75), #2b2d30);
+    color: #999999;
+    background: #1B2227;
     z-index: 1000;
     display: none;
     font-family: Roboto, Arial, serif;
@@ -205,8 +205,8 @@ a {
 
 b{
     text-decoration: underline;
-    text-decoration-color: #ffcc00;
-    text-decoration-thickness: 5px;
+    text-decoration-color: #F8981D;
+    text-decoration-thickness: 1px;
     text-underline-offset: 7px;
 
 }
