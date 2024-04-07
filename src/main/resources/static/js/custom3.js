@@ -37,12 +37,12 @@ function subGraphExpanderButtonStyle() {
             width: 10, height: 10, margin: 0,
             "_subGraphExpandedFigure": "MinusLine",
             "_subGraphCollapsedFigure": "PlusLine",
-            "_buttonFillNormal": "DarkSlateGray",
-            "_buttonStrokeNormal": "DarkSlateGray",
-            "_buttonFillOver": "DarkSlateGray",
-            "_buttonStrokeOver": "DarkSlateGray ",
-            "ButtonBorder.fill": "DarkSlateGray",
-            "ButtonBorder.stroke": "DarkSlateGray",
+            "_buttonFillNormal": "#cccccc",
+            "_buttonStrokeNormal": "#cccccc",
+            "_buttonFillOver": "#cccccc",
+            "_buttonStrokeOver": "#cccccc ",
+            "ButtonBorder.fill": "#cccccc",
+            "ButtonBorder.stroke": "#cccccc",
         }
     ];
 }

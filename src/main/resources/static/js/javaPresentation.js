@@ -13,6 +13,9 @@ margin-top:100px;padding:20px;color:#F8981D">Java</div><br/>
 `;
 
 let aboutMeHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+About me
+</div>
 I am <b>Ganesh Maddipoti </b>,
 <ul>
 <li>Cloud architect with over 15 years of experience in IT</li>
@@ -32,18 +35,21 @@ I am <b>Ganesh Maddipoti </b>,
 `;
 
 let featuresHTML = `
-<b>Content Features</b>
+<div class="reqBanner"><img class="reqBannerImg"/>
+Content
+</div>
+<b>Features</b>
 <ul>
 <li>Starting with system architecture</li>
 <li>Program execution with internals </li>
 <li>Learning along by coding an application</li>
 <li>Language fundamentals to advanced features</li>
 </ul>
-<b>Content Presentation</b><br/>
+<b>Presentation</b><br/>
 <ul>
 <li>Simple enough to understand</li>
 <li>Block diagram with flow</li>
-<li>Coding in Intellij IDE</li>
+<li>Coding in parallel with Intellij IDE</li>
 <li>One flow without any deviations</li>
 </ul>
 <b>Users</b>
@@ -55,8 +61,12 @@ A system is collection of components, serves set of users with set of requiremen
 `;
 
 let javaHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to give instructions to the system ?
+</div>
 <b>Programming Language</b><br/>
-A programming language is a set of instructions written by a programmer to deliver instructions to the computer to perform and accomplish a task<br/>
+A programming language is a set of instructions written by a programmer to deliver instructions <br/>
+to the system to perform and accomplish a task<br/>
 Ex: Assembly language, C, Python, etc... <br/>
 <br/>
 <b>Java</b> <br/>
@@ -84,6 +94,9 @@ Ex: byte value = (byte) 1000;
 `;
 
 let javaLiteralHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to represent data in program ?
+</div>
 <b>Literals</b><br/>
 <ul>
 <li>We need literals to represent data</li>
@@ -104,10 +117,13 @@ Ex: double val = 23.456;
 `;
 
 let javaDataTypeHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to specify the type of data ?
+</div>
 <b>Data Types </b>
 <ul>
 <li>Java is statically typed language</li>
-<li>Data type is either primitive or object <br/>
+<li>Data is declared of type primitive, array, string, and object <br/>
 <li>There are 8 primitive data types <br/>
 <table>
 <tr><td>1)</td><td width="200px">boolean</td><td>1 bit</td></tr>
@@ -132,6 +148,9 @@ Every enum has a static method, values() that returns an array of the enum’s v
 `;
 
 let javaVariableHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Where to store data temporarily during processing ?
+</div>
 <b>Variables</b><br/>
 <ul>
 <li>Variables with given name, used to store and retrieve information in memory <br/>
@@ -153,18 +172,21 @@ There are rules for legal variable names/identifiers.
 `;
 
 let javaStatementHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to represent an instruction to execute by the system?
+</div>
 <b>Statement </b><br/>
 It's a complete command to be executed <br/>
-It can include one or more expressions <br/>
+It can include assignment/one or more expressions <br/>
 Ex : total = orderValue + tax; <br/>
 <br/>
 <b>Expression </b><br/>
-An expression is a coding construct, that evaluates to a single value <br/>
+An expression is a construct with operator and operands, that evaluates to a single value <br/>
 This will be the code segment on the right side of = operator, in an assignment or declaration statement <br/>
 Ex : (orderNumber + 100) <br/>
 <br/>
 <b>Operators</b><br/>
-The operator performs an operation on variable values its used with <br/>
+The operator performs an operation on variables/literals its used with <br/>
 Ex : +, -, *, >, etc... <br/>
 <table>
 <tr><td>1)</td><td width="300px">Assignment</td><td>=</td></tr>
@@ -180,6 +202,9 @@ Ex : +, -, *, >, etc... <br/>
 `;
 
 let javaArraysHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to store homogeneous collection of data ?
+</div>
 <b>Arrays</b><br/>
 Arrays are objects that store multiple variables of the same type or variables that are all subclasses of the same type.<br/>
 <br/>
@@ -200,15 +225,45 @@ They are indexed from 0 <br/>
 `;
 
 let javaStringHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to represent words or sentences ?
+</div>
 <b>Strings</b><br/>
 <ul>
 <li>A string is an object that contains a sequence of characters. <br/>
     Ex: String name = "Sample sentence."; <br/></li>
 <li>Strings are immutable</li>
+<li>To make memory efficient, the JVM sets aside a memory called the “String Constant Pool”.</li>
+<li>For string literal, it checks the pool to see if an identical string already exists. <br/>
+If match is found, the reference to the new literal is directed to the existing string.</li>
 </ul>
+<b>Creating new Strings </b><br/>
+String s = “abc”; <br/>
+String s = new String(“abc”); – in this case 2 objects will be created in pool and in heap<br/>
+<br/>
+<b>Methods in string class </b>
+<ol>
+<li>charAt(int radix) : returns the character located at the index.</li>
+<li>concat(String s) : concatenates with the passed string and returns</li>
+<li>equalsIgnoreCase(String s) : checks the strings are equal ignoring case and returns true/false </li>
+<li>length() : this method returns length</li>
+<li>trim(): will trim the spaces before and after string</li>
+<li>substring(int begin, int end): returns sub string indexing from begin to end-1</li>
+<li>replace(char old, char new) : replaces all old character occurrence with new character</li>
+</ol>
+<br/>
+<b>Performance improvements </b><br/>
+when you are making a lot of modifications to strings of characters, better to use
+<ol>
+<li>StringBuffer       -              thread safe</li>
+<li>StringBuilder      -              not thread safe</li>
+</ol>
 `;
 
 let javaClassHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to create custom data types/represent real time objects ?
+</div>
 <b>Class</b><br/>
 <ul>
 <li>It's a template to create objects, and we use it to create custom data types</li>
@@ -229,13 +284,84 @@ final - if applied to class, it can't be subclassed <br/>
 abstract - if applied to class, it cant be initialized <br/>
 &emsp;&emsp;&emsp; - if applied to methods, no need to implement it<br/>
 strictfp - if applied to class, all methods are complied to IEEE standard for FP. <br/>
-&emsp;&emsp;&emsp; - if applied to method, only that method is complied to IEEE FP.
+&emsp;&emsp;&emsp; - if applied to method, only that method is complied to IEEE FP.<br/>
+<br/>
+<b>Abstract Class</b><br/>
+We get code re-use through inheritance by placing all common functionality in super class <br/>
+And leave the specific behavior to sub classes by putting abstract keyword before that method<br/>
+Even one method is abstract total class is abstract so we have to specify the class as abstract.<br/>
+You can’t instantiate an abstract class. <br/>
+<div class="sourceCode">public abstract class Animal{
+    public abstract void eat();
+}</div>
+<br/>
+<b>Constructors</b><br/>
+Objects are constructed. <br/>
+You can’t make a object without invoking constructor and superclass constructors in chain. <br/>
+They run whenever you use the keyword new <br/>
+Every class including abstract classes, must have a constructor. <br/>
+They have no return types, but name must exactly match with the class name. <br/>
+Typically, constructors are used to initialize instance variable state. <br/>
+If you don’t type a constructor, the compiler will generate implicitly.<br/>
+If you type any constructor then compiler wont generate no-arg constructor <br/>
+`;
+
+let javaInterfaceHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Why we need an interface ?
+</div>
+<b>Interface</b><br/>
+Think of interface as 100% abstract class <br/>
+It is used to declare the contract, for what a class can do without implementation <br/>
+It is used mainly for loose coupling <br/>
+A class can extend only one class but implement many interfaces <br/>
+<ol>
+<li>All interface variables must be public static final</li>
+<li>All interface methods are implicitly public abstract</li>
+<li>An interface can extend one or more other interfaces</li>
+<li>Interface methods must not be static,final,native,strictfp.</li>
+</ol>
+<div class="sourceCode">public interface Printable {
+    public void print();
+}</div>
+<br/>
+<b>Functional Interface</b><br/>
+Any interface with single abstract method is a functional interface <br/>
+<div class="sourceCode">@FunctionalInterface
+public interface Function<T, R> {
+    R apply(T t);
+}</div>
+There are 3 main functional interfaces <br/>
+1. Predicate - test method and return true/false <br/>
+2. Function - apply method take input apply the function and return output <br/>
+3. Consumer - consume method take input and returns nothing <br/>
+`;
+
+
+let javaLambdasHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What are Lambda expressions ?
+</div>
+<b>Lambda</b> <br/>
+Lambda expressions basically express instances of functional interfaces <br/>
+Lambda Expressions are the short block of code that accepts input as parameters and perform an action on it<br/>
+<div class="sourceCode">interface FuncInterface {
+    void abstractFun(int x);
+}
+FuncInterface fobj = (int x)->System.out.println(2*x);
+fobj.abstractFun(5);
+</div>
+<br/>
+
 `;
 
 let javaFlowControlsHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Can we change the control flow based on a condition ?
+</div>
 <b>Conditions</b> <br/>
 The if & switch statements are decision / conditional controls  <br/>
-that allow your program to behave differently on the result of logical test.<br/>
+that allow your program to change the control flow on the result of logical test.<br/>
 <br/>
 <div class="sourceCode">if (condition) {
     //statements to execute if true
@@ -260,6 +386,9 @@ switch (condition) { //condition can be int, string, enum
 `;
 
 let javaLoopsHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to execute the statement iteratively up to some times?
+</div>
 <b>Loops</b><br/>
 In situations, where we want to perform task iteratively until a condition met. <br/>
 We can use while, do-while, or for loops <br/>
@@ -290,6 +419,9 @@ for(int i=0; i<5; i++) {
 </ul>`;
 
 let javaExceptionsHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Can we handle errors/exceptions at runtime ?
+</div>
 <b>Exceptions </b><br/>
 <ul>
 <li>The term exception means exceptional condition and is an occurrence that alters the normal program flow. <br/></li>
@@ -324,6 +456,9 @@ We can create custom exceptions by extending Exception class <br/>
 `;
 
 let javaMultiThreadsHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Does java support parallel processing ?
+</div>
 <b>Multithreading</b><br/>
 <ul>
 <li>A thread is a light weight process that has its own call stack</li>
@@ -369,6 +504,12 @@ They must be called with in synchronized block
 
 
 let javaWrapperClassHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Why we need wrapper classes for primitive data types ?
+</div>
+<b>Wrapper classes </b><br/>
+In Java, everything is an object, except primitives <br/>
+While using collections and generics these wrapper classes come into play <br/>
 A wrapper class provides the basic operations like the corresponding primitive data type <br/>
 as well as some information about the primitive data type stored in it, which can not be stored in primitive itself <br/>
 Ex: Integer length = 0;         <br/>
@@ -386,25 +527,28 @@ Integer wraparounds (Integer.MAX_VALUE + 1)(2147483647+1) to -2147483648 (Intege
 `;
 
 let javaCollectionsHTML = `
- It is framework to maintain your larger collections of data. <br/>
-Basic operations are <br/>
+<div class="reqBanner"><img class="reqBannerImg"/>
+Is there any API/Framework to manage different collections of data ?
+</div>
+<b>Collection Framework </b><br/>
+ It is framework to maintain larger collections of data. <br/>
 1). Add objects to it. <br/> 
 2). Remove objects from the collection <br/>
 3). Searching for an object. <br/>
 4). Retrieving an object from the collection <br/>
 5). Iterating through the collection  <br/>
 <br/>
-List Interface : An ordered, indexed collection of objects <br/>
+<b>List Interface </b>: An ordered, indexed collection of objects <br/>
 1). ArrayList : Think of this as a growable array. It gives you fast iteration and fast random access. <br/>
 2). Vector : Vector is basically the same as arrayList, but vendor methods are synchronized <br/>
 3). Linked List: The elements are doubly-linked to one another. Iteration is slow, but its good for fast insertion and deletion. <br/>
 <br/>
-Set Interface : Unordered collection of unique objects <br/>
+<b>Set Interface </b>: Unordered collection of unique objects <br/>
 1). Hash Set : A Hash set in unsorted, unordered set <br/>
 2). LinkedHashSet : Its an ordered version of HashSet. That maintains a doubly-linked list across all elements <br/>
 3). TreeSet : It’s a sorted collection, means all elements will be in ascending order. <br/>
 <br/>
-Map Interface : Unordered collection of key,value pairs <br/> 
+<b>Map Interface </b>: Unordered collection of key,value pairs <br/>
 A Map cares about unique identities, a unique key and the value. <br/>
 1). HashMap : HashMap gives you an unsorted, unordered map. <br/>
 HashMap allows one null key and multiple null values. <br/>
@@ -414,18 +558,34 @@ HashTable doesn't allow any null values or null key. <br/>
 4). TreeMap : It’s a sorted map. <br/>
 <br/>
 <b>Comparable vs. Comparator </b> <br/>
-Class must be implementing comparable interface. <br/>
-CompareTo() method returns an int    <br/>
-1). Negative if x is less than y                 <br/>
-2). Zero if x==y                        <br/>
-3). Positive x is greater than y                        <br/>
-Collections.sort(collection) - will use compareTo method to sort the elements <br/>
-By implementing comparator also we can do sort. <br/>
-The Comparator interface defines a compare(arg1, arg2) method <br/>
-Collections.sort(collection, myComparator) - will use compare method to sort the elements <br/>
+if we want to use Arrays or Collections sort method, <br/>
+Use Comparable if you need to sort by a property <br/>
+Use Comparator if you need to have multiple sort mechanisms on the class <br/>
+<br/>
+<div class="sourceCode">public class MyCollection implements Comparable<MyCollection>{
+    private int prop;
+    private int salary;
+
+    @Override
+    public int compareTo(MyCollection target) {
+        return this.prop - target.prop;
+    }
+}
+
+class SalaryComparator implements Comparator<MyCollection> {
+    @Override
+    public int compare(MyCollection o1, MyCollection o2) {
+        return o1.getSalary() - o2.getSalary();
+    }
+}
+</div>
 `;
 
-let javaGenericsHTML = `<b>Generic Classes </b> <br/>
+let javaGenericsHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Can we have dynamic type properties and dynamic type argument methods ?
+</div>
+<b>Generic Classes </b> <br/>
 We can make a class more generic by adding &lt; &gt; <br/>
 <div class="sourceCode">class Printer&lt;T extends Animal & Serializable &gt; {
     T object;
@@ -442,6 +602,7 @@ N - Number                                                       <br/>
 T - Type                                                         <br/>   
 V - Value                                                        <br/>   
 S,U,V etc. - 2nd, 3rd, 4th types                                 <br/>
+<br/>
 <b>Generic Methods</b> <br/>
 We can also make a method generic by adding &lt; &gt;
 <div class="sourceCode">public static &lt;T&gt; void print(T thing) {
@@ -469,7 +630,12 @@ let javaSpliteratorsHTML = `Spliterator is an interface used to traverse and par
     until all elements have been processed or the action throws an exception. <br/>
 `;
 
-let javaStreamsHTML = ` Stream API is used to process collections of objects <br/>
+let javaStreamsHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What are the benefits/Why we need Streams ?
+</div>
+<b>Streams </b> <br/>
+Stream API is used to process collections of objects, without external iteration/iterators <br/>
 It supports various methods which can be pipelined to produce the desired result. <br/>
 Enable us to perform operations like filtering, mapping,reducing and sorting. <br/>
 <div class="sourceCode">Stream&lt;T&gt; stream;</div> 
@@ -492,27 +658,9 @@ These Operations are not processed further just return a final result value. <br
 3) Laziness <br/>
 4) Can be infinite <br/>
 5) Can be parallelized <br/>
-6) Can be created from collections, arrays, Files Lines, Methods in Stream, IntStream etc. <br/>
-
-
+6) Can be created from collections, arrays, Files Lines <br/>
 `;
 
-let javaLambdasHTML = `
-Lambda expressions basically express instances of functional interfaces <br/>
-An interface with a single abstract method is called a functional interface. <br/>
-Lambda Expressions are the short block of code that accepts input as parameters and returns a resultant value. <br/>
-<div class="sourceCode">interface FuncInterface {    
-    void abstractFun(int x);
-}
-FuncInterface fobj = (int x)->System.out.println(2*x); 
-fobj.abstractFun(5);
-</div> 
-<br/>
-<b>There are 3 main functional interfaces</b> <br/>
-1. Predicate - test method and return true/false <br/>
-2. Function - apply method take input apply the function and return output <br/>
-3. Consumer - consume method take input and returns nothing <br/>
-`;
 
 let javaProgrammingHTML = `Programming is about data analysis, data ingestion, data transformation, and data generation <br/>
 `;
@@ -790,6 +938,8 @@ let javaNodeDataArray = [
     {key: "Java-Arrays", desc: "Arrays", group:"Initialization", category: "simple", toolTipHTML: javaArraysHTML},
     {key: "Java-String", desc: "String", group:"Initialization", category: "simple", toolTipHTML: javaStringHTML},
     {key: "Class", desc: "Class", group:"Initialization", category: "simple", toolTipHTML: javaClassHTML},
+    {key: "Interface", desc: "Interface", group:"Initialization", category: "simple", toolTipHTML: javaInterfaceHTML},
+    {key: "Java-Lambdas", desc: "Lambdas", group:"Initialization", category: "simple", toolTipHTML: javaLambdasHTML},
 
     {key: "Process", desc: "Process", isGroup: true, group: "Java-Syntax", category: "grid", expand: true, toolTipHTML: javaSyntaxHTML},
     {key: "Java-Statements", desc: "Statements", group:"Process", category: "simple",toolTipHTML: javaStatementHTML},
@@ -798,14 +948,13 @@ let javaNodeDataArray = [
     {key: "Java-Exceptions", desc: "Exceptions", group:"Process", category: "simple", toolTipHTML: javaExceptionsHTML},
     {key: "Java-Threads", desc: "Multi Threading", group:"Process", category: "simple", toolTipHTML: javaMultiThreadsHTML},
 
-    {key: "Java-OOP", desc: "OOP", isGroup: true, group: "Java-Syntax", category: "grid", expand: false},
+    {key: "Java-OOP", desc: "API", isGroup: true, group: "Java-Syntax", category: "grid", expand: true},
 
     {key: "Java-WrapperClass", desc: "Wrapper Classes", group:"Java-OOP", category: "simple", toolTipHTML: javaWrapperClassHTML},
     {key: "Java-Collections", desc: "Collections", group:"Java-OOP", category: "simple", toolTipHTML: javaCollectionsHTML},
     {key: "Java-Generics", desc: "Generics", group:"Java-OOP", category: "simple", toolTipHTML: javaGenericsHTML},
     {key: "Java-Iterators", desc: "Iterators", group:"Java-OOP", category: "simple", toolTipHTML: javaIteratorsHTML},
     {key: "Java-Spliterators", desc: "Spliterators", group:"Java-OOP", category: "simple", toolTipHTML: javaSpliteratorsHTML},
-    {key: "Java-Lambdas", desc: "Lambdas", group:"Java-OOP", category: "simple", toolTipHTML: javaLambdasHTML},
     {key: "Java-Streams", desc: "Streams", group:"Java-OOP", category: "simple", toolTipHTML: javaStreamsHTML},
 
     {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java Language", expand: false, category: "grid"},
@@ -868,7 +1017,7 @@ let javaNodeDataArray = [
 
     {key: "Title", desc: "Title", category: "simplePic", group: "Presentation", toolTipHTML: titleHTML},
     {key: "About Me", desc: "About Me", category: "simplePic", img: "img/PP.jpg", group: "Presentation", toolTipHTML: aboutMeHTML},
-    {key: "Features", desc: "Features", category: "simplePic", group: "Presentation", toolTipHTML: featuresHTML},
+    {key: "Features", desc: "Content", category: "simplePic", group: "Presentation", toolTipHTML: featuresHTML},
 
 
 ];
@@ -889,6 +1038,7 @@ let javaLinkDataArray = [
     {from:"Java-Input", to: "Java-Process", category: "simplelink"},
     {from:"Java-Process", to: "Java-Output", category: "simplelink"},
     {from:"Java-Syntax", to: "Java-Semantics", category: "simplelink"},
+    {from:"Initialization", to: "Process", category: "invisibleLink"},
 //    {from:"Java-Semantics", to: "Java-Solid", category: "simplelink"},
 {key: "scToCompiler", from: "Java Source Code", to: "Java Compiler", category: "simplelink"},
     {key: "compilerToBC", from: "Java Compiler", to: "Java Byte Code", category: "simplelink"},

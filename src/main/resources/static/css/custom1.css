@@ -58,7 +58,7 @@
     white-space: pre;
     font-weight: lighter;
     letter-spacing: 1px;
-    /*max-width: 700px;*/
+    width: 80%;
     font-size: 15px;
     line-height: 150%;
 }
