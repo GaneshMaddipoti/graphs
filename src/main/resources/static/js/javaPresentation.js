@@ -269,7 +269,20 @@ How to create custom data types/represent real time objects ?
 <li>It's a template to create objects, and we use it to create custom data types</li>
 <li>Class contain properties and methods which operate on properties</li>
 <li>Class names and method names are also should follow legal identifier rules <br/>
+<li>Objects are created by using constructor method</li>
+<li>Initialization blocks run when the class first loaded (static initialization block) <br/>
+or when an instance is created (an instance initialization block)</li>
 </ul>
+<b>Constructors</b><br/>
+Objects are constructed. <br/>
+You can’t make a object without invoking constructor and superclass constructors in chain. <br/>
+They run whenever you use the keyword new <br/>
+Every class including abstract classes, must have a constructor. <br/>
+They have no return types, but name must exactly match with the class name. <br/>
+Typically, constructors are used to initialize instance variable state. <br/>
+If you don’t type a constructor, the compiler will generate implicitly.<br/>
+If you type any constructor then compiler wont generate no-arg constructor <br/>
+<br/>
 <b>Access Modifiers </b><br/>
 We can modify class/members access using public, protected, default, private <br/>
 public - access to all classes in application <br/>
@@ -295,15 +308,29 @@ You can’t instantiate an abstract class. <br/>
     public abstract void eat();
 }</div>
 <br/>
-<b>Constructors</b><br/>
-Objects are constructed. <br/>
-You can’t make a object without invoking constructor and superclass constructors in chain. <br/>
-They run whenever you use the keyword new <br/>
-Every class including abstract classes, must have a constructor. <br/>
-They have no return types, but name must exactly match with the class name. <br/>
-Typically, constructors are used to initialize instance variable state. <br/>
-If you don’t type a constructor, the compiler will generate implicitly.<br/>
-If you type any constructor then compiler wont generate no-arg constructor <br/>
+<b>Nested Classes</b><br/>
+If a class is useful to only one other class, then it is logical to embed it in that class and keep the two together. <br/>
+Ex: Helper classes, Builder classes <br/>
+Nested classes can also be static like properties and methods <br/>
+<div class="sourceCode">public class OuterClass {
+    public class NestedClass {
+        public void doNothing() {
+            System.out.println("nested");
+        }
+    }
+    public static class StaticNestedClass {
+        public void doSomething() {
+            System.out.println("static nested");
+        }
+    }
+    public static void main(String[] args) {
+        OuterClass.StaticNestedClass staticNestedClass = new OuterClass.StaticNestedClass();
+        staticNestedClass.doSomething();
+        OuterClass outerClass = new OuterClass();
+        OuterClass.NestedClass nestedClass = outerClass.new NestedClass();
+        nestedClass.doNothing();
+    }
+}</div>
 `;
 
 let javaInterfaceHTML = `
@@ -728,57 +755,245 @@ Write data to Databases <br/>
 Write data over Network <br/>
 `;
 
-let javaSPSingleRespHTML = `a class should only have one responsibility <br/>`;
-let javaSPOpenCloseHTML = `classes should be open for extension but closed for modification <br/>`;
-let javaSPLiskovSubHTML = `Objects of a superclass should be replaceable with objects of its subclasses without breaking the system.<br/>`;
-let javaSPInterfaceSegregationHTML = `No client should be forced to depend on methods that it does not use.<br/>`;
-let javaSPDIHTML = `High-level modules should not depend on low-level modules, both should depend on abstractions. <br/>`;
+let javaSPSingleRespHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is Single Responsibility principle ?
+</div>
+<b>Single Responsibility</b> <br/>
+a class should only have one responsibility, and one reason to change <br/>
+<br/>
+<b>How to follow </b><br/>
+Class should have methods that directly relate to its properties <br/>
+<br/>
+<b>Benefits</b><br/>
+1) Testing – A class with one responsibility will have far fewer test cases. <br/>
+2) Lower coupling – Less functionality in a single class will have fewer dependencies. <br/>
+3) Organization – Smaller, well-organized classes are easier to search than monolithic ones. <br/>
+<div class="sourceCode">public class Book {
+    private String name;
+    private String author;
+    private String text;
+    //constructor, getters and setters
+    // methods that directly relate to the book properties
+    public String replaceWordInText(String word, String replacementWord){
+        return text.replaceAll(word, replacementWord);
+    }
+    public boolean isWordInText(String word){
+        return text.contains(word);
+    }
+}
+</div>
+`;
 
 
-let javaDPSingletonHTML = `The singleton pattern restricts the instantiation of a Class and ensures that 
+let javaSPOpenCloseHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is Open for extension Closed for modification principle ?
+</div>
+<b>Open for extension Closed for modification</b> <br/>
+classes should be open for extension but closed for modification <br/>
+i.e., should be able to add new features to a class without changing its existing code <br/>
+<br/>
+<b>How to follow</b><br/>
+1) Abstraction and inheritance <br/>
+2) code for interface <br/>
+<div class="sourceCode">interface Shape {
+  int area();
+}
+
+class Circle implements Shape {
+  int r;
+  int area() { return Math.PI*r*r*;}
+}
+
+class Square() implements {
+  int height;
+  int area() { return height * height; }
+}
+</div>`;
+
+let javaSPLiskovSubHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is Liskov Substitution principle ?
+</div>
+<b>Liskov Substitution </b> <br/>
+Objects of a superclass should be replaceable with objects of its subclasses without breaking the system.<br/>
+That requires the objects of your subclasses to behave in the same way as the objects of your superclass.<br/>
+i.e., we should provide valid implementation in subclass for all inherited behavior from super class <br/>
+<div class="sourceCode">public class Bird{}
+public class FlyingBird extends Bird{
+    public void fly(){}
+}
+public class Duck extends FlyingBird{}
+public class Ostrich extends Bird{}
+</div>
+`;
+
+let javaSPInterfaceSegregationHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is Interface segregation principle ?
+</div>
+<b>Interface segregation </b> <br/>
+No client should be forced to depend on methods that it does not use.<br/>
+i.e., larger interfaces should be split into smaller ones. By doing so, <br/>
+we can ensure that implementing classes only need to be concerned about the methods that are of interest to them.
+<div class="sourceCode">public class Bird{}
+public class FlyingBird extends Bird{
+    public void fly(){}
+}
+public class Duck extends FlyingBird{}
+public class Ostrich extends Bird{}
+</div>
+`;
+
+let javaSPDIHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is Dependency Inversion principle ?
+</div>
+<b>Dependency Inversion </b> <br/>
+High-level modules should not depend on low-level modules, both should depend on abstractions. <br/>
+This can be achieved by layers of abstraction <br/>
+Ex: Controller -> Service -> DAO <br/>
+<div class="sourceCode">public class CustomerService {
+    private final CustomerDao customerDao;
+    // standard constructor / getter
+    public Optional<Customer> findById(int id) {
+        return customerDao.findById(id);
+    }
+    public List<Customer> findAll() {
+        return customerDao.findAll();
+    }
+}
+public interface CustomerDao {
+    Optional<Customer> findById(int id);
+    List<Customer> findAll();
+}
+`;
+
+
+let javaDPSingletonHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to restrict object creation of a class to create single instance ?
+</div>
+<b>Singleton Design Pattern </b> <br/>
+The singleton pattern restricts the instantiation of a Class and ensures that  <br/>
 only one instance of the class exists in the Java Virtual Machine. <br/>
 <div class="sourceCode">class Singleton {    
-    private static Singleton single_instance = null;     
-    public static Singleton Singleton() { 
+    private static Singleton single_instance = null;
+    private String info = "Default";
+    private Singleton() {}
+    public synchronized static Singleton getInstance() {
         if (single_instance == null) {
             single_instance = new Singleton();
         }
         return single_instance;
     }
+
+public class BillPughSingleton {
+    private BillPughSingleton(){}
+    private static class SingletonHelper {
+        private static final BillPughSingleton INSTANCE = new BillPughSingleton();
+    }
+    public static BillPughSingleton getInstance() {
+        return SingletonHelper.INSTANCE;
+    }
+}
 </div>
 `;
 
-let javaDPFactoryHTML = `Its used when we have a superclass with multiple subclasses and based on input, 
-we need to return one of the subclass. <br/>
-<div class="sourceCode">public class ComputerFactory {
-        public static Computer getComputer(String type, String ram, String hdd, String cpu){
-        if("PC".equalsIgnoreCase(type)) return new PC(ram, hdd, cpu);
-        else if("Server".equalsIgnoreCase(type)) return new Server(ram, hdd, cpu);
-        return null;
-    }
-}</div>`;
+let javaDPFactoryHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to reuse conditional object creation ?
+</div>
+<b>Factory Design Pattern </b> <br/>
+Its used when we have a superclass with multiple subclasses <br/>
+and based on input, we need to return one of the subclass. <br/>
+This pattern takes out the responsibility of the instantiation of a class from the client program<br/>
+We can keep Factory class Singleton or we can keep the method that returns the subclass as static.<br/>
+<div class="sourceCode">public abstract class Computer {
+}
 
-let javaDPAbstractFactoryHTML = `It is a factory of factory design pattern. <br/>`;
+public class PC extends Computer {
+}
 
-let javaDPBuilderHTML = `By providing a constructor with required parameters 
+public class ComputerFactory {
+    public static Computer getComputer(){
+    if("PC".equalsIgnoreCase(type)) return new PC();
+    else if("Server".equalsIgnoreCase(type)) return new Server();
+    return null;
+}
+</div>`;
+
+let javaDPAbstractFactoryHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to avoid conditional logic in factory pattern ?
+</div>
+<b>Factory Design Pattern </b> <br/>
+It is a factory of factories <br/>
+Abstract Factory pattern is robust and avoid conditional logic of Factory pattern.<br/>
+<div class="sourceCode">public interface ComputerAbstractFactory {
+    public Computer createComputer();
+}
+public class ComputerFactory {
+	public static Computer getComputer(ComputerAbstractFactory factory){
+		return factory.createComputer();
+	}
+}
+public class PCFactory implements ComputerAbstractFactory {
+	@Override
+	public Computer createComputer() {
+		return new PC(ram,hdd,cpu);
+	}
+}
+</div>
+`;
+
+let javaDPBuilderHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to simplify constructing huge object with mandatory and optional properties?
+</div>
+<b>Builder Design Pattern </b> <br/>
+First of all you need to create a static nested class <br/>
+and then copy all the arguments from the outer class to the Builder class.<br/>
+By providing a constructor with required parameters
 and then different setter methods to set the optional parameters. <br/>
-<div class="sourceCode">public static class ComputerBuilder{
+<div class="sourceCode">public class Computer {
     private String HDD;
     private String RAM;
     private boolean isGraphicsCardEnabled;
     private boolean isBluetoothEnabled;
-    public ComputerBuilder(String hdd, String ram){
-        this.HDD=hdd;
-        this.RAM=ram;
+    private Computer(ComputerBuilder builder) {
+        this.HDD=builder.HDD;
+        this.RAM=builder.RAM;
+        this.isGraphicsCardEnabled=builder.isGraphicsCardEnabled;
+        this.isBluetoothEnabled=builder.isBluetoothEnabled;
     }
-    public ComputerBuilder setGraphicsCardEnabled(boolean isGraphicsCardEnabled) {
-        this.isGraphicsCardEnabled = isGraphicsCardEnabled;
-        return this;
+    public static class ComputerBuilder{
+        private String HDD;
+        private String RAM;
+        private boolean isGraphicsCardEnabled;
+        private boolean isBluetoothEnabled;
+        public ComputerBuilder(String hdd, String ram){
+            this.HDD=hdd;
+            this.RAM=ram;
+        }
+        public ComputerBuilder setGraphicsCardEnabled(boolean isGraphicsCardEnabled) {
+            this.isGraphicsCardEnabled = isGraphicsCardEnabled;
+            return this;
+        }
+        public Computer build(){
+            return new Computer(this);
+        }
     }
 }</div>
 `;
 
-let javaDPPrototypeHTML = `It is used when the Object creation is a costly affair and requires <br/> 
+let javaDPPrototypeHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to use cloning instead of object initialization which is resource heavy ?
+</div>
+<b>Prototype Design Pattern </b> <br/>
+It is used when the Object creation is a costly affair and requires <br/>
 a lot of time and resources, and you have a similar object already existing. <br/> 
 It provides a mechanism to copy the original object to a new object and then modify it according to our needs. <br/> 
 Prototype design pattern uses java cloning to copy the object. <br/>
@@ -794,21 +1009,49 @@ Prototype design pattern uses java cloning to copy the object. <br/>
 }</div>
 `;
 
-let javaDPAdapterHTML = `It's used so that two unrelated interfaces can work together.<br/> 
+let javaDPAdapterHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to combine the functionality of two independent interfaces ?
+</div>
+<b>Adapter Design Pattern </b> <br/>
+It's used so that two unrelated interfaces can work together.<br/>
 The object that joins these unrelated interface is called an Adapter. <br/>
-<div class="sourceCode">public class Iphone4sTo6sAdapter implements Charger{
-    Iphone4sCharger iphone4sCharger;
-    Iphone4sTo6sAdapter()    {
-        iphone4sCharger = new Iphone4sCharger();
-    }
-    @Override
-    public void charge()    {
-        iphone4sCharger.charge();
-    }
+<div class="sourceCode">public interface MediaPlayer {
+   public void play(String audioType, String fileName);
+}
+public interface AdvancedMediaPlayer {
+   public void playVlc(String fileName);
+   public void playMp4(String fileName);
+}
+public class MediaAdapter implements MediaPlayer {
+   AdvancedMediaPlayer advancedMusicPlayer;
+   public MediaAdapter(String audioType){
+      if(audioType.equalsIgnoreCase("vlc") ){
+         advancedMusicPlayer = new VlcPlayer();
+      }else if (audioType.equalsIgnoreCase("mp4")){
+         advancedMusicPlayer = new Mp4Player();
+      }
+   }
+   @Override
+   public void play(String audioType, String fileName) {
+      if(audioType.equalsIgnoreCase("vlc")){
+         advancedMusicPlayer.playVlc(fileName);
+      }
+      else if(audioType.equalsIgnoreCase("mp4")){
+         advancedMusicPlayer.playMp4(fileName);
+      }
+   }
+}
 }</div>
 `;
 
-let javaDPStrategyHTML = `It is used when we have multiple algorithm for a specific task and client decides the actual implementation to be used at runtime. <br/>
+let javaDPStrategyHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to apply behavior at runtime ?
+</div>
+<b>Strategy Design Pattern </b> <br/>
+It is used when we have multiple algorithm for a specific task <br/>
+and client decides the actual implementation to be used at runtime. <br/>
 <div class="sourceCode">public interface PaymentStrategy {
     public void pay(int amount);
 }    
@@ -826,7 +1069,12 @@ public class ShoppingCart {
 }</div>
 `;
 
-let javaDPCompositeHTML = `When we need to create a structure in a way that the objects in the structure has to be treated the same way <br/>
+let javaDPCompositeHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to group same type of objects and treat as single object ?
+</div>
+<b>Composite Design Pattern </b> <br/>
+Composite pattern is used where we need to treat a group of objects in similar way as a single object. <br/>
 <div class="sourceCode">public class Drawing implements Shape {
     private List&lt;Shape&gt; shapes = new ArrayList&lt;Shape&gt;();
     @Override
@@ -838,7 +1086,12 @@ let javaDPCompositeHTML = `When we need to create a structure in a way that the 
 }</div>
 `;
 
-let javaDPProxyHTML = `Provide a surrogate or placeholder for another object to control access to it<br/>
+let javaDPProxyHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to add layer of security/control to the existing functionality <br/>
+</div>
+<b>Proxy Design Pattern </b> <br/>
+Provide a surrogate or placeholder for another object to control access to it<br/>
 <div class="sourceCode">public class CommandExecutorProxy implements CommandExecutor {
     private boolean isAdmin;
     private CommandExecutor executor;
@@ -861,19 +1114,27 @@ let javaDPProxyHTML = `Provide a surrogate or placeholder for another object to 
 }</div>
 `;
 
-let javaDPFlyWeightHTML = `It is used when we need to create a lot of Objects of a class. <br/>
+let javaDPFlyWeightHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to implement a cache of objects to optimize memory ?
+</div>
+<b>FlyWeight Design Pattern </b> <br/>
+It is used when we need to create a lot of Objects of a class. <br/>
 Since every object consumes memory space that can be crucial for low memory devices, <br/>
 it can be applied to reduce the load on memory by sharing objects. <br/>
+Note : We use pooling mechanism to optimize time while creating an object <br/>
 <div class="sourceCode">public class ShapeFactory {
     private static final HashMap&lt;ShapeType, Shape&gt; shapes = new HashMap&lt;ShapeType, Shape&gt;();
     public static Shape getShape(ShapeType type) {
         Shape shapeImpl = shapes.get(type);
-        if (type.equals(ShapeType.OVAL_FILL)) {
-            shapeImpl = new Oval(true);
-        } else if (type.equals(ShapeType.OVAL_NOFILL)) {
-            shapeImpl = new Oval(false);
-        } else if (type.equals(ShapeType.LINE)) {
-            shapeImpl = new Line();
+        if (shapeImpl == null) {
+            if (type.equals(ShapeType.OVAL_FILL)) {
+                shapeImpl = new Oval(true);
+            } else if (type.equals(ShapeType.OVAL_NOFILL)) {
+                shapeImpl = new Oval(false);
+            } else if (type.equals(ShapeType.LINE)) {
+                shapeImpl = new Line();
+            }
         }
         shapes.put(type, shapeImpl);
     }
@@ -881,27 +1142,62 @@ it can be applied to reduce the load on memory by sharing objects. <br/>
 }</div>
 `;
 
-let javaDPFacadeHTML = `It is used to help client applications easily interact with the system.<br/>`;
+let javaDPFacadeHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to add simple layer/interface to hide complex functionality ?
+</div>
+<b>Facade Design Pattern </b> <br/>
+It is used to help client applications easily interact with the system.<br/>
+<div class="sourceCode">public class CarEngineFacade {
+    private static int DEFAULT_COOLING_TEMP = 90;
+    private static int MAX_ALLOWED_TEMP = 50;
+    private FuelInjector fuelInjector = new FuelInjector();
+    private AirFlowController airFlowController = new AirFlowController();
+    private Starter starter = new Starter();
+    private CoolingController coolingController = new CoolingController();
+    private CatalyticConverter catalyticConverter = new CatalyticConverter();
 
-let javaDPDecoratorHTML = `It is used to modify the functionality of an object at runtime. <br/>
-<div class="sourceCode">public abstract class TreeDecorator implements ChristmasTree {
-    private ChristmasTree tree;    
-    @Override
-    public String decorate() {
-        return tree.decorate();
+    public void startEngine() {
+        fuelInjector.on();
+        airFlowController.takeAir();
+        fuelInjector.on();
+        fuelInjector.inject();
+        starter.start();
+        coolingController.setTemperatureUpperLimit(DEFAULT_COOLING_TEMP);
+        coolingController.run();
+        catalyticConverter.on();
     }
 }
-public class BubbleLights extends TreeDecorator {
-    public BubbleLights(ChristmasTree tree) {
-        super(tree);
+</div>
+`;
+
+let javaDPDecoratorHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to modify the functionality of an object dynamically ?
+</div>
+<b>Decorator Design Pattern </b> <br/>
+It is used to modify the functionality of an object dynamically. <br/>
+<div class="sourceCode">public abstract class CarDecorator implements Car {
+    protected Car car;
+    public CarDecorator(Car c){
+        this.car=c;
     }
-    public String decorate() {
-        return super.decorate() + decorateWithBubbleLights();
+    @Override
+    public void assemble() {
+        this.car.assemble();
     }
-    private String decorateWithBubbleLights() {
-        return " with Bubble Lights";
-    }
-}</div>`;
+}
+public class SportsCar extends CarDecorator {
+	public SportsCar(Car c) {
+		super(c);
+	}
+	@Override
+	public void assemble(){
+		super.assemble();
+		System.out.print(" Adding features of Sports Car.");
+	}
+}
+</div>`;
 
 let javaPropertyHTML = `
 
@@ -957,18 +1253,18 @@ let javaNodeDataArray = [
     {key: "Java-Spliterators", desc: "Spliterators", group:"Java-OOP", category: "simple", toolTipHTML: javaSpliteratorsHTML},
     {key: "Java-Streams", desc: "Streams", group:"Java-OOP", category: "simple", toolTipHTML: javaStreamsHTML},
 
-    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java Language", expand: false, category: "grid"},
+    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java Language", expand: true, category: "grid"},
 
-    {key: "Java-Design-Patterns", desc: "Design Patterns", isGroup: true, group: "Java-Semantics", category: "tree", expand: false},
+    {key: "Java-Design-Patterns", desc: "Design Patterns", isGroup: true, group: "Java-Semantics", category: "tree", expand: true},
 
-    {key: "Java-DP-Creational", desc: "Creational", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: false},
+    {key: "Java-DP-Creational", desc: "Creational", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: true},
     {key: "Java-DP-Singleton", desc: "Singleton", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPSingletonHTML},
     {key: "Java-DP-Factory", desc: "Factory", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPFactoryHTML},
     {key: "Java-DP-AbstractFactory", desc: "Abstract Factory", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPAbstractFactoryHTML},
     {key: "Java-DP-Builder", desc: "Builder", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPBuilderHTML},
     {key: "Java-DP-Prototype", desc: "Prototype", group:"Java-DP-Creational", category: "simple", toolTipHTML: javaDPPrototypeHTML},
 
-    {key: "Java-DP-Structural", desc: "Structural", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: false},
+    {key: "Java-DP-Structural", desc: "Structural", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: true},
     {key: "Java-DP-Adapter", desc: "Adapter", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPAdapterHTML},
     {key: "Java-DP-Composite", desc: "Composite", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPCompositeHTML},
     {key: "Java-DP-Proxy", desc: "Proxy", group:"Java-DP-Structural", category: "simple", toolTipHTML: javaDPProxyHTML},
@@ -979,7 +1275,7 @@ let javaNodeDataArray = [
     {key: "Java-DP-Behavioral", desc: "Behavioral", isGroup: true, group: "Java-Design-Patterns", category: "grid", expand: false},
     {key: "Java-DP-Strategy", desc: "Strategy", group:"Java-DP-Behavioral", category: "simple", toolTipHTML: javaDPStrategyHTML},
 
-    {key: "Java-Solid", desc: "Solid Principles", isGroup: true, group: "Java-Semantics", category: "tree", expand: false},
+    {key: "Java-Solid", desc: "Solid Principles", isGroup: true, group: "Java-Semantics", category: "tree", expand: true},
     {key: "Java-SP-singleResp", desc: "Single Responsibility", group:"Java-Solid", category: "simple", toolTipHTML: javaSPSingleRespHTML},
     {key: "Java-SP-OpenClose", desc: "Open Close", group:"Java-Solid", category: "simple", toolTipHTML: javaSPOpenCloseHTML},
     {key: "Java-SP-LiskovSubs", desc: "Liskov Substitution", group:"Java-Solid", category: "simple", toolTipHTML: javaSPLiskovSubHTML},
