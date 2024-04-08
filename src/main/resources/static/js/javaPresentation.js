@@ -371,7 +371,8 @@ What are Lambda expressions ?
 </div>
 <b>Lambda</b> <br/>
 Lambda expressions basically express instances of functional interfaces <br/>
-Lambda Expressions are the short block of code that accepts input as parameters and perform an action on it<br/>
+An interface with a single abstract method is called a functional interface. <br/>
+Lambda Expressions are the short block of code that accepts input as parameters and returns a resultant value. <br/>
 <div class="sourceCode">interface FuncInterface {
     void abstractFun(int x);
 }
@@ -379,7 +380,10 @@ FuncInterface fobj = (int x)->System.out.println(2*x);
 fobj.abstractFun(5);
 </div>
 <br/>
-
+<b>There are 3 main functional interfaces</b> <br/>
+1. Predicate - test method and return true/false <br/>
+2. Function - apply method take input apply the function and return output <br/>
+3. Consumer - consume method take input and returns nothing <br/>
 `;
 
 let javaFlowControlsHTML = `
@@ -1177,26 +1181,15 @@ How to modify the functionality of an object dynamically ?
 </div>
 <b>Decorator Design Pattern </b> <br/>
 It is used to modify the functionality of an object dynamically. <br/>
-<div class="sourceCode">public abstract class CarDecorator implements Car {
-    protected Car car;
-    public CarDecorator(Car c){
-        this.car=c;
-    }
+<div class="sourceCode">public abstract class TreeDecorator implements ChristmasTree {
+    private ChristmasTree tree;
     @Override
-    public void assemble() {
-        this.car.assemble();
+    public String decorate() {
+        return tree.decorate();
     }
 }
-public class SportsCar extends CarDecorator {
-	public SportsCar(Car c) {
-		super(c);
-	}
-	@Override
-	public void assemble(){
-		super.assemble();
-		System.out.print(" Adding features of Sports Car.");
-	}
-}
+ChristmasTree tree2 = new BubbleLights(
+      new Garland(new Garland(new ChristmasTreeImpl())));
 </div>`;
 
 let javaPropertyHTML = `
