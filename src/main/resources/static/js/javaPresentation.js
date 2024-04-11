@@ -85,18 +85,6 @@ Created by James Gosling and team at Sun micro systems in 1991 <br/>
 5) Multi threaded <br/>
 `;
 
-let javaSyntaxHTML = `
-Java is case sensitive, while declaring variables, methods, classes, literals <br/>
-(/ /) used for comments <br/>
-<br/>
-<b>Keyword</b></br/>
-Its a reserved word, have predefined meaning in java language <br/>
-Ex: int, byte, for, which, try, catch, etc...<br/>
-<b>Casting</b><br/>
-We can change the data type from one to another using casting <br/>
-Ex: byte value = (byte) 1000;
-`;
-
 let javaLiteralHTML = `
 <div class="reqBanner"><img class="reqBannerImg"/>
 How to represent data in program ?
@@ -118,6 +106,74 @@ Ex: long income = 1_234_456l;</li>
 </ul>
 <b>Floating point Literals</b> <br/>
 Ex: double val = 23.456;
+`;
+
+let javaKeywordHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What are reserved words in Java ?
+</div>
+<b>Keywords</b><br/>
+It's a reserved word, have predefined meaning in java language <br/>
+Ex: int, byte, for, which, try, catch, etc...<br/>
+`;
+
+let javaOperatorsHMTL = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to represent data in program ?
+</div>
+<b>Operators</b><br/>
+The operator performs an operation on variables/literals its used with <br/>
+Ex : +, -, *, >, etc... <br/>
+<table>
+<tr><td>1)</td><td width="300px">Assignment</td><td>=</td></tr>
+<tr><td>2)</td><td >Compound Assignment </td><td>+=, -=, *=, /=, etc...</td></tr>
+<tr><td>3)</td><td >Arithmetic</td><td>+, -, *, /, %</td></tr>
+<tr><td>4)</td><td>Increment & Decrement</td><td>++, --</td></tr>
+<tr><td>5)</td><td>Relational</td><td><, <=, >, >=, ==, !=</td></tr>
+<tr><td>6)</td><td>Logical</td><td>&, |, ^, !, &&, ||</td></tr>
+<tr><td>7)</td><td>Bitwise</td><td>&, |, ^</td></tr>
+<tr><td>8)</td><td>Conditional</td><td>? :/td></tr>
+<tr><td>9)</td><td>Type check</td><td>instanceOf</td></tr>
+</table>
+`;
+
+let javaSourceCodeHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How source code is written and organized ?
+</div>
+<b>Source Code</b><br/>
+Source is organized into Packages <br/>
+And Package contains classes and/or interfaces <br/>
+Inside class/interface we use syntax to write the code <br/>
+<br/>
+<b>Package</b>
+<ul>
+    <li>It is used to group related classes </li>
+    <li>To avoid naming conflicts</li>
+    <li>To provide access protection</li>
+    <li>If package name is not present, it belongs to default package</li>
+</ul>
+<b>Syntax </b><br/>
+Java syntax contains
+<a href="#" onclick="showToolTip1(\'' + javaLiteralHTML + '\')">Literals</a>,
+<a href="#" onclick="showToolTip1(\'' + javaLiteralHTML + '\')">operators</a>,
+<a href="#" onclick="showToolTip1(\'' + javaLiteralHTML + '\')">names</a>,
+<a href="#" onclick="showToolTip1(\'' + javaKeywordHTML + '\')">keywords</a><br/>
+Ex : int length = 45; <br/>
+<br/>
+
+`;
+
+let javaSyntaxHTML = `
+Java is case sensitive, while declaring variables, methods, classes, literals <br/>
+(/ /) used for comments <br/>
+<br/>
+<b>Keyword</b></br/>
+Its a reserved word, have predefined meaning in java language <br/>
+Ex: int, byte, for, which, try, catch, etc...<br/>
+<b>Casting</b><br/>
+We can change the data type from one to another using casting <br/>
+Ex: byte value = (byte) 1000;
 `;
 
 let javaDataTypeHTML = `
@@ -189,20 +245,7 @@ An expression is a construct with operator and operands, that evaluates to a sin
 This will be the code segment on the right side of = operator, in an assignment or declaration statement <br/>
 Ex : (orderNumber + 100) <br/>
 <br/>
-<b>Operators</b><br/>
-The operator performs an operation on variables/literals its used with <br/>
-Ex : +, -, *, >, etc... <br/>
-<table>
-<tr><td>1)</td><td width="300px">Assignment</td><td>=</td></tr>
-<tr><td>2)</td><td >Compound Assignment </td><td>+=, -=, *=, /=, etc...</td></tr>
-<tr><td>3)</td><td >Arithmetic</td><td>+, -, *, /, %</td></tr>
-<tr><td>4)</td><td>Increment & Decrement</td><td>++, --</td></tr>
-<tr><td>5)</td><td>Relational</td><td><, <=, >, >=, ==, !=</td></tr>
-<tr><td>6)</td><td>Logical</td><td>&, |, ^, !, &&, ||</td></tr>
-<tr><td>7)</td><td>Bitwise</td><td>&, |, ^</td></tr>
-<tr><td>8)</td><td>Conditional</td><td>? :/td></tr>
-<tr><td>9)</td><td>Type check</td><td>instanceOf</td></tr>
-</table>
+
 `;
 
 let javaArraysHTML = `
@@ -1214,34 +1257,44 @@ let javaNodeDataArray = [
     {key: "Processor", desc: "Processor", group: "CPU", category: "simplePic", img: "img/processor.svg", expand: false},
 
 
-    {key: "Application", desc: "Application", isGroup: true, group: "Storage", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true, img: "img/javaFile.svg",},
+    {key: "Application", desc: "Application", isGroup: true, group: "Storage", category: "tree", toolTipHTML: javaProgrammingHTML, expand: true, img: "img/application.svg",},
 
-    {key: "Sourcecode", desc: "Sourcecode", group: "Application", category: "picTemplate", toolTipHTML: javaProgrammingHTML, expand: false, img: "img/byteFile.svg",},
+    {key: "Sourcecode", desc: "Sourcecode", group: "Application", isGroup: true, category: "tree", toolTipHTML: javaSourceCodeHTML, expand: true, img: "img/sourceFolder.svg",},
+    {key: "Package", desc: "Package", group: "Sourcecode", isGroup: true, category: "tree",expand: true, img: "img/package.svg",},
+
+    {key: "Class", desc: "Class", group: "Package", isGroup: true, category: "tree", toolTipHTML: javaClassHTML, expand: true, img: "img/class.svg",},
+    {key: "Property", desc: " private String name;", group: "Class", category: "simpleText", toolTipHTML: javaProgrammingHTML, img: "img/private.svg"},
+    {key: "Property1", desc: " private Float rate;", group: "Class", category: "simpleText", toolTipHTML: javaProgrammingHTML, img: "img/private.svg"},
+    {key: "Method", desc: " public Float calculate(Float rate)", group: "Class", isGroup: true, category: "tree250", toolTipHTML: javaProgrammingHTML, img: "img/public.svg", expand: true},
+
+    {key: "Statement1", desc: "Integer amount = 195;", group: "Method", category: "simpleText", toolTipHTML: javaStatementHTML, img: "img/null.svg"},
+    {key: "Statement2", desc: "if(rate !=0) { //stmts; }", group: "Method", category: "simpleText", toolTipHTML: javaFlowControlsHTML, img: "img/null.svg"},
+    {key: "Statement3", desc: "for(int i=0; i<10; i++) { //stmts; }", group: "Method", category: "simpleText", toolTipHTML: javaLoopsHTML, img: "img/null.svg"},
+    {key: "Statement4", desc: "try{ //stmts; } catch(Exceptin e) {}", group: "Method", category: "simpleText", toolTipHTML: javaExceptionsHTML, img: "img/null.svg"},
+
+    {key: "Interface", desc: "Interface", group: "Package", isGroup: true, category: "tree", toolTipHTML: javaInterfaceHTML, expand: false, img: "img/interface.svg",},
+    {key: "Method", desc: " public Float calculate(Float rate)", group: "Interface", isGroup: true, category: "tree250", toolTipHTML: javaProgrammingHTML, img: "img/public.svg", expand: false},
+
+
     {key: "Bytecode", desc: "Bytecode", group: "Application", category: "picTemplate", toolTipHTML: javaProgrammingHTML, expand: false, img: "img/byteFile.svg",},
     {key: "Java", desc: "JDK", isGroup: true, group: "Storage", category: "grid", img: "assets/img/java/java.svg", toolTipHTML: javaHTML, expand: true},
 
-    {key: "Java Language", desc: "Language", isGroup: true, group: "Application", category: "tree", toolTipHTML: javaHTML, expand: true},
+    {key: "Java Language", desc: "Language", isGroup: true, group: "Presentation", category: "tree", toolTipHTML: javaHTML, expand: false},
 
     {key: "Java-Syntax", desc: "Syntax", isGroup: true, group: "Java Language", category: "tree", expand: true, toolTipHTML: javaSyntaxHTML},
 
-    {key: "Initialization", desc: "Initialize", isGroup: true, group: "Java-Syntax", category: "grid", expand: true, toolTipHTML: javaSyntaxHTML},
+    {key: "Initialization", desc: "Initialize", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
     {key: "Java-Literals", desc: "Literals", group:"Initialization", category: "simple", toolTipHTML: javaLiteralHTML},
     {key: "Java-Variables", desc: "Variables", group:"Initialization", category: "simple", toolTipHTML: javaVariableHTML},
     {key: "Java-Datatypes", desc: "Datatypes", group:"Initialization", category: "simple", expand: false, toolTipHTML: javaDataTypeHTML},
     {key: "Java-Arrays", desc: "Arrays", group:"Initialization", category: "simple", toolTipHTML: javaArraysHTML},
     {key: "Java-String", desc: "String", group:"Initialization", category: "simple", toolTipHTML: javaStringHTML},
-    {key: "Class", desc: "Class", group:"Initialization", category: "simple", toolTipHTML: javaClassHTML},
-    {key: "Interface", desc: "Interface", group:"Initialization", category: "simple", toolTipHTML: javaInterfaceHTML},
     {key: "Java-Lambdas", desc: "Lambdas", group:"Initialization", category: "simple", toolTipHTML: javaLambdasHTML},
 
-    {key: "Process", desc: "Process", isGroup: true, group: "Java-Syntax", category: "grid", expand: true, toolTipHTML: javaSyntaxHTML},
-    {key: "Java-Statements", desc: "Statements", group:"Process", category: "simple",toolTipHTML: javaStatementHTML},
-    {key: "Java-FlowControls", desc: "Conditions", group:"Process", category: "simple", toolTipHTML: javaFlowControlsHTML},
-    {key: "Java-Loops", desc: "Loops", group:"Process", category: "simple", toolTipHTML: javaLoopsHTML},
-    {key: "Java-Exceptions", desc: "Exceptions", group:"Process", category: "simple", toolTipHTML: javaExceptionsHTML},
+    {key: "Process", desc: "Process", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
     {key: "Java-Threads", desc: "Multi Threading", group:"Process", category: "simple", toolTipHTML: javaMultiThreadsHTML},
 
-    {key: "Java-OOP", desc: "API", isGroup: true, group: "Java-Syntax", category: "grid", expand: true},
+    {key: "Java-OOP", desc: "API", isGroup: true, group: "Java-Syntax", category: "grid", expand: false},
 
     {key: "Java-WrapperClass", desc: "Wrapper Classes", group:"Java-OOP", category: "simple", toolTipHTML: javaWrapperClassHTML},
     {key: "Java-Collections", desc: "Collections", group:"Java-OOP", category: "simple", toolTipHTML: javaCollectionsHTML},
@@ -1250,7 +1303,7 @@ let javaNodeDataArray = [
     {key: "Java-Spliterators", desc: "Spliterators", group:"Java-OOP", category: "simple", toolTipHTML: javaSpliteratorsHTML},
     {key: "Java-Streams", desc: "Streams", group:"Java-OOP", category: "simple", toolTipHTML: javaStreamsHTML},
 
-    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java Language", expand: true, category: "grid"},
+    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java Language", expand: false, category: "grid"},
 
     {key: "Java-Design-Patterns", desc: "Design Patterns", isGroup: true, group: "Java-Semantics", category: "tree", expand: true},
 

@@ -9,13 +9,23 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 10, width: 90, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "#cccccc"}
+        { margin: 10, width: 150, textAlign: "center", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
+    ];
+}
+function textStyle50() {
+    return [
+        { margin: 10, textAlign: "left", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
     ];
 }
 
 function textStyle150() {
     return [
-        { margin: 0, width: 100, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "#cccccc"}
+        { margin: 0, width: 100, textAlign: "center", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
+    ];
+}
+function textStyle250() {
+    return [
+        { margin: 10, width: 300, textAlign: "left", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
     ];
 }
 
@@ -57,29 +67,52 @@ let diagram = new go.Diagram("myDiagramDiv",{layout: $(go.TreeLayout,{ isInitial
 const itemtemplates = new go.Map();
 itemtemplates.add("text",$(go.Panel, $(go.TextBlock, new go.Binding("text"))));
 
+
 function showToolTip(obj, diagram, tool) {
     var pt = diagram.lastInput.viewPoint;
     let toolTipDIV = document.getElementById("toolTipDIV");
-    let diagramDiv = document.getElementById("myDiagramDiv");
     let closeButtonHTML = '<button id="tooltipClose" onclick="hideToolTip()">X</button>';
     let footerHTML = '<p class="tooltipFooter">Footer</p>';
     if(toolTipDIV && obj.data.toolTipHTML) {
-        diagramDiv.style.filter = "blur(3px)";
 //        toolTipDIV.style.left = (window.innerWidth - 600)/2 + "px";
 //        toolTipDIV.style.top = (window.innerHeight - 600)/2 + "px";
         toolTipDIV.innerHTML = closeButtonHTML +
             "<div class='tooltipBody'>" + obj.data.toolTipHTML + "</div>";
-
+        toolTipDIV.style.opacity = "1";
         toolTipDIV.style.display = "block";
+        toolTipFlag = true;
+    }
+}
+
+function showToolTip1(toolTipHTML) {
+
+    let toolTipDIV = document.getElementById("toolTipDIV1");
+    let closeButtonHTML = '<button id="tooltipClose" onclick="hideToolTip1()">X</button>';
+    let footerHTML = '<p class="tooltipFooter">Footer</p>';
+    if(toolTipDIV && toolTipHTML) {
+        toolTipDIV.innerHTML = closeButtonHTML +
+            "<div class='tooltipBody'>" + toolTipHTML + "</div>";
+        toolTipDIV.style.opacity = "1";
+        toolTipDIV.style.display = "block";
+        toolTip1Flag = true;
     }
 }
 
 function hideToolTip() {
     var toolTipDIV = document.getElementById('toolTipDIV');
-    let diagramDiv = document.getElementById("myDiagramDiv");
     if(toolTipDIV) {
+        toolTipDIV.style.opacity = "0";
         toolTipDIV.style.display = "none";
-        diagramDiv.style.filter = "blur(0px)";
+        toolTipFlag = false;
+    }
+}
+
+function hideToolTip1() {
+    var toolTipDIV = document.getElementById('toolTipDIV1');
+    if(toolTipDIV) {
+        toolTipDIV.style.opacity = "0";
+        toolTipDIV.style.display = "none";
+        toolTip1Flag = false;
     }
 }
 
@@ -102,7 +135,7 @@ const picTemplate =
 
 const simplePicTemplate =
     $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.LeftSide,  toSpot: go.Spot.RightSide, isShadowed: false, shadowOffset: new go.Point(3, 3) },
-            $(go.Shape, "RoundedRectangle", new go.Binding("height", "height"), {width: 150}, new go.Binding("width", "width"),
+            $(go.Shape, "RoundedRectangle", new go.Binding("height", "height"), {width: 220}, new go.Binding("width", "width"),
                 new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#eeeeee", fill:"Transparent" }, new go.Binding("stroke", "color")),
             $(go.Panel, "Horizontal",  // the header
 //                $(go.TextBlock, "'  '"),
@@ -115,7 +148,7 @@ const simplePicTemplate =
 
 const simpleTemplate =
     $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
-        $(go.Shape, {height: 35}, new go.Binding("height", "height"), {width: 100}, new go.Binding("width", "width"),
+        $(go.Shape, {height: 50}, new go.Binding("height", "height"), {width: 150}, new go.Binding("width", "width"),
             new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
         $(go.TextBlock, textStyle150(), new go.Binding("text", "desc")),
         { click: (e, obj) => showDetails(e, obj) }
@@ -123,9 +156,25 @@ const simpleTemplate =
 
 const simpleTextTemplate =
     $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
-        $(go.Shape, {height: 50}, new go.Binding("height", "height"), new go.Binding("width", "width"),
-            new go.Binding("figure", "shape"), { strokeWidth: .3, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
-        $(go.TextBlock, textStyle150(), new go.Binding("text", "desc")),
+        $(go.Shape, {height: 30}, new go.Binding("height", "height"), new go.Binding("width", "width"),
+            new go.Binding("figure", "shape"), { strokeWidth: 0, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
+        $(go.Panel, "Horizontal", // the header
+            {padding: new go.Margin(0, 10)},
+            $(go.Picture,{ maxSize: new go.Size(20, 20) }, new go.Binding("source", "img")),
+            $(go.TextBlock, textStyle250(), new go.Binding("text", "desc"),),
+        ),
+        { click: (e, obj) => showDetails(e, obj) }
+    );
+
+const simpleText50Template =
+    $(go.Node, "Auto",{ selectionAdorned: false },{ fromSpot: go.Spot.AllSides,  toSpot: go.Spot.AllSides, isShadowed: false, shadowOffset: new go.Point(3, 3) },
+        $(go.Shape, {height: 30}, new go.Binding("height", "height"), new go.Binding("width", "width"),
+            new go.Binding("figure", "shape"), { strokeWidth: 0, stroke: "#555", fill:"Transparent" }, new go.Binding("stroke", "color")),
+        $(go.Panel, "Horizontal", // the header
+            {padding: new go.Margin(0, 10)},
+            $(go.Picture,{ maxSize: new go.Size(20, 20) }, new go.Binding("source", "img")),
+            $(go.TextBlock, textStyle50(), new go.Binding("text", "desc"),),
+        ),
         { click: (e, obj) => showDetails(e, obj) }
     );
 
@@ -167,6 +216,7 @@ const templateMap = new go.Map();
 templateMap.add("simplePic", simplePicTemplate);
 templateMap.add("simple", simpleTemplate);
 templateMap.add("simpleText", simpleTextTemplate);
+templateMap.add("simpleText50", simpleText50Template);
 templateMap.add("simpleBL", simpleBorderLessTemplate);
 templateMap.add("simpleTooltip", simpleWithTooltipTemplate)
 templateMap.add("detailed", detailTemplate);
@@ -249,7 +299,7 @@ diagram.groupTemplateMap.add("treeSolid", $(go.Group, "Auto",
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Right },
+            { defaultAlignment: go.Spot.Right }, {padding: new go.Margin(0, 10)},
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
@@ -268,7 +318,7 @@ diagram.groupTemplateMap.add("treeHL", $(go.Group, "Auto",
     $(go.Shape, "RoundedRectangle", // surrounds everything
         { parameter1: 10, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent" }, new go.Binding("stroke", "color")),
     $(go.Panel, "Vertical",  // position header above the subgraph
-        { defaultAlignment: go.Spot.Left },
+        { defaultAlignment: go.Spot.Left }, {padding: new go.Margin(0, 10)},
         $(go.Panel, "Horizontal",  // the header
             { defaultAlignment: go.Spot.Right },
         ),
@@ -284,9 +334,27 @@ diagram.groupTemplateMap.add("tree", $(go.Group, "Auto", { selectionAdorned: fal
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Right },
-            $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
+            { defaultAlignment: go.Spot.Right }, {padding: new go.Margin(0, 10)},
+            $(go.Picture,{ maxSize: new go.Size(25, 25) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
+            $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
+             { click: (e, obj) => showDetails(e, obj) }
+        ),
+        $(go.Placeholder,     // represents area for all member parts
+            { padding: 10, background: "Transparent" }),
+    ), new go.Binding("isSubGraphExpanded", "expand"),
+));
+
+diagram.groupTemplateMap.add("tree250", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.TreeLayout,
+            { angle: 0, nodeSpacing: 30, layerSpacing: 50 }), isShadowed: false, shadowOffset: new go.Point(3, 3)},
+    $(go.Shape, "RoundedRectangle", // surrounds everything
+        { parameter1: 0, strokeWidth: 0, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+    $(go.Panel, "Vertical",  // position header above the subgraph
+        { defaultAlignment: go.Spot.Left },
+        $(go.Panel, "Horizontal",  // the header
+            { defaultAlignment: go.Spot.Right }, {padding: new go.Margin(0, 10)},
+            $(go.Picture,{ maxSize: new go.Size(20, 20) }, new go.Binding("source", "img")),
+            $(go.TextBlock, textStyle250(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
              { click: (e, obj) => showDetails(e, obj) }
         ),
@@ -320,7 +388,7 @@ diagram.groupTemplateMap.add("tree90", $(go.Group, "Auto", { selectionAdorned: f
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Right },
+            { defaultAlignment: go.Spot.Right },{padding: new go.Margin(0, 10)},
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
@@ -338,7 +406,7 @@ diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", { selectionAdorned: fal
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Left },
+            { defaultAlignment: go.Spot.Left },{padding: new go.Margin(0, 10)},
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
@@ -348,6 +416,26 @@ diagram.groupTemplateMap.add("grid", $(go.Group, "Auto", { selectionAdorned: fal
             { padding: new go.Margin(10, 10), background: "Transparent" })
     ), new go.Binding("isSubGraphExpanded", "expand"),
 ));
+
+diagram.groupTemplateMap.add("grid250", $(go.Group, "Auto", { selectionAdorned: false }, {layout: $(go.GridLayout, {
+            wrappingColumn: 3, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(5,5)
+        }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
+    $(go.Shape, "RoundedRectangle",
+        { parameter1: 0, strokeWidth: .2, stroke: "WhiteSmoke", fill: "Transparent", strokeDashArray: [4, 2] }, new go.Binding("stroke", "color")),
+    $(go.Panel, "Vertical",  // position header above the subgraph
+        { defaultAlignment: go.Spot.Left },
+        $(go.Panel, "Horizontal",  // the header
+            { defaultAlignment: go.Spot.Left },{padding: new go.Margin(0, 10)},
+            $(go.Picture,{ maxSize: new go.Size(20, 20) }, new go.Binding("source", "img")),
+            $(go.TextBlock, textStyle250(), new go.Binding("text", "desc"),),
+            $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),
+            { click: (e, obj) => showDetails(e, obj) }
+        ),
+        $(go.Placeholder,     // represents area for all member parts
+            { padding: new go.Margin(10, 10), background: "Transparent" })
+    ), new go.Binding("isSubGraphExpanded", "expand"),
+));
+
 diagram.groupTemplateMap.add("grid2", $(go.Group, "Auto",{ selectionAdorned: false },  {layout: $(go.GridLayout, {
             wrappingColumn: 2, alignment: go.GridLayout.Position,cellSize: new go.Size(1, 1), spacing: new go.Size(20,0)
         }), isShadowed: false, shadowOffset: new go.Point(0, 0)},
@@ -412,7 +500,7 @@ diagram.groupTemplateMap.add("grid-congested", $(go.Group, "Auto", { selectionAd
     $(go.Panel, "Vertical",  // position header above the subgraph
         { defaultAlignment: go.Spot.Left },
         $(go.Panel, "Horizontal",  // the header
-            { defaultAlignment: go.Spot.Left },
+            { defaultAlignment: go.Spot.Left },{padding: new go.Margin(0, 10)},
             $(go.Picture,{ maxSize: new go.Size(30, 30) }, new go.Binding("source", "img")),
             $(go.TextBlock, textStyle(), new go.Binding("text", "desc"),),
             $("SubGraphExpanderButton", subGraphExpanderButtonStyle()),

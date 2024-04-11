@@ -17,6 +17,9 @@
 <div id="toolTipDIV" class="tooltip">
     <p class="tooltipFooter">Footer</p>
 </div>
+<div id="toolTipDIV1" class="tooltip">
+    <p class="tooltipFooter">Footer</p>
+</div>
 
 <script>
     let nodeDataArray = [];
@@ -25,6 +28,8 @@
 <script src="js/custom3.js"></script>
 <script src="js/javaPresentation.js"></script>
 <script>
+    let toolTipFlag = false;
+    let toolTip1Flag = false;
     diagram.model = new go.GraphLinksModel({
         linkFromPortIdProperty: "fromPort",  // required information:
       linkToPortIdProperty: "toPort",      // identifies data property names
@@ -35,6 +40,26 @@
             size: 100, buttonSize: 20, orientation: 'horizontal'
         });
     diagram.commandHandler.zoomToFit();
+
+    //Keypress
+    document.onkeyup = function(evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc");
+        } else {
+            isEscape = (evt.keyCode === 27);
+        }
+        if (isEscape) {
+            if(toolTip1Flag) {
+                hideToolTip1();
+                return;
+            }
+            if(toolTipFlag) {
+                hideToolTip();
+            }
+        }
+    };
 </script>
 </body>
 </html>

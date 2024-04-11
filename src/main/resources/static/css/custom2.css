@@ -14,7 +14,7 @@
     font-family: Roboto, Arial, serif;
     font-size: 24px;
     font-weight: lighter;
-    padding: 50px;
+    padding: 75px 100px;
     /*width: 300px;*/
     border: 0px solid WhiteSmoke;
     /*border-radius: 5px;*/
@@ -28,12 +28,30 @@
     position: absolute;
     /*left: 300px;*/
     top: 0px;
+    opacity: 0;
+    display: none;
+    transition: opacity 1s, display 1s allow-discrete;
+}
+
+@starting-style {
+  /* 0. Before-change state  */
+  .tooltip {
+    opacity: 0;
+    display: none;
+    /*   You don't duplicate `display: none` here
+         because it's already in the initial `.display-on-check`
+         but you do need `opacity: 0`*/
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
 }
 
 .reqBanner {
     background: #F67D23;
     color: #2A4252;
-    width: 80%;
+    width: 90%;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
