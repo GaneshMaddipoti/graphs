@@ -56,6 +56,10 @@ Content
 <ul><li>Anyone who wants to learn Java language from zero to advanced</li></ul>
 `;
 
+let eCommerceHTML = `
+<img src="img/eCommerce.svg" width="95%" height="95%"/>
+`;
+
 let systemHTML = `
 A system is collection of components, serves set of users with set of requirements <br/>
 `;
@@ -1307,6 +1311,7 @@ let javaNodeDataArray = [
     {key: "Title", desc: "Title", category: "simplePic", group: "Presentation", toolTipHTML: titleHTML},
     {key: "About Me", desc: "About Me", category: "simplePic", img: "img/PP.jpg", group: "Presentation", toolTipHTML: aboutMeHTML},
     {key: "Features", desc: "Content", category: "simplePic", group: "Presentation", toolTipHTML: featuresHTML},
+    {key: "eCommerce", desc: "Web Site", category: "simplePic", group: "Presentation", toolTipHTML: eCommerceHTML},
 
 
 ];
@@ -1318,6 +1323,7 @@ let javaLinkDataArray = [
     {from:"CPU", to: "IO", category: "byDirLink"},
     {from:"About Me", to: "Features", category: "invisibleLink"},
     {from:"Title", to: "About Me", category: "invisibleLink"},
+    {from:"Features", to: "eCommerce", category: "invisibleLink"},
 
 
     { from: "Add1", fromPort: "Out", to: "Subtract1", toPort: "A" },

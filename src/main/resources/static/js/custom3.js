@@ -67,7 +67,8 @@ function showToolTip(obj, diagram, tool) {
         diagramDiv.style.filter = "blur(3px)";
 //        toolTipDIV.style.left = (window.innerWidth - 600)/2 + "px";
 //        toolTipDIV.style.top = (window.innerHeight - 600)/2 + "px";
-        toolTipDIV.innerHTML = closeButtonHTML + obj.data.toolTipHTML;
+        toolTipDIV.innerHTML = closeButtonHTML +
+            "<div class='tooltipBody'>" + obj.data.toolTipHTML + "</div>";
 
         toolTipDIV.style.display = "block";
     }
