@@ -114,12 +114,12 @@ What are reserved words in Java ?
 </div>
 <b>Keywords</b><br/>
 It's a reserved word, have predefined meaning in java language <br/>
-Ex: int, byte, for, which, try, catch, etc...<br/>
+Ex: int, byte, for, which, try, catch, class, interface, enum, etc...<br/>
 `;
 
 let javaOperatorsHMTL = `
 <div class="reqBanner"><img class="reqBannerImg"/>
-How to represent data in program ?
+What are all operators available in Java ?
 </div>
 <b>Operators</b><br/>
 The operator performs an operation on variables/literals its used with <br/>
@@ -137,6 +137,16 @@ Ex : +, -, *, >, etc... <br/>
 </table>
 `;
 
+let javaExpressionHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What are expressions ?
+</div>
+<b>Expressions</b><br/>
+An expression is a coding construct, that evaluates to a single value <br/>
+This will be the code segment on the right side of = operator, in an assignment or declaration statement <br/>
+Ex : (orderNumber + 100)
+`;
+
 let javaSourceCodeHTML = `
 <div class="reqBanner"><img class="reqBannerImg"/>
 How source code is written and organized ?
@@ -152,14 +162,64 @@ Inside class/interface we use syntax to write the code <br/>
     <li>To avoid naming conflicts</li>
     <li>To provide access protection</li>
     <li>If package name is not present, it belongs to default package</li>
-</ul>
-<b>Syntax </b><br/>
-Java syntax contains
-<a href="#" onclick="showToolTip1(\'' + javaLiteralHTML + '\')">Literals</a>,
-<a href="#" onclick="showToolTip1(\'' + javaLiteralHTML + '\')">operators</a>,
-<a href="#" onclick="showToolTip1(\'' + javaLiteralHTML + '\')">names</a>,
-<a href="#" onclick="showToolTip1(\'' + javaKeywordHTML + '\')">keywords</a><br/>
-Ex : int length = 45; <br/>
+</ul>`;
+
+let javaPropertyHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is object state ?
+</div>
+<b>Properties</b> <br/>
+Each object will have its own unique set of instance variables as defined in the class. <br/>
+Collectively the values assigned to the object’s instance variables make up the object state. <br/>
+Properties are define as : <br/>
+Ex : private String name; <br/>
+<br/>
+Property definition contains Modifier,
+<a href="#" onclick="showToolTip1(\'' + javaDataTypeHTML + '\')"> Data Type</a>,
+<a href="#" onclick="showToolTip1(\'' + javaIdentifiersHTML + '\')">Identifiers/</a>
+<a href="#" onclick="showToolTip1(\'' + javaVariableHTML + '\')">Variables</a>
+<br/><br/>
+<b>Access Modifiers </b><br/>
+We can modify property access using public, protected, default, private <br/>
+Access : inheritance and access using object reference <br/>
+default - access to all classes in that package <br/>
+private - access to that class only<br/>
+protected - access to all classes in that package and sub classes of other packages(inheritance only) <br/>
+public - access to all classes in application <br/>
+<br/>
+<b>Non-access Modifiers</b> <br/>
+final - it can't be re-assigned <br/>
+volatile - will always access from memory(useful in multithreading) <br/>
+`;
+
+let javaMethodHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+Where exactly object behavior is defined?
+</div>
+<b>Methods</b> <br/
+Objects behavior is defined using Methods <br/>
+Methods are where the class logic is stored, and data gets manipulated. <br/>
+Methods are defined as : <br/>
+public String getName(String initial, String suffix) {}<br/>
+<br/>
+Method definition contains Modifier, return type, method name, and arguments <br/>
+<br/>
+<b>Access Modifiers </b><br/>
+We can modify method access using public, protected, default, private <br/>
+Access : inheritance and access using object reference <br/>
+default - access to all classes in that package <br/>
+private - access to that class only<br/>
+protected - access to all classes in that package and sub classes of other packages(inheritance only) <br/>
+public - access to all classes in application <br/>
+<br/>
+<b>Non-access Modifiers</b> <br/>
+final - if applied to class, it can't be subclassed <br/>
+&emsp;&emsp;&emsp; - if applied to method, it can't be override <br/>
+&emsp;&emsp;&emsp; - if applied to property, it can't be re-assigned <br/>
+abstract - if applied to class, it cant be initialized <br/>
+&emsp;&emsp;&emsp; - if applied to methods, no need to implement it<br/>
+strictfp - if applied to class, all methods are complied to IEEE standard for FP. <br/>
+&emsp;&emsp;&emsp; - if applied to method, only that method is complied to IEEE FP.<br/>
 <br/>
 
 `;
@@ -170,7 +230,7 @@ Java is case sensitive, while declaring variables, methods, classes, literals <b
 <br/>
 <b>Keyword</b></br/>
 Its a reserved word, have predefined meaning in java language <br/>
-Ex: int, byte, for, which, try, catch, etc...<br/>
+Ex: int, byte, for, which, try, catch,  etc...<br/>
 <b>Casting</b><br/>
 We can change the data type from one to another using casting <br/>
 Ex: byte value = (byte) 1000;
@@ -180,11 +240,12 @@ let javaDataTypeHTML = `
 <div class="reqBanner"><img class="reqBannerImg"/>
 How to specify the type of data ?
 </div>
-<b>Data Types </b>
-<ul>
-<li>Java is statically typed language</li>
-<li>Data is declared of type primitive, array, string, and object <br/>
-<li>There are 8 primitive data types <br/>
+<b>Data Types </b><br/>
+Java is statically typed language<br/>
+Data is declared of type primitive, array, string, and object <br/>
+<br/>
+<b>Primitives</b><br/>
+There are 8 primitive data types
 <table>
 <tr><td>1)</td><td width="200px">boolean</td><td>1 bit</td></tr>
 <tr><td>2)</td><td>byte</td><td>1 byte</td></tr>
@@ -195,7 +256,7 @@ How to specify the type of data ?
 <tr><td>7)</td><td>double</td><td>8 byte</td></tr>
 <tr><td>8)</td><td>char</td><td>2 byte</td></tr>
 </table>
-</li>
+<ul>
 <li>Integer literals are int by default, we can put l or L as suffix to treat it as long</li>
 <li>Float literals are double by default, f or F as suffix to treat it as float</li>
 <li>For precise calculations use BigDecimal, because float, double will behave inconsistently</li>
@@ -205,6 +266,47 @@ Java lets you restrict a variable to having one of only a few predefined values<
 Ex: enum CoffeeSize {BIG,HUGE,SMALL,LARGE}; <br/>
 In enums, you can add constructors, variables, methods. <br/>
 Every enum has a static method, values() that returns an array of the enum’s values. <br/>
+<br/>
+<b>Arrays</b><br/>
+Arrays are objects that store multiple variables of the same type or variables that are all subclasses of the same type.<br/>
+Declare: Arrays are declared by stating the type of elements <br/>
+Ex: int[] marks; <br/>
+Construct: Arrays are constructed/created on heap with mentioned size <br/>
+Ex: int[] marks = new int[100]; <br/>
+Initialize: Arrays initialization means that putting things into it <br/>
+Ex: int[] marks = {11, 12, 13, 14}; <br/>
+&emsp;&emsp; marks[0] = 21; <br/>
+They are indexed from 0 <br/>
+<br/>
+<b>Strings</b><br/>
+<ul>
+<li>A string is an object that contains a sequence of characters. <br/>
+    Ex: String name = "Sample sentence."; <br/></li>
+<li>Strings are immutable</li>
+<li>To make memory efficient, the JVM sets aside a memory called the “String Constant Pool”.</li>
+<li>For string literal, it checks the pool to see if an identical string already exists. <br/>
+If match is found, the reference to the new literal is directed to the existing string.</li>
+</ul>
+Ex: String s = “abc”; <br/>
+&emsp;&emsp;String s = new String(“abc”); – in this case 2 objects will be created in pool and in heap<br/>
+`;
+
+let javaIdentifiersHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What are identifiers in Java ?
+</div>
+<b>Identifiers</b><br/>
+All the java components(classes, interfaces, enums, methods, variables) need names <br/>
+And these names are called identifiers and there are rules for legal identifiers.<br/>
+<br/>
+<b>Rules</b><br/>
+<ol>
+<li>Identifiers must start with a letter($),(_)</li>
+<li>After first character, they can contain numbers also.</li>
+<li>There is no limit on number of characters</li>
+<li>You can’t use java keyword as an identifier</li>
+<li>Identifiers are case sensitive.</li>
+</ol>
 `;
 
 let javaVariableHTML = `
@@ -220,15 +322,6 @@ Ex: length = 120;
 Ex: int length = 120;
 </li>
 </ul>
-<b>Rules</b><br/>
-There are rules for legal variable names/identifiers.
-<ol>
-<li>Identifiers must start with a letter($),(_)</li>
-<li>After first character, they can contain numbers also.</li>
-<li>There is no limit on number of characters</li>
-<li>You can’t use java keyword as an identifier</li>
-<li>Identifiers are case sensitive.</li>
-</ol>
 `;
 
 let javaStatementHTML = `
@@ -245,7 +338,9 @@ An expression is a construct with operator and operands, that evaluates to a sin
 This will be the code segment on the right side of = operator, in an assignment or declaration statement <br/>
 Ex : (orderNumber + 100) <br/>
 <br/>
-
+Expression contains
+<a href="#" onclick="showToolTip1(\'' + javaLiteralHTML + '\')">Literals</a>,
+<a href="#" onclick="showToolTip1(\'' + javaOperatorsHMTL + '\')">operators</a>.
 `;
 
 let javaArraysHTML = `
@@ -320,6 +415,17 @@ How to create custom data types/represent real time objects ?
 <li>Initialization blocks run when the class first loaded (static initialization block) <br/>
 or when an instance is created (an instance initialization block)</li>
 </ul>
+<b>Access Modifiers </b><br/>
+We can modify class access using public, default <br/>
+Access : extends and object creation <br/>
+default - access to all classes in that package <br/>
+public - access to all classes in application <br/>
+<br/>
+<b>Non access modifiers </b> <br/>
+final - it can't be subclassed <br/>
+abstract - it cant be initialized <br/>
+strictfp - all class methods are complied to IEEE standard for FP. <br/>
+<br/>
 <b>Constructors</b><br/>
 Objects are constructed. <br/>
 You can’t make a object without invoking constructor and superclass constructors in chain. <br/>
@@ -329,22 +435,6 @@ They have no return types, but name must exactly match with the class name. <br/
 Typically, constructors are used to initialize instance variable state. <br/>
 If you don’t type a constructor, the compiler will generate implicitly.<br/>
 If you type any constructor then compiler wont generate no-arg constructor <br/>
-<br/>
-<b>Access Modifiers </b><br/>
-We can modify class/members access using public, protected, default, private <br/>
-public - access to all classes in application <br/>
-protected - access to all classes in that package and sub classes of other packages <br/>
-default - access to all classes in that package <br/>
-private - access to that class only<br/>
-<br/>
-<b>Non access modifiers </b> <br/>
-final - if applied to class, it can't be subclassed <br/>
-&emsp;&emsp;&emsp; - if applied to method, it can't be override <br/>
-&emsp;&emsp;&emsp; - if applied to property, it can't be re-assigned <br/>
-abstract - if applied to class, it cant be initialized <br/>
-&emsp;&emsp;&emsp; - if applied to methods, no need to implement it<br/>
-strictfp - if applied to class, all methods are complied to IEEE standard for FP. <br/>
-&emsp;&emsp;&emsp; - if applied to method, only that method is complied to IEEE FP.<br/>
 <br/>
 <b>Abstract Class</b><br/>
 We get code re-use through inheritance by placing all common functionality in super class <br/>
@@ -1239,10 +1329,6 @@ ChristmasTree tree2 = new BubbleLights(
       new Garland(new Garland(new ChristmasTreeImpl())));
 </div>`;
 
-let javaPropertyHTML = `
-
-`;
-
 let javaNodeDataArray = [
 
     {key: "Presentation", desc: "Presentation", isGroup: true, category: "treeHL", img: "img/system.svg", expand: true},
@@ -1262,10 +1348,10 @@ let javaNodeDataArray = [
     {key: "Sourcecode", desc: "Sourcecode", group: "Application", isGroup: true, category: "tree", toolTipHTML: javaSourceCodeHTML, expand: true, img: "img/sourceFolder.svg",},
     {key: "Package", desc: "Package", group: "Sourcecode", isGroup: true, category: "tree",expand: true, img: "img/package.svg",},
 
-    {key: "Class", desc: "Class", group: "Package", isGroup: true, category: "tree", toolTipHTML: javaClassHTML, expand: true, img: "img/class.svg",},
-    {key: "Property", desc: " private String name;", group: "Class", category: "simpleText", toolTipHTML: javaProgrammingHTML, img: "img/private.svg"},
-    {key: "Property1", desc: " private Float rate;", group: "Class", category: "simpleText", toolTipHTML: javaProgrammingHTML, img: "img/private.svg"},
-    {key: "Method", desc: " public Float calculate(Float rate)", group: "Class", isGroup: true, category: "tree250", toolTipHTML: javaProgrammingHTML, img: "img/public.svg", expand: true},
+    {key: "Class", desc: "class Product", group: "Package", isGroup: true, category: "tree", toolTipHTML: javaClassHTML, expand: false, img: "img/class.svg",},
+    {key: "Property", desc: " String name;", group: "Class", category: "simpleText", toolTipHTML: javaPropertyHTML, img: "img/private.svg"},
+    {key: "Property1", desc: " float price;", group: "Class", category: "simpleText", toolTipHTML: javaPropertyHTML, img: "img/private.svg"},
+    {key: "Method", desc: " double calculateTotal(flat tax)", group: "Class", isGroup: true, category: "tree250", toolTipHTML: javaMethodHTML, img: "img/public.svg", expand: true},
 
     {key: "Statement1", desc: "Integer amount = 195;", group: "Method", category: "simpleText", toolTipHTML: javaStatementHTML, img: "img/null.svg"},
     {key: "Statement2", desc: "if(rate !=0) { //stmts; }", group: "Method", category: "simpleText", toolTipHTML: javaFlowControlsHTML, img: "img/null.svg"},
@@ -1279,31 +1365,14 @@ let javaNodeDataArray = [
     {key: "Bytecode", desc: "Bytecode", group: "Application", category: "picTemplate", toolTipHTML: javaProgrammingHTML, expand: false, img: "img/byteFile.svg",},
     {key: "Java", desc: "JDK", isGroup: true, group: "Storage", category: "grid", img: "assets/img/java/java.svg", toolTipHTML: javaHTML, expand: true},
 
-    {key: "Java Language", desc: "Language", isGroup: true, group: "Presentation", category: "tree", toolTipHTML: javaHTML, expand: false},
+    {key: "Java-WrapperClass", desc: "Wrapper Classes", group:"Java API", category: "simple", toolTipHTML: javaWrapperClassHTML},
+    {key: "Java-Collections", desc: "Collections", group:"Java API", category: "simple", toolTipHTML: javaCollectionsHTML},
+    {key: "Java-Generics", desc: "Generics", group:"Java API", category: "simple", toolTipHTML: javaGenericsHTML},
+    {key: "Java-Iterators", desc: "Iterators", group:"Java API", category: "simple", toolTipHTML: javaIteratorsHTML},
+    {key: "Java-Spliterators", desc: "Spliterators", group:"Java API", category: "simple", toolTipHTML: javaSpliteratorsHTML},
+    {key: "Java-Streams", desc: "Streams", group:"Java API", category: "simple", toolTipHTML: javaStreamsHTML},
 
-    {key: "Java-Syntax", desc: "Syntax", isGroup: true, group: "Java Language", category: "tree", expand: true, toolTipHTML: javaSyntaxHTML},
-
-    {key: "Initialization", desc: "Initialize", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
-    {key: "Java-Literals", desc: "Literals", group:"Initialization", category: "simple", toolTipHTML: javaLiteralHTML},
-    {key: "Java-Variables", desc: "Variables", group:"Initialization", category: "simple", toolTipHTML: javaVariableHTML},
-    {key: "Java-Datatypes", desc: "Datatypes", group:"Initialization", category: "simple", expand: false, toolTipHTML: javaDataTypeHTML},
-    {key: "Java-Arrays", desc: "Arrays", group:"Initialization", category: "simple", toolTipHTML: javaArraysHTML},
-    {key: "Java-String", desc: "String", group:"Initialization", category: "simple", toolTipHTML: javaStringHTML},
-    {key: "Java-Lambdas", desc: "Lambdas", group:"Initialization", category: "simple", toolTipHTML: javaLambdasHTML},
-
-    {key: "Process", desc: "Process", isGroup: true, group: "Java-Syntax", category: "grid", expand: false, toolTipHTML: javaSyntaxHTML},
-    {key: "Java-Threads", desc: "Multi Threading", group:"Process", category: "simple", toolTipHTML: javaMultiThreadsHTML},
-
-    {key: "Java-OOP", desc: "API", isGroup: true, group: "Java-Syntax", category: "grid", expand: false},
-
-    {key: "Java-WrapperClass", desc: "Wrapper Classes", group:"Java-OOP", category: "simple", toolTipHTML: javaWrapperClassHTML},
-    {key: "Java-Collections", desc: "Collections", group:"Java-OOP", category: "simple", toolTipHTML: javaCollectionsHTML},
-    {key: "Java-Generics", desc: "Generics", group:"Java-OOP", category: "simple", toolTipHTML: javaGenericsHTML},
-    {key: "Java-Iterators", desc: "Iterators", group:"Java-OOP", category: "simple", toolTipHTML: javaIteratorsHTML},
-    {key: "Java-Spliterators", desc: "Spliterators", group:"Java-OOP", category: "simple", toolTipHTML: javaSpliteratorsHTML},
-    {key: "Java-Streams", desc: "Streams", group:"Java-OOP", category: "simple", toolTipHTML: javaStreamsHTML},
-
-    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Java Language", expand: false, category: "grid"},
+    {key: "Java-Semantics", desc: "Semantics", isGroup: true, group: "Sourcecode", expand: false, category: "grid"},
 
     {key: "Java-Design-Patterns", desc: "Design Patterns", isGroup: true, group: "Java-Semantics", category: "tree", expand: true},
 
@@ -1335,13 +1404,13 @@ let javaNodeDataArray = [
     {key: "Java Compiler", desc: "Compiler", category: "simplePic", group: "Java", img: "img/tools.svg"},
     {key: "Java RE", desc: "JRE", isGroup: true, expand: false, category: "grid", group: "Java"},
 
-    {key: "Java API", desc: "API", category: "simplePic", group: "Java RE", img: "img/plugin.svg"},
+    {key: "Java API", desc: "API", category: "grid", isGroup: true, group: "Java RE", img: "img/plugin.svg", expand: false},
 
     {key: "Meta", desc: "Meta", category: "simple", group: "Memory"},
     {key: "Heap", desc: "Heap", category: "simple", group: "Memory"},
     {key: "Stack", desc: "Stack", category: "simple", group: "Memory"},
 
-    {key: "Java VM", desc: "Java VM", isGroup: true, expand: true, category: "tree90", group: "Java RE"},
+    {key: "Java VM", desc: "Java VM", isGroup: true, expand: false, category: "tree90", group: "Java RE"},
 
     {key: "Java Class Loader", desc: "Class Loader", isGroup: true, expand: true, category: "tree", group: "Java VM"},
     {key: "Java Loading", desc: "Loading", isGroup: true, expand: false, category: "tree90", group: "Java Class Loader"},
@@ -1364,8 +1433,6 @@ let javaNodeDataArray = [
     {key: "Title", desc: "Title", category: "simplePic", group: "Presentation", toolTipHTML: titleHTML},
     {key: "About Me", desc: "About Me", category: "simplePic", img: "img/PP.jpg", group: "Presentation", toolTipHTML: aboutMeHTML},
     {key: "Features", desc: "Content", category: "simplePic", group: "Presentation", toolTipHTML: featuresHTML},
-    {key: "eCommerce", desc: "Web Site", category: "simplePic", group: "Presentation", toolTipHTML: eCommerceHTML},
-
 
 ];
 
@@ -1385,7 +1452,7 @@ let javaLinkDataArray = [
     {from:"Java-Install", to: "Java-Syntax", category: "simplelink"},
     {from:"Java-Input", to: "Java-Process", category: "simplelink"},
     {from:"Java-Process", to: "Java-Output", category: "simplelink"},
-    {from:"Java-Syntax", to: "Java-Semantics", category: "simplelink"},
+    {from:"Package", to: "Java-Semantics", category: "invisibleLink"},
     {from:"Initialization", to: "Process", category: "invisibleLink"},
 //    {from:"Java-Semantics", to: "Java-Solid", category: "simplelink"},
 {key: "scToCompiler", from: "Java Source Code", to: "Java Compiler", category: "simplelink"},

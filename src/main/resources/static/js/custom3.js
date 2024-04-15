@@ -20,7 +20,7 @@ function textStyle50() {
 
 function textStyle150() {
     return [
-        { margin: 0, width: 100, textAlign: "center", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
+        { margin: 0, width: 150, textAlign: "center", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
     ];
 }
 function textStyle250() {
