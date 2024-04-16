@@ -9,35 +9,35 @@ function showDetails(e, obj) {
 
 function textStyle() {
     return [
-        { margin: 10, width: 150, textAlign: "center", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
+        { margin: 10, width: 150, textAlign: "center", font: '500 20px Cursive, sans-serif', stroke: "#cccccc"}
     ];
 }
 function textStyle50() {
     return [
-        { margin: 10, textAlign: "left", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
+        { margin: 10, textAlign: "left", font: '500 20px Cursive, sans-serif', stroke: "#cccccc"}
     ];
 }
 
 function textStyle150() {
     return [
-        { margin: 0, width: 150, textAlign: "center", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
+        { margin: 0, width: 150, textAlign: "center", font: '500 20px Cursive, sans-serif', stroke: "#cccccc"}
     ];
 }
 function textStyle250() {
     return [
-        { margin: 10, width: 300, textAlign: "left", font: '500 20px Roboto, sans-serif', stroke: "#cccccc"}
+        { margin: 10, width: 300, textAlign: "left", font: '500 20px Cursive, sans-serif', stroke: "#cccccc"}
     ];
 }
 
 function textStyleLong() {
     return [
-        { margin: 0, textAlign: "center", font: '500 16px Roboto, sans-serif', stroke: "#999999"}
+        { margin: 0, textAlign: "center", font: '500 16px Cursive, sans-serif', stroke: "#999999"}
     ];
 }
 
 function itemStyle() {
     return [
-        { textAlign: "center", font: '16px Roboto, sans-serif'}
+        { textAlign: "center", font: '16px Cursive, sans-serif'}
     ];
 }
 

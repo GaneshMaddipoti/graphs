@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Jtechy</title>
+    <title>Python Presentation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -14,8 +14,7 @@
 </head>
 <body>
 
-<div id="myDiagramDiv"
-     style="width:96%;height: 96vh; background-color: #33334d;margin:0 auto;border: 0px solid Silver"></div>
+<div id="myDiagramDiv"></div>
 <div id="toolTipDIV" class="tooltip"></div>
 
 <script>
@@ -25,6 +24,8 @@
 <script src="js/custom3.js"></script>
 <script src="js/python.js"></script>
 <script>
+    let toolTipFlag = false;
+    let toolTip1Flag = false;
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
     zoomSlider = new ZoomSlider(diagram);
     diagram.commandHandler.zoomToFit();
@@ -39,6 +40,26 @@
             this.classList.toggle("caret-down");
         });
     }
+
+    //Keypress
+document.onkeyup = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+    } else {
+        isEscape = (evt.keyCode === 27);
+    }
+    if (isEscape) {
+        if(toolTip1Flag) {
+            hideToolTip1();
+            return;
+        }
+        if(toolTipFlag) {
+            hideToolTip();
+        }
+    }
+};
 </script>
 </body>
 </html>
