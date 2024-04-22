@@ -85,6 +85,52 @@ Created by James Gosling and team at Sun micro systems in 1991 <br/>
 5) Multi threaded <br/>
 `;
 
+let jdkHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is JDK ?
+</div>
+<b>JDK</b><br/>
+Java Development Kit(JDK) contains the minimum software you need to do java development. <br/>
+It contains <br/>
+<ul>
+<li>Compiler</li>
+<li>Application Programming Interface(API)</li>
+<li>Java Virtual Machine(JVM)</li>
+</ul>
+`;
+
+let compilerHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to compile the program ?
+</div>
+<b>javac</b><br/>
+Java Compiler converts source files(.java) to bytecode(.class) <br/>
+Bytecode is a special format that JVM can run <br/>
+By default compiler will place class files in same directory as source files <br/>
+Using -d option, we can specify destination directory for class files <br/>
+Using -cp option, we can specify classpath location/jar to find <br/>
+We can use * wild card with -cp to include all classes and jars in that directory <br/>
+
+`;
+
+let jreHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+How to run the program ?
+</div>
+<b>JRE</b><br/>
+Java runtime environment(JRE) contain Java API and JVM <br/>
+java launches Java virtual machine(JVM) before running the program <br/>
+`;
+
+let jvmHTML = `
+<div class="reqBanner"><img class="reqBannerImg"/>
+What is JVM ?
+</div>
+<b>JVM</b><br/>
+Java Virtual Machine(JVM) knows how to run the bytecode on the actual machine <br/>
+
+`;
+
 let javaLiteralHTML = `
 <div class="reqBanner"><img class="reqBannerImg"/>
 How to represent data in program ?
@@ -153,8 +199,24 @@ How source code is written and organized ?
 </div>
 <b>Source Code</b><br/>
 Source is organized into Packages <br/>
-And Package contains classes and/or interfaces <br/>
+And Package contains files containing high level types - classes, interfaces, records, enums <br/>
+A file should contain only one public class, and that class name should match with file name <br/>
 Inside class/interface we use syntax to write the code <br/>
+A Java program begins execution with its main method - its an entry point <br/>
+<br/>
+<b>Execution</b><br/>
+1) Compile the source code using javac, $javac Program.java -> outputs Program.class <br/>
+2) Execute the class file using java,   $java Program                                   <br/>
+3) Compile and execute single source file using java, $java Program.java            <br/>
+4) Import tells where to find the class <br/>
+5) import java.io.*; will import only classes in that package not sub packages <br/>
+6) import java.io.*; will not import all classes in that package but needed ones <br/>
+7) Listing all import statements for readability, * for shorten the imports <br/>
+8) import java.lang.*; is by default placed, we no need to place <br/>
+9) Java automatically looks in the current package for classes <br/>
+10) import java.util.Date; import java.sql.Date; - will result compilation error <br/>
+11) jar -cvf (create, verbose, filename) sample.jar -C temp/ - to create jar containing the file in directory<br/>
+
 <br/>
 <b>Package</b>
 <ul>
@@ -162,7 +224,22 @@ Inside class/interface we use syntax to write the code <br/>
     <li>To avoid naming conflicts</li>
     <li>To provide access protection</li>
     <li>If package name is not present, it belongs to default package</li>
-</ul>`;
+</ul>
+Java is case sensitive, while declaring variables, methods, classes, literals <br/>
+// used for comments <br/>
+/* <br/>
+<br/>
+*/ used for multi line comments <br/>
+/** <br/>
+<br/>
+*/ used for Java doc comments - used by javadoc tool for documentation purpose <br/>
+<br/>
+<b>Keyword</b></br/>
+Its a reserved word, have predefined meaning in java language <br/>
+Ex: int, byte, for, which, try, catch,  etc...<br/>
+<b>Casting</b><br/>
+We can change the data type from one to another using casting <br/>
+Ex: byte value = (byte) 1000`;
 
 let javaPropertyHTML = `
 <div class="reqBanner"><img class="reqBannerImg"/>
@@ -176,8 +253,7 @@ Ex : private String name; <br/>
 <br/>
 Property definition contains Modifier,
 <a href="#" onclick="showToolTip1(\'' + javaDataTypeHTML + '\')"> Data Type</a>,
-<a href="#" onclick="showToolTip1(\'' + javaIdentifiersHTML + '\')">Identifiers/</a>
-<a href="#" onclick="showToolTip1(\'' + javaVariableHTML + '\')">Variables</a>
+<a href="#" onclick="showToolTip1(\'' + javaIdentifiersHTML + '\')">Identifiers/Variables</a>
 <br/><br/>
 <b>Access Modifiers </b><br/>
 We can modify property access using public, protected, default, private <br/>
@@ -222,18 +298,6 @@ strictfp - if applied to class, all methods are complied to IEEE standard for FP
 &emsp;&emsp;&emsp; - if applied to method, only that method is complied to IEEE FP.<br/>
 <br/>
 
-`;
-
-let javaSyntaxHTML = `
-Java is case sensitive, while declaring variables, methods, classes, literals <br/>
-(/ /) used for comments <br/>
-<br/>
-<b>Keyword</b></br/>
-Its a reserved word, have predefined meaning in java language <br/>
-Ex: int, byte, for, which, try, catch,  etc...<br/>
-<b>Casting</b><br/>
-We can change the data type from one to another using casting <br/>
-Ex: byte value = (byte) 1000;
 `;
 
 let javaDataTypeHTML = `
@@ -293,8 +357,17 @@ Ex: String s = “abc”; <br/>
 
 let javaIdentifiersHTML = `
 <div class="reqBanner"><img class="reqBannerImg"/>
-What are identifiers in Java ?
+Where to store data temporarily during processing ?
 </div>
+<b>Variables</b><br/>
+<ul>
+<li>Variables with given name, used to store and retrieve information in memory <br/>
+Ex: length = 120;
+</li>
+<li>A variable is statically typed to a primitive or object <br/>
+Ex: int length = 120;
+</li>
+</ul>
 <b>Identifiers</b><br/>
 All the java components(classes, interfaces, enums, methods, variables) need names <br/>
 And these names are called identifiers and there are rules for legal identifiers.<br/>
@@ -307,21 +380,6 @@ And these names are called identifiers and there are rules for legal identifiers
 <li>You can’t use java keyword as an identifier</li>
 <li>Identifiers are case sensitive.</li>
 </ol>
-`;
-
-let javaVariableHTML = `
-<div class="reqBanner"><img class="reqBannerImg"/>
-Where to store data temporarily during processing ?
-</div>
-<b>Variables</b><br/>
-<ul>
-<li>Variables with given name, used to store and retrieve information in memory <br/>
-Ex: length = 120;
-</li>
-<li>A variable is statically typed to a primitive or object <br/>
-Ex: int length = 120;
-</li>
-</ul>
 `;
 
 let javaStatementHTML = `
@@ -1347,8 +1405,9 @@ let javaNodeDataArray = [
 
     {key: "Sourcecode", desc: "Sourcecode", group: "Application", isGroup: true, category: "tree", toolTipHTML: javaSourceCodeHTML, expand: true, img: "img/sourceFolder.svg",},
     {key: "Package", desc: "Package", group: "Sourcecode", isGroup: true, category: "tree",expand: true, img: "img/package.svg",},
+    {key: "File", desc: "File", group: "Package", isGroup: true, category: "tree",expand: true, img: "img/byteFile.svg",},
 
-    {key: "Class", desc: "class Product", group: "Package", isGroup: true, category: "tree", toolTipHTML: javaClassHTML, expand: false, img: "img/class.svg",},
+    {key: "Class", desc: "class Product", group: "File", isGroup: true, category: "tree", toolTipHTML: javaClassHTML, expand: false, img: "img/class.svg",},
     {key: "Property", desc: " String name;", group: "Class", category: "simpleText", toolTipHTML: javaPropertyHTML, img: "img/private.svg"},
     {key: "Property1", desc: " float price;", group: "Class", category: "simpleText", toolTipHTML: javaPropertyHTML, img: "img/private.svg"},
     {key: "Method", desc: " double calculateTotal(flat tax)", group: "Class", isGroup: true, category: "tree250", toolTipHTML: javaMethodHTML, img: "img/public.svg", expand: true},
@@ -1358,16 +1417,17 @@ let javaNodeDataArray = [
     {key: "Statement3", desc: "for(int i=0; i<10; i++) { //stmts; }", group: "Method", category: "simpleText", toolTipHTML: javaLoopsHTML, img: "img/null.svg"},
     {key: "Statement4", desc: "try{ //stmts; } catch(Exceptin e) {}", group: "Method", category: "simpleText", toolTipHTML: javaExceptionsHTML, img: "img/null.svg"},
 
-    {key: "Interface", desc: "Interface", group: "Package", isGroup: true, category: "tree", toolTipHTML: javaInterfaceHTML, expand: false, img: "img/interface.svg",},
-    {key: "Method", desc: " public Float calculate(Float rate)", group: "Interface", isGroup: true, category: "tree250", toolTipHTML: javaProgrammingHTML, img: "img/public.svg", expand: false},
-
+    {key: "Interface", desc: "Interface", group: "File", category: "simplePic", toolTipHTML: javaInterfaceHTML, expand: false, img: "img/interface.svg",},
+    {key: "Enum", desc: "Enum", group: "File", category: "simplePic", expand: false,},
+    {key: "Record", desc: "Record", group: "File", category: "simplePic", expand: false,},
 
     {key: "Bytecode", desc: "Bytecode", group: "Application", category: "picTemplate", toolTipHTML: javaProgrammingHTML, expand: false, img: "img/byteFile.svg",},
-    {key: "Java", desc: "JDK", isGroup: true, group: "Storage", category: "grid", img: "assets/img/java/java.svg", toolTipHTML: javaHTML, expand: true},
+    {key: "Java", desc: "Java", isGroup: true, group: "Storage", category: "grid", img: "assets/img/java/java.svg", toolTipHTML: javaHTML, expand: true},
+    {key: "JDK", desc: "JDK", isGroup: true, group: "Java", category: "grid", toolTipHTML: jdkHTML, expand: true},
 
     {key: "Java-WrapperClass", desc: "Wrapper Classes", group:"Java API", category: "simple", toolTipHTML: javaWrapperClassHTML},
     {key: "Java-Collections", desc: "Collections", group:"Java API", category: "simple", toolTipHTML: javaCollectionsHTML},
-    {key: "Java-Generics", desc: "Generics", group:"Java API", category: "simple", toolTipHTML: javaGenericsHTML},
+    {key: "Java-Generics", desc: "Generics", group:"Package", category: "simple", toolTipHTML: javaGenericsHTML},
     {key: "Java-Iterators", desc: "Iterators", group:"Java API", category: "simple", toolTipHTML: javaIteratorsHTML},
     {key: "Java-Spliterators", desc: "Spliterators", group:"Java API", category: "simple", toolTipHTML: javaSpliteratorsHTML},
     {key: "Java-Streams", desc: "Streams", group:"Java API", category: "simple", toolTipHTML: javaStreamsHTML},
@@ -1401,16 +1461,14 @@ let javaNodeDataArray = [
     {key: "Java-SP-Interface-Segregation", desc: "Interface Segregation", group:"Java-Solid", category: "simple", toolTipHTML: javaSPInterfaceSegregationHTML},
     {key: "Java-SP-DI", desc: "Dependency Inversion", group:"Java-Solid", category: "simple", toolTipHTML: javaSPDIHTML},
 
-    {key: "Java Compiler", desc: "Compiler", category: "simplePic", group: "Java", img: "img/tools.svg"},
-    {key: "Java RE", desc: "JRE", isGroup: true, expand: false, category: "grid", group: "Java"},
-
-    {key: "Java API", desc: "API", category: "grid", isGroup: true, group: "Java RE", img: "img/plugin.svg", expand: false},
+    {key: "Java Compiler", desc: "Compiler", category: "simplePic", group: "JDK", img: "img/tools.svg", toolTipHTML: compilerHTML},
+    {key: "Java API", desc: "API", category: "grid", isGroup: true, group: "JDK", img: "img/plugin.svg", expand: false},
 
     {key: "Meta", desc: "Meta", category: "simple", group: "Memory"},
     {key: "Heap", desc: "Heap", category: "simple", group: "Memory"},
     {key: "Stack", desc: "Stack", category: "simple", group: "Memory"},
 
-    {key: "Java VM", desc: "Java VM", isGroup: true, expand: false, category: "tree90", group: "Java RE"},
+    {key: "Java VM", desc: "Java VM", isGroup: true, expand: false, category: "tree90", group: "JDK", toolTipHTML: jvmHTML},
 
     {key: "Java Class Loader", desc: "Class Loader", isGroup: true, expand: true, category: "tree", group: "Java VM"},
     {key: "Java Loading", desc: "Loading", isGroup: true, expand: false, category: "tree90", group: "Java Class Loader"},
