@@ -1,7 +1,7 @@
 .tooltip {
     position: absolute;
-    background: WhiteSmoke;
-    color: DarkSlateGray;
+    background: #555;
+    color: #eee;
     z-index: 1000;
     display: none;
     font-family: Roboto;

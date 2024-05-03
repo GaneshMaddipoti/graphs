@@ -1,0 +1,7 @@
+#myCanvasId{
+    border: 1px solid black;
+    margin: 0 auto;
+    display: block;
+    width : 1000px;
+    height: 500px;
+}
