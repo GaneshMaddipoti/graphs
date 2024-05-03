@@ -48,3 +48,18 @@
     display: block;
     opacity: 1;
 }
+
+.sourceCode{
+    padding-left: 10px;
+    background: #41464b;
+    color: #f8f9fa;
+    font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+    /*font-style: italic;*/
+    white-space: pre;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    width: 80%;
+    font-size: 15px;
+    line-height: 150%;
+    margin-top:10px;
+}

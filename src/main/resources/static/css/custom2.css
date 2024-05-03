@@ -1,16 +1,96 @@
+#myDiagramDiv {
+    width:100%;
+    height: 111vh;
+    background-color: #2A4252;
+    margin-top:-80px;
+    border: 0px solid Silver
+}
+
 .tooltip {
-    position: absolute;
-    background: #555;
-    color: #eee;
+    background: #2A4252;
+    color: #cccccc;
     z-index: 1000;
     display: none;
-    font-family: Roboto;
-    font-size: 14px;
-    padding: 5px;
+    font-family: Cursive,Roboto, Arial, serif;
+    font-size: 24px;
+    font-weight: lighter;
+    padding: 75px 100px;
     /*width: 300px;*/
-    border: 0px solid black;
+    border: 0px solid WhiteSmoke;
+    /*border-radius: 5px;*/
+    line-height: 150%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: auto;
+    position: absolute;
+    /*left: 300px;*/
+    top: 0px;
+    opacity: 0;
+    display: none;
+    transition: opacity 1s, display 1s allow-discrete;
+}
+
+@starting-style {
+  /* 0. Before-change state  */
+  .tooltip {
+    opacity: 0;
+    display: none;
+    /*   You don't duplicate `display: none` here
+         because it's already in the initial `.display-on-check`
+         but you do need `opacity: 0`*/
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.reqBanner {
+    background: #F67D23;
+    color: #2A4252;
+    width: 90%;
+    padding: 10px;
     border-radius: 5px;
-    margin: 10px;
+    margin-bottom: 15px;
+    border: 5px solid #cccccc;
+    font-weight: bold;
+}
+
+.reqBannerImg {
+    width:50px;
+    height:50px;
+    vertical-align: middle;
+    margin-right: 10px;
+    content : url("../img/requirement.svg");
+}
+
+#tooltipClose{
+    position: relative;
+    float: right;
+    background: Silver;
+    color: DarkSlateGray;
+    top: 0px;
+    right: 0px;
+    border: 0px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 24px;
+    opacity: 0;
+}
+
+#tooltipClose:hover {
+    opacity: 1;
+}
+
+.tooltipFooter {
+  position: relative;
+  background: red;
+  color: DarkSlateGray;
+  bottom: 0px;
+  border: 0px;
 }
 
 .zoomSlider {
@@ -104,13 +184,8 @@
     display: none;
 }
 
-ul, #myUL {
-  list-style-type: none;
-}
-
-#myUL {
-  margin: 0;
-  padding: 0;
+ul,ol {
+    margin-top: 5px;
 }
 
 .caret {
@@ -144,4 +219,40 @@ ul, #myUL {
 
 a {
     text-decoration: none;
+    color: #cccccc;
+}
+
+.accordion {
+    /*background-color: #eee;*/
+    color: #000;
+    cursor: pointer;
+    /*padding: 10px;*/
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    /*font-size: 15px;*/
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    /*background-color: #ccc;*/
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    /*background-color: white;*/
+    overflow: hidden;
+    width: 750px;
+    font-size: 14px;
+    color: #000;
+}
+
+b{
+    text-decoration: underline;
+    text-decoration-color: #F8981D;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 7px;
+
 }

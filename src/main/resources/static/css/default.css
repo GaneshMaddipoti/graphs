@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
-  color: Silver;
+  /* color: Silver; */
 }
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   border-radius: 5px;
+  margin:0px;overflow-x: hidden;overflow-y: hidden;
 }
 
 /* Style the header */
@@ -22,7 +23,7 @@ header {
 nav {
   float: left;
   width: 20%;
-  height: 800px; /* only for demonstration, should be removed */
+  height: 970px; /* only for demonstration, should be removed */
   background: DarkSlateGray;
   padding: 20px;
   border: 1px solid silver;
